@@ -12,7 +12,7 @@ and managing the client requests of booking tickets by the counters.
 
 
 ## Tech/framework used
-
+Java SE, Java Swing, JDBC, File I/O, RMI
 
 ## Features
 
