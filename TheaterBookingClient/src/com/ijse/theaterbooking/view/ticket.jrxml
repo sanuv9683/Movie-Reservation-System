@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report2" language="groovy" pageWidth="280" pageHeight="600" columnWidth="240" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="bffb9e14-d9b0-4084-8b97-ab371ead5e0f">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="80"/>
+	<parameter name="seatNo" class="java.lang.String"/>
+	<parameter name="bookingI" class="java.lang.String"/>
+	<parameter name="mTime" class="java.lang.String"/>
+	<parameter name="uClass" class="java.lang.String"/>
+	<parameter name="movieN" class="java.lang.String"/>
+	<parameter name="bookingDate" class="java.lang.String"/>
+	<parameter name="totalPr" class="java.lang.String"/>
+	<field name="SeatID" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="121" splitType="Stretch">
+			<image>
+				<reportElement x="0" y="19" width="95" height="87" uuid="2961f6a2-81f3-4fd1-87a8-e1c5f4277e9e"/>
+				<imageExpression><![CDATA["C:\\Users\\Sanu Vithanage\\Desktop\\eAP.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="36" y="80" width="204" height="41" uuid="ada3b998-2cf8-4205-b0f0-2f67d6e21aed"/>
+				<textElement textAlignment="Center">
+					<font fontName="Copperplate Gothic Light" size="36"/>
+				</textElement>
+				<text><![CDATA[savoy 3d ]]></text>
+			</staticText>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="208" splitType="Stretch">
+			<textField>
+				<reportElement x="122" y="78" width="100" height="20" uuid="d501edb8-c9d6-47d6-b4e0-8dfe02da90fa"/>
+				<textElement>
+					<font fontName="Copperplate Gothic Light" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{mTime}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="123" y="140" width="100" height="20" uuid="37896145-249f-455c-bd4d-6d3e7402ee73"/>
+				<textElement>
+					<font fontName="Copperplate Gothic Light" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{totalPr}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="122" y="109" width="100" height="20" uuid="500e74be-ed2a-42ba-8c56-0ede654a00a5"/>
+				<textElement>
+					<font fontName="Copperplate Gothic Light"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{bookingDate}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="122" y="48" width="100" height="20" uuid="a8e4ca60-8aed-492a-866c-ea8a47c0d353"/>
+				<textElement>
+					<font fontName="Copperplate Gothic Light" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{uClass}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="6" y="171" width="100" height="20" uuid="e5cfbe22-06ce-475f-969b-ba5d957ddc1e"/>
+				<textElement>
+					<font fontName="Copperplate Gothic Light" size="12"/>
+				</textElement>
+				<text><![CDATA[Booking ID      :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="6" y="140" width="92" height="20" uuid="fd887574-fc4e-4d32-91b0-6a9f95f47b84"/>
+				<textElement>
+					<font fontName="Copperplate Gothic Light" size="12" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Total Price    :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="30" y="48" width="67" height="20" uuid="21e5a481-e09f-41e9-99b7-989f86eef8ad"/>
+				<textElement>
+					<font fontName="Copperplate Gothic Light" size="12" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Class       :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="17" y="109" width="80" height="20" uuid="f141a737-09e7-40a6-949c-3f616db136d0"/>
+				<textElement>
+					<font fontName="Copperplate Gothic Light" size="12" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Date               :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="30" y="19" width="67" height="20" uuid="7b7c2292-abdc-45f9-8802-2d489f807e17"/>
+				<textElement>
+					<font fontName="Copperplate Gothic Light" size="12" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Movie        :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="30" y="78" width="67" height="20" uuid="35b17cc6-983f-4707-8c65-50ec6a231b26"/>
+				<textElement>
+					<font fontName="Copperplate Gothic Light" size="12" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Time            :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="123" y="171" width="100" height="20" uuid="71bfd769-c6ca-4434-ad33-6b9d4c1716d5"/>
+				<textElement>
+					<font fontName="Copperplate Gothic Light" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{bookingI}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="122" y="19" width="131" height="20" uuid="69c6d453-5330-4e41-b99c-8f3af5d0b6c4"/>
+				<textElement>
+					<font fontName="Copperplate Gothic Light" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{movieN}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="6" y="0" width="234" height="1" uuid="ed508a21-2cac-454e-b928-9a612de4372d"/>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="27" splitType="Stretch">
+			<textField>
+				<reportElement x="122" y="0" width="100" height="20" uuid="e30295fe-d690-4f0e-bc6a-72781e09af5b"/>
+				<textElement>
+					<font fontName="Copperplate Gothic Light"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{SeatID}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="18" y="0" width="80" height="20" uuid="74ce3355-2372-4cd7-b9c1-753867859178"/>
+				<textElement>
+					<font fontName="Copperplate Gothic Light" size="12" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Seat No        :]]></text>
+			</staticText>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="99" splitType="Stretch">
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="75" y="72" width="100" height="20" uuid="11bcb251-e732-4317-9a10-948cb4fc99ee"/>
+				<textElement>
+					<font fontName="Copperplate Gothic Light" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement x="75" y="1" width="100" height="71" uuid="d5e226c9-6e4b-4677-b8eb-c8f4f4cb92cd"/>
+				<imageExpression><![CDATA["C:\\Users\\Sanu Vithanage\\Desktop\\3D_Academy_logo.png"]]></imageExpression>
+			</image>
+			<line>
+				<reportElement x="0" y="92" width="234" height="1" uuid="4a1b9d92-b4bb-4a4d-950a-6d85e74fab0b"/>
+			</line>
+		</band>
+	</columnFooter>
+</jasperReport>

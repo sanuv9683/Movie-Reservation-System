@@ -1,0 +1,6290 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.ijse.theaterbooking.view;
+
+import com.ijse.theaterbooking.connector.ServerConnector;
+import com.ijse.theaterbooking.controller.BookController;
+import com.ijse.theaterbooking.controller.BookDetailsController;
+import com.ijse.theaterbooking.controller.GoldClassController;
+import com.ijse.theaterbooking.model.BookDetails;
+import com.ijse.theaterbooking.observerimpl.BookObserverImpl;
+import java.net.MalformedURLException;
+import java.rmi.NotBoundException;
+import java.rmi.RemoteException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import com.ijse.theaterbooking.observerimpl.GoldClassObserverImpl;
+import java.awt.Color;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.sql.SQLException;
+import java.text.ParseException;
+
+/**
+ *
+ * @author Sanu Vithanage
+ */
+public class GoldClassBook extends javax.swing.JPanel {
+
+    private String bookDate;
+    private String userID;
+    private String movieName;
+    private String userName;
+    private String movieTime;
+    private String sheetId;
+    private double totalPrice;
+    private int totalNumberOfTickets;
+    private String filmID;
+    private String bookId;
+    public static ArrayList<String> resDetails = new ArrayList<>();
+    private Object view;
+    private GoldClassObserverImpl GoldClassObserverImpl;
+    public GoldClassController gc;
+    private static ArrayList<String> seatHolder = new ArrayList<>();
+    private int totalSeat;
+    public static int count = 0;
+
+    /**
+     * Creates new form BookingStepOne
+     *///bookingTid, userName, bDate, usrID, filmName, filmTime, fullT, halfT
+    public GoldClassBook(String bookId, String userName, String bookDate, String userID, String movieName, String movieTime, double totalPrice, String filmID, int totalSeat) throws NotBoundException, MalformedURLException, ClassNotFoundException, FileNotFoundException, SQLException, IOException, RemoteException, ParseException {
+        BookObserverImpl bookObserverImpl;
+        initComponents();
+
+        this.bookId = bookId;
+        this.userName = userName;
+        this.bookDate = bookDate;
+        this.userID = userID;
+        this.movieName = movieName;
+        this.movieTime = movieTime;
+        this.totalPrice = totalPrice;
+        this.filmID = filmID;
+        this.totalSeat = totalSeat;
+
+        BookController bookController = ServerConnector.getServerConnector().getBookController();
+        bookObserverImpl = new BookObserverImpl(this);
+        bookController.addBookObserver(bookObserverImpl);
+
+        try {
+            if (filmID.equals("mov1")) {
+                seatDisplay(filmID);
+            }
+            if (filmID.equals("mov2")) {
+                seatDisplay(filmID);
+            }
+            if (filmID.equals("mov3")) {
+                seatDisplay(filmID);
+            }
+            if (filmID.equals("mov4")) {
+                seatDisplay(filmID);
+            }
+
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(GoldClassBook.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(GoldClassBook.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(GoldClassBook.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ParseException ex) {
+            Logger.getLogger(GoldClassBook.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (NotBoundException ex) {
+            Logger.getLogger(GoldClassBook.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        try {
+            GoldClassController goldClassController = ServerConnector.getServerConnector().getGoldClassController();
+            GoldClassObserverImpl = new GoldClassObserverImpl(this);
+
+            goldClassController.addNewGoldClassObserver(GoldClassObserverImpl);
+        } catch (RemoteException ex) {
+            Logger.getLogger(GoldClassBook.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (NotBoundException | ClassNotFoundException | SQLException | ParseException ex) {
+            Logger.getLogger(GoldClassBook.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (MalformedURLException ex) {
+            Logger.getLogger(GoldClassBook.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(GoldClassBook.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+
+    /**
+     * This method is called from within the constructor to initialize the form.
+     * WARNING: Do NOT modify this code. The content of this method is always
+     * regenerated by the Form Editor.
+     */
+    @SuppressWarnings("unchecked")
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    private void initComponents() {
+
+        sno5 = new javax.swing.JLabel();
+        sno6 = new javax.swing.JLabel();
+        sno7 = new javax.swing.JLabel();
+        sno3 = new javax.swing.JLabel();
+        sno22 = new javax.swing.JLabel();
+        sno80 = new javax.swing.JLabel();
+        sno24 = new javax.swing.JLabel();
+        sno25 = new javax.swing.JLabel();
+        sno26 = new javax.swing.JLabel();
+        sno41 = new javax.swing.JLabel();
+        sno42 = new javax.swing.JLabel();
+        sno43 = new javax.swing.JLabel();
+        sno44 = new javax.swing.JLabel();
+        sno45 = new javax.swing.JLabel();
+        sno60 = new javax.swing.JLabel();
+        sno61 = new javax.swing.JLabel();
+        sno62 = new javax.swing.JLabel();
+        sno79 = new javax.swing.JLabel();
+        sno98 = new javax.swing.JLabel();
+        sno99 = new javax.swing.JLabel();
+        sno100 = new javax.swing.JLabel();
+        sno101 = new javax.swing.JLabel();
+        sno102 = new javax.swing.JLabel();
+        sno81 = new javax.swing.JLabel();
+        sno82 = new javax.swing.JLabel();
+        sno83 = new javax.swing.JLabel();
+        sno63 = new javax.swing.JLabel();
+        sno64 = new javax.swing.JLabel();
+        sno23 = new javax.swing.JLabel();
+        sno117 = new javax.swing.JLabel();
+        sno118 = new javax.swing.JLabel();
+        sno119 = new javax.swing.JLabel();
+        sno1 = new javax.swing.JLabel();
+        sno8 = new javax.swing.JLabel();
+        sno9 = new javax.swing.JLabel();
+        sno10 = new javax.swing.JLabel();
+        sno11 = new javax.swing.JLabel();
+        sno12 = new javax.swing.JLabel();
+        sno13 = new javax.swing.JLabel();
+        sno14 = new javax.swing.JLabel();
+        sno15 = new javax.swing.JLabel();
+        sno16 = new javax.swing.JLabel();
+        sno27 = new javax.swing.JLabel();
+        sno65 = new javax.swing.JLabel();
+        sno66 = new javax.swing.JLabel();
+        sno28 = new javax.swing.JLabel();
+        sno47 = new javax.swing.JLabel();
+        sno67 = new javax.swing.JLabel();
+        sno29 = new javax.swing.JLabel();
+        sno30 = new javax.swing.JLabel();
+        sno31 = new javax.swing.JLabel();
+        sno32 = new javax.swing.JLabel();
+        sno33 = new javax.swing.JLabel();
+        sno34 = new javax.swing.JLabel();
+        sno35 = new javax.swing.JLabel();
+        sno48 = new javax.swing.JLabel();
+        sno49 = new javax.swing.JLabel();
+        sno50 = new javax.swing.JLabel();
+        sno51 = new javax.swing.JLabel();
+        sno52 = new javax.swing.JLabel();
+        sno53 = new javax.swing.JLabel();
+        sno54 = new javax.swing.JLabel();
+        sno68 = new javax.swing.JLabel();
+        sno69 = new javax.swing.JLabel();
+        sno71 = new javax.swing.JLabel();
+        sno72 = new javax.swing.JLabel();
+        sno73 = new javax.swing.JLabel();
+        sno70 = new javax.swing.JLabel();
+        sno4 = new javax.swing.JLabel();
+        sno2 = new javax.swing.JLabel();
+        sno17 = new javax.swing.JLabel();
+        sno18 = new javax.swing.JLabel();
+        sno19 = new javax.swing.JLabel();
+        sno20 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        sno21 = new javax.swing.JLabel();
+        sno40 = new javax.swing.JLabel();
+        sno59 = new javax.swing.JLabel();
+        sno78 = new javax.swing.JLabel();
+        sno97 = new javax.swing.JLabel();
+        sno116 = new javax.swing.JLabel();
+        sno115 = new javax.swing.JLabel();
+        sno114 = new javax.swing.JLabel();
+        sno113 = new javax.swing.JLabel();
+        sno112 = new javax.swing.JLabel();
+        sno120 = new javax.swing.JLabel();
+        sno121 = new javax.swing.JLabel();
+        sno122 = new javax.swing.JLabel();
+        sno96 = new javax.swing.JLabel();
+        sno95 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        sno94 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        sno93 = new javax.swing.JLabel();
+        sno74 = new javax.swing.JLabel();
+        sno75 = new javax.swing.JLabel();
+        sno76 = new javax.swing.JLabel();
+        sno77 = new javax.swing.JLabel();
+        sno58 = new javax.swing.JLabel();
+        sno57 = new javax.swing.JLabel();
+        sno56 = new javax.swing.JLabel();
+        sno55 = new javax.swing.JLabel();
+        sno36 = new javax.swing.JLabel();
+        sno37 = new javax.swing.JLabel();
+        sno38 = new javax.swing.JLabel();
+        sno39 = new javax.swing.JLabel();
+        sno46 = new javax.swing.JLabel();
+        sno84 = new javax.swing.JLabel();
+        sno103 = new javax.swing.JLabel();
+        sno104 = new javax.swing.JLabel();
+        sno85 = new javax.swing.JLabel();
+        sno86 = new javax.swing.JLabel();
+        sno105 = new javax.swing.JLabel();
+        sno106 = new javax.swing.JLabel();
+        sno87 = new javax.swing.JLabel();
+        sno88 = new javax.swing.JLabel();
+        sno107 = new javax.swing.JLabel();
+        sno108 = new javax.swing.JLabel();
+        sno89 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        sno90 = new javax.swing.JLabel();
+        sno109 = new javax.swing.JLabel();
+        sno91 = new javax.swing.JLabel();
+        sno110 = new javax.swing.JLabel();
+        sno92 = new javax.swing.JLabel();
+        sno111 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+
+        setOpaque(false);
+        setPreferredSize(new java.awt.Dimension(1000, 580));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        sno5.setBackground(new java.awt.Color(0, 51, 153));
+        sno5.setForeground(new java.awt.Color(255, 255, 255));
+        sno5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        sno5.setText("05");
+        sno5.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(51, 255, 255), null, new java.awt.Color(0, 204, 204)));
+        sno5.setOpaque(true);
+        sno5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sno5MouseClicked(evt);
+            }
+        });
+        add(sno5, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 140, 30, 30));
+
+        sno6.setBackground(new java.awt.Color(0, 51, 153));
+        sno6.setForeground(new java.awt.Color(255, 255, 255));
+        sno6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        sno6.setText("06");
+        sno6.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(51, 255, 255), null, new java.awt.Color(0, 204, 204)));
+        sno6.setOpaque(true);
+        sno6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sno6MouseClicked(evt);
+            }
+        });
+        add(sno6, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 140, 30, 30));
+
+        sno7.setBackground(new java.awt.Color(0, 51, 153));
+        sno7.setForeground(new java.awt.Color(255, 255, 255));
+        sno7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        sno7.setText("07");
+        sno7.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(51, 255, 255), null, new java.awt.Color(0, 204, 204)));
+        sno7.setOpaque(true);
+        sno7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sno7MouseClicked(evt);
+            }
+        });
+        add(sno7, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 140, 30, 30));
+
+        sno3.setBackground(new java.awt.Color(0, 51, 153));
+        sno3.setForeground(new java.awt.Color(255, 255, 255));
+        sno3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        sno3.setText("03");
+        sno3.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(51, 255, 255), null, new java.awt.Color(0, 204, 204)));
+        sno3.setOpaque(true);
+        sno3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sno3MouseClicked(evt);
+            }
+        });
+        add(sno3, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 140, 30, 30));
+
+        sno22.setBackground(new java.awt.Color(0, 51, 153));
+        sno22.setForeground(new java.awt.Color(255, 255, 255));
+        sno22.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        sno22.setText("22");
+        sno22.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(51, 255, 255), null, new java.awt.Color(0, 204, 204)));
+        sno22.setOpaque(true);
+        sno22.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sno22MouseClicked(evt);
+            }
+        });
+        add(sno22, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 180, 30, 30));
+
+        sno80.setBackground(new java.awt.Color(0, 51, 153));
+        sno80.setForeground(new java.awt.Color(255, 255, 255));
+        sno80.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        sno80.setText("80");
+        sno80.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(51, 255, 255), null, new java.awt.Color(0, 204, 204)));
+        sno80.setOpaque(true);
+        sno80.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sno80MouseClicked(evt);
+            }
+        });
+        add(sno80, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 300, 30, 30));
+
+        sno24.setBackground(new java.awt.Color(0, 51, 153));
+        sno24.setForeground(new java.awt.Color(255, 255, 255));
+        sno24.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        sno24.setText("24");
+        sno24.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(51, 255, 255), null, new java.awt.Color(0, 204, 204)));
+        sno24.setOpaque(true);
+        sno24.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sno24MouseClicked(evt);
+            }
+        });
+        add(sno24, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 180, 30, 30));
+
+        sno25.setBackground(new java.awt.Color(0, 51, 153));
+        sno25.setForeground(new java.awt.Color(255, 255, 255));
+        sno25.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        sno25.setText("25");
+        sno25.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(51, 255, 255), null, new java.awt.Color(0, 204, 204)));
+        sno25.setOpaque(true);
+        sno25.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sno25MouseClicked(evt);
+            }
+        });
+        add(sno25, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 180, 30, 30));
+
+        sno26.setBackground(new java.awt.Color(0, 51, 153));
+        sno26.setForeground(new java.awt.Color(255, 255, 255));
+        sno26.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        sno26.setText("26");
+        sno26.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(51, 255, 255), null, new java.awt.Color(0, 204, 204)));
+        sno26.setOpaque(true);
+        sno26.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sno26MouseClicked(evt);
+            }
+        });
+        add(sno26, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 180, 30, 30));
+
+        sno41.setBackground(new java.awt.Color(0, 51, 153));
+        sno41.setForeground(new java.awt.Color(255, 255, 255));
+        sno41.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        sno41.setText("41");
+        sno41.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(51, 255, 255), null, new java.awt.Color(0, 204, 204)));
+        sno41.setOpaque(true);
+        sno41.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sno41MouseClicked(evt);
+            }
+        });
+        add(sno41, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 220, 30, 30));
+
+        sno42.setBackground(new java.awt.Color(0, 51, 153));
+        sno42.setForeground(new java.awt.Color(255, 255, 255));
+        sno42.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        sno42.setText("42");
+        sno42.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(51, 255, 255), null, new java.awt.Color(0, 204, 204)));
+        sno42.setOpaque(true);
+        sno42.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sno42MouseClicked(evt);
+            }
+        });
+        add(sno42, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 220, 30, 30));
+
+        sno43.setBackground(new java.awt.Color(0, 51, 153));
+        sno43.setForeground(new java.awt.Color(255, 255, 255));
+        sno43.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        sno43.setText("43");
+        sno43.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(51, 255, 255), null, new java.awt.Color(0, 204, 204)));
+        sno43.setOpaque(true);
+        sno43.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sno43MouseClicked(evt);
+            }
+        });
+        add(sno43, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 220, 30, 30));
+
+        sno44.setBackground(new java.awt.Color(0, 51, 153));
+        sno44.setForeground(new java.awt.Color(255, 255, 255));
+        sno44.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        sno44.setText("44");
+        sno44.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(51, 255, 255), null, new java.awt.Color(0, 204, 204)));
+        sno44.setOpaque(true);
+        sno44.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sno44MouseClicked(evt);
+            }
+        });
+        add(sno44, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 220, 30, 30));
+
+        sno45.setBackground(new java.awt.Color(0, 51, 153));
+        sno45.setForeground(new java.awt.Color(255, 255, 255));
+        sno45.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        sno45.setText("45");
+        sno45.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(51, 255, 255), null, new java.awt.Color(0, 204, 204)));
+        sno45.setOpaque(true);
+        sno45.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sno45MouseClicked(evt);
+            }
+        });
+        add(sno45, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 220, 30, 30));
+
+        sno60.setBackground(new java.awt.Color(0, 51, 153));
+        sno60.setForeground(new java.awt.Color(255, 255, 255));
+        sno60.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        sno60.setText("60");
+        sno60.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(51, 255, 255), null, new java.awt.Color(0, 204, 204)));
+        sno60.setOpaque(true);
+        sno60.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sno60MouseClicked(evt);
+            }
+        });
+        add(sno60, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 260, 30, 30));
+
+        sno61.setBackground(new java.awt.Color(0, 51, 153));
+        sno61.setForeground(new java.awt.Color(255, 255, 255));
+        sno61.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        sno61.setText("61");
+        sno61.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(51, 255, 255), null, new java.awt.Color(0, 204, 204)));
+        sno61.setOpaque(true);
+        sno61.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sno61MouseClicked(evt);
+            }
+        });
+        add(sno61, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 260, 30, 30));
+
+        sno62.setBackground(new java.awt.Color(0, 51, 153));
+        sno62.setForeground(new java.awt.Color(255, 255, 255));
+        sno62.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        sno62.setText("62");
+        sno62.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(51, 255, 255), null, new java.awt.Color(0, 204, 204)));
+        sno62.setOpaque(true);
+        sno62.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sno62MouseClicked(evt);
+            }
+        });
+        add(sno62, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 260, 30, 30));
+
+        sno79.setBackground(new java.awt.Color(0, 51, 153));
+        sno79.setForeground(new java.awt.Color(255, 255, 255));
+        sno79.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        sno79.setText("79");
+        sno79.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(51, 255, 255), null, new java.awt.Color(0, 204, 204)));
+        sno79.setOpaque(true);
+        sno79.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sno79MouseClicked(evt);
+            }
+        });
+        add(sno79, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 300, 30, 30));
+
+        sno98.setBackground(new java.awt.Color(0, 51, 153));
+        sno98.setForeground(new java.awt.Color(255, 255, 255));
+        sno98.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        sno98.setText("98");
+        sno98.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(51, 255, 255), null, new java.awt.Color(0, 204, 204)));
+        sno98.setOpaque(true);
+        sno98.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sno98MouseClicked(evt);
+            }
+        });
+        add(sno98, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 340, 30, 30));
+
+        sno99.setBackground(new java.awt.Color(0, 51, 153));
+        sno99.setForeground(new java.awt.Color(255, 255, 255));
+        sno99.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        sno99.setText("99");
+        sno99.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(51, 255, 255), null, new java.awt.Color(0, 204, 204)));
+        sno99.setOpaque(true);
+        sno99.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sno99MouseClicked(evt);
+            }
+        });
+        add(sno99, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 340, 30, 30));
+
+        sno100.setBackground(new java.awt.Color(0, 51, 153));
+        sno100.setForeground(new java.awt.Color(255, 255, 255));
+        sno100.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        sno100.setText("100");
+        sno100.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(51, 255, 255), null, new java.awt.Color(0, 204, 204)));
+        sno100.setOpaque(true);
+        sno100.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sno100MouseClicked(evt);
+            }
+        });
+        add(sno100, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 340, 30, 30));
+
+        sno101.setBackground(new java.awt.Color(0, 51, 153));
+        sno101.setForeground(new java.awt.Color(255, 255, 255));
+        sno101.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        sno101.setText("101");
+        sno101.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(51, 255, 255), null, new java.awt.Color(0, 204, 204)));
+        sno101.setOpaque(true);
+        sno101.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sno101MouseClicked(evt);
+            }
+        });
+        add(sno101, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 340, 30, 30));
+
+        sno102.setBackground(new java.awt.Color(0, 51, 153));
+        sno102.setForeground(new java.awt.Color(255, 255, 255));
+        sno102.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        sno102.setText("102");
+        sno102.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(51, 255, 255), null, new java.awt.Color(0, 204, 204)));
+        sno102.setOpaque(true);
+        sno102.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sno102MouseClicked(evt);
+            }
+        });
+        add(sno102, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 340, 30, 30));
+
+        sno81.setBackground(new java.awt.Color(0, 51, 153));
+        sno81.setForeground(new java.awt.Color(255, 255, 255));
+        sno81.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        sno81.setText("81");
+        sno81.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(51, 255, 255), null, new java.awt.Color(0, 204, 204)));
+        sno81.setOpaque(true);
+        sno81.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sno81MouseClicked(evt);
+            }
+        });
+        add(sno81, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 300, 30, 30));
+
+        sno82.setBackground(new java.awt.Color(0, 51, 153));
+        sno82.setForeground(new java.awt.Color(255, 255, 255));
+        sno82.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        sno82.setText("82");
+        sno82.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(51, 255, 255), null, new java.awt.Color(0, 204, 204)));
+        sno82.setOpaque(true);
+        sno82.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sno82MouseClicked(evt);
+            }
+        });
+        add(sno82, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 300, 30, 30));
+
+        sno83.setBackground(new java.awt.Color(0, 51, 153));
+        sno83.setForeground(new java.awt.Color(255, 255, 255));
+        sno83.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        sno83.setText("83");
+        sno83.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(51, 255, 255), null, new java.awt.Color(0, 204, 204)));
+        sno83.setOpaque(true);
+        sno83.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sno83MouseClicked(evt);
+            }
+        });
+        add(sno83, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 300, 30, 30));
+
+        sno63.setBackground(new java.awt.Color(0, 51, 153));
+        sno63.setForeground(new java.awt.Color(255, 255, 255));
+        sno63.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        sno63.setText("63");
+        sno63.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(51, 255, 255), null, new java.awt.Color(0, 204, 204)));
+        sno63.setOpaque(true);
+        sno63.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sno63MouseClicked(evt);
+            }
+        });
+        add(sno63, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 260, 30, 30));
+
+        sno64.setBackground(new java.awt.Color(0, 51, 153));
+        sno64.setForeground(new java.awt.Color(255, 255, 255));
+        sno64.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        sno64.setText("64");
+        sno64.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(51, 255, 255), null, new java.awt.Color(0, 204, 204)));
+        sno64.setOpaque(true);
+        sno64.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sno64MouseClicked(evt);
+            }
+        });
+        add(sno64, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 260, 30, 30));
+
+        sno23.setBackground(new java.awt.Color(0, 51, 153));
+        sno23.setForeground(new java.awt.Color(255, 255, 255));
+        sno23.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        sno23.setText("23");
+        sno23.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(51, 255, 255), null, new java.awt.Color(0, 204, 204)));
+        sno23.setOpaque(true);
+        sno23.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sno23MouseClicked(evt);
+            }
+        });
+        add(sno23, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 180, 30, 30));
+
+        sno117.setBackground(new java.awt.Color(0, 51, 153));
+        sno117.setForeground(new java.awt.Color(255, 255, 255));
+        sno117.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        sno117.setText("117");
+        sno117.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(51, 255, 255), null, new java.awt.Color(0, 204, 204)));
+        sno117.setOpaque(true);
+        sno117.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sno117MouseClicked(evt);
+            }
+        });
+        add(sno117, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 380, 30, 30));
+
+        sno118.setBackground(new java.awt.Color(0, 51, 153));
+        sno118.setForeground(new java.awt.Color(255, 255, 255));
+        sno118.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        sno118.setText("118");
+        sno118.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(51, 255, 255), null, new java.awt.Color(0, 204, 204)));
+        sno118.setOpaque(true);
+        sno118.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sno118MouseClicked(evt);
+            }
+        });
+        add(sno118, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 380, 30, 30));
+
+        sno119.setBackground(new java.awt.Color(0, 51, 153));
+        sno119.setForeground(new java.awt.Color(255, 255, 255));
+        sno119.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        sno119.setText("119");
+        sno119.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(51, 255, 255), null, new java.awt.Color(0, 204, 204)));
+        sno119.setOpaque(true);
+        sno119.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sno119MouseClicked(evt);
+            }
+        });
+        add(sno119, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 380, 30, 30));
+
+        sno1.setBackground(new java.awt.Color(0, 51, 153));
+        sno1.setForeground(new java.awt.Color(255, 255, 255));
+        sno1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        sno1.setText("01");
+        sno1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(51, 255, 255), null, new java.awt.Color(0, 204, 204)));
+        sno1.setOpaque(true);
+        sno1.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                sno1AncestorAdded(evt);
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+                sno1AncestorRemoved(evt);
+            }
+        });
+        sno1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sno1MouseClicked(evt);
+            }
+        });
+        add(sno1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 100, 30, 30));
+
+        sno8.setBackground(new java.awt.Color(0, 51, 153));
+        sno8.setForeground(new java.awt.Color(255, 255, 255));
+        sno8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        sno8.setText("08");
+        sno8.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(51, 255, 255), null, new java.awt.Color(0, 204, 204)));
+        sno8.setOpaque(true);
+        sno8.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sno8MouseClicked(evt);
+            }
+        });
+        add(sno8, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 140, 30, 30));
+
+        sno9.setBackground(new java.awt.Color(0, 51, 153));
+        sno9.setForeground(new java.awt.Color(255, 255, 255));
+        sno9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        sno9.setText("09");
+        sno9.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(51, 255, 255), null, new java.awt.Color(0, 204, 204)));
+        sno9.setOpaque(true);
+        sno9.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sno9MouseClicked(evt);
+            }
+        });
+        add(sno9, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 140, 30, 30));
+
+        sno10.setBackground(new java.awt.Color(0, 51, 153));
+        sno10.setForeground(new java.awt.Color(255, 255, 255));
+        sno10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        sno10.setText("10");
+        sno10.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(51, 255, 255), null, new java.awt.Color(0, 204, 204)));
+        sno10.setOpaque(true);
+        sno10.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sno10MouseClicked(evt);
+            }
+        });
+        add(sno10, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 140, 30, 30));
+
+        sno11.setBackground(new java.awt.Color(0, 51, 153));
+        sno11.setForeground(new java.awt.Color(255, 255, 255));
+        sno11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        sno11.setText("11");
+        sno11.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(51, 255, 255), null, new java.awt.Color(0, 204, 204)));
+        sno11.setOpaque(true);
+        sno11.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sno11MouseClicked(evt);
+            }
+        });
+        add(sno11, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 140, 30, 30));
+
+        sno12.setBackground(new java.awt.Color(0, 51, 153));
+        sno12.setForeground(new java.awt.Color(255, 255, 255));
+        sno12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        sno12.setText("12");
+        sno12.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(51, 255, 255), null, new java.awt.Color(0, 204, 204)));
+        sno12.setOpaque(true);
+        sno12.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sno12MouseClicked(evt);
+            }
+        });
+        add(sno12, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 140, 30, 30));
+
+        sno13.setBackground(new java.awt.Color(0, 51, 153));
+        sno13.setForeground(new java.awt.Color(255, 255, 255));
+        sno13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        sno13.setText("13");
+        sno13.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(51, 255, 255), null, new java.awt.Color(0, 204, 204)));
+        sno13.setOpaque(true);
+        sno13.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sno13MouseClicked(evt);
+            }
+        });
+        add(sno13, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 140, 30, 30));
+
+        sno14.setBackground(new java.awt.Color(0, 51, 153));
+        sno14.setForeground(new java.awt.Color(255, 255, 255));
+        sno14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        sno14.setText("14");
+        sno14.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(51, 255, 255), null, new java.awt.Color(0, 204, 204)));
+        sno14.setOpaque(true);
+        sno14.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sno14MouseClicked(evt);
+            }
+        });
+        add(sno14, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 140, 30, 30));
+
+        sno15.setBackground(new java.awt.Color(0, 51, 153));
+        sno15.setForeground(new java.awt.Color(255, 255, 255));
+        sno15.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        sno15.setText("15");
+        sno15.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(51, 255, 255), null, new java.awt.Color(0, 204, 204)));
+        sno15.setOpaque(true);
+        sno15.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sno15MouseClicked(evt);
+            }
+        });
+        add(sno15, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 140, 30, 30));
+
+        sno16.setBackground(new java.awt.Color(0, 51, 153));
+        sno16.setForeground(new java.awt.Color(255, 255, 255));
+        sno16.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        sno16.setText("16");
+        sno16.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(51, 255, 255), null, new java.awt.Color(0, 204, 204)));
+        sno16.setOpaque(true);
+        sno16.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sno16MouseClicked(evt);
+            }
+        });
+        add(sno16, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 140, 30, 30));
+
+        sno27.setBackground(new java.awt.Color(0, 51, 153));
+        sno27.setForeground(new java.awt.Color(255, 255, 255));
+        sno27.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        sno27.setText("27");
+        sno27.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(51, 255, 255), null, new java.awt.Color(0, 204, 204)));
+        sno27.setOpaque(true);
+        sno27.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sno27MouseClicked(evt);
+            }
+        });
+        add(sno27, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 180, 30, 30));
+
+        sno65.setBackground(new java.awt.Color(0, 51, 153));
+        sno65.setForeground(new java.awt.Color(255, 255, 255));
+        sno65.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        sno65.setText("65");
+        sno65.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(51, 255, 255), null, new java.awt.Color(0, 204, 204)));
+        sno65.setOpaque(true);
+        sno65.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sno65MouseClicked(evt);
+            }
+        });
+        add(sno65, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 260, 30, 30));
+
+        sno66.setBackground(new java.awt.Color(0, 51, 153));
+        sno66.setForeground(new java.awt.Color(255, 255, 255));
+        sno66.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        sno66.setText("66");
+        sno66.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(51, 255, 255), null, new java.awt.Color(0, 204, 204)));
+        sno66.setOpaque(true);
+        sno66.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sno66MouseClicked(evt);
+            }
+        });
+        add(sno66, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 260, 30, 30));
+
+        sno28.setBackground(new java.awt.Color(0, 51, 153));
+        sno28.setForeground(new java.awt.Color(255, 255, 255));
+        sno28.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        sno28.setText("28");
+        sno28.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(51, 255, 255), null, new java.awt.Color(0, 204, 204)));
+        sno28.setOpaque(true);
+        sno28.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sno28MouseClicked(evt);
+            }
+        });
+        add(sno28, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 180, 30, 30));
+
+        sno47.setBackground(new java.awt.Color(0, 51, 153));
+        sno47.setForeground(new java.awt.Color(255, 255, 255));
+        sno47.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        sno47.setText("47");
+        sno47.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(51, 255, 255), null, new java.awt.Color(0, 204, 204)));
+        sno47.setOpaque(true);
+        sno47.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sno47MouseClicked(evt);
+            }
+        });
+        add(sno47, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 220, 30, 30));
+
+        sno67.setBackground(new java.awt.Color(0, 51, 153));
+        sno67.setForeground(new java.awt.Color(255, 255, 255));
+        sno67.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        sno67.setText("67");
+        sno67.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(51, 255, 255), null, new java.awt.Color(0, 204, 204)));
+        sno67.setOpaque(true);
+        sno67.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sno67MouseClicked(evt);
+            }
+        });
+        add(sno67, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 260, 30, 30));
+
+        sno29.setBackground(new java.awt.Color(0, 51, 153));
+        sno29.setForeground(new java.awt.Color(255, 255, 255));
+        sno29.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        sno29.setText("29");
+        sno29.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(51, 255, 255), null, new java.awt.Color(0, 204, 204)));
+        sno29.setOpaque(true);
+        sno29.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sno29MouseClicked(evt);
+            }
+        });
+        add(sno29, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 180, 30, 30));
+
+        sno30.setBackground(new java.awt.Color(0, 51, 153));
+        sno30.setForeground(new java.awt.Color(255, 255, 255));
+        sno30.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        sno30.setText("30");
+        sno30.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(51, 255, 255), null, new java.awt.Color(0, 204, 204)));
+        sno30.setOpaque(true);
+        sno30.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sno30MouseClicked(evt);
+            }
+        });
+        add(sno30, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 180, 30, 30));
+
+        sno31.setBackground(new java.awt.Color(0, 51, 153));
+        sno31.setForeground(new java.awt.Color(255, 255, 255));
+        sno31.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        sno31.setText("31");
+        sno31.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(51, 255, 255), null, new java.awt.Color(0, 204, 204)));
+        sno31.setOpaque(true);
+        sno31.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sno31MouseClicked(evt);
+            }
+        });
+        add(sno31, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 180, 30, 30));
+
+        sno32.setBackground(new java.awt.Color(0, 51, 153));
+        sno32.setForeground(new java.awt.Color(255, 255, 255));
+        sno32.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        sno32.setText("32");
+        sno32.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(51, 255, 255), null, new java.awt.Color(0, 204, 204)));
+        sno32.setOpaque(true);
+        sno32.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sno32MouseClicked(evt);
+            }
+        });
+        add(sno32, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 180, 30, 30));
+
+        sno33.setBackground(new java.awt.Color(0, 51, 153));
+        sno33.setForeground(new java.awt.Color(255, 255, 255));
+        sno33.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        sno33.setText("33");
+        sno33.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(51, 255, 255), null, new java.awt.Color(0, 204, 204)));
+        sno33.setOpaque(true);
+        sno33.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sno33MouseClicked(evt);
+            }
+        });
+        add(sno33, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 180, 30, 30));
+
+        sno34.setBackground(new java.awt.Color(0, 51, 153));
+        sno34.setForeground(new java.awt.Color(255, 255, 255));
+        sno34.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        sno34.setText("34");
+        sno34.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(51, 255, 255), null, new java.awt.Color(0, 204, 204)));
+        sno34.setOpaque(true);
+        sno34.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sno34MouseClicked(evt);
+            }
+        });
+        add(sno34, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 180, 30, 30));
+
+        sno35.setBackground(new java.awt.Color(0, 51, 153));
+        sno35.setForeground(new java.awt.Color(255, 255, 255));
+        sno35.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        sno35.setText("35");
+        sno35.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(51, 255, 255), null, new java.awt.Color(0, 204, 204)));
+        sno35.setOpaque(true);
+        sno35.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sno35MouseClicked(evt);
+            }
+        });
+        add(sno35, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 180, 30, 30));
+
+        sno48.setBackground(new java.awt.Color(0, 51, 153));
+        sno48.setForeground(new java.awt.Color(255, 255, 255));
+        sno48.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        sno48.setText("48");
+        sno48.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(51, 255, 255), null, new java.awt.Color(0, 204, 204)));
+        sno48.setOpaque(true);
+        sno48.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sno48MouseClicked(evt);
+            }
+        });
+        add(sno48, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 220, 30, 30));
+
+        sno49.setBackground(new java.awt.Color(0, 51, 153));
+        sno49.setForeground(new java.awt.Color(255, 255, 255));
+        sno49.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        sno49.setText("49");
+        sno49.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(51, 255, 255), null, new java.awt.Color(0, 204, 204)));
+        sno49.setOpaque(true);
+        sno49.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sno49MouseClicked(evt);
+            }
+        });
+        add(sno49, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 220, 30, 30));
+
+        sno50.setBackground(new java.awt.Color(0, 51, 153));
+        sno50.setForeground(new java.awt.Color(255, 255, 255));
+        sno50.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        sno50.setText("50");
+        sno50.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(51, 255, 255), null, new java.awt.Color(0, 204, 204)));
+        sno50.setOpaque(true);
+        sno50.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sno50MouseClicked(evt);
+            }
+        });
+        add(sno50, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 220, 30, 30));
+
+        sno51.setBackground(new java.awt.Color(0, 51, 153));
+        sno51.setForeground(new java.awt.Color(255, 255, 255));
+        sno51.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        sno51.setText("51");
+        sno51.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(51, 255, 255), null, new java.awt.Color(0, 204, 204)));
+        sno51.setOpaque(true);
+        sno51.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sno51MouseClicked(evt);
+            }
+        });
+        add(sno51, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 220, 30, 30));
+
+        sno52.setBackground(new java.awt.Color(0, 51, 153));
+        sno52.setForeground(new java.awt.Color(255, 255, 255));
+        sno52.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        sno52.setText("52");
+        sno52.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(51, 255, 255), null, new java.awt.Color(0, 204, 204)));
+        sno52.setOpaque(true);
+        sno52.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sno52MouseClicked(evt);
+            }
+        });
+        add(sno52, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 220, 30, 30));
+
+        sno53.setBackground(new java.awt.Color(0, 51, 153));
+        sno53.setForeground(new java.awt.Color(255, 255, 255));
+        sno53.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        sno53.setText("53");
+        sno53.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(51, 255, 255), null, new java.awt.Color(0, 204, 204)));
+        sno53.setOpaque(true);
+        sno53.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sno53MouseClicked(evt);
+            }
+        });
+        add(sno53, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 220, 30, 30));
+
+        sno54.setBackground(new java.awt.Color(0, 51, 153));
+        sno54.setForeground(new java.awt.Color(255, 255, 255));
+        sno54.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        sno54.setText("54");
+        sno54.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(51, 255, 255), null, new java.awt.Color(0, 204, 204)));
+        sno54.setOpaque(true);
+        sno54.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sno54MouseClicked(evt);
+            }
+        });
+        add(sno54, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 220, 30, 30));
+
+        sno68.setBackground(new java.awt.Color(0, 51, 153));
+        sno68.setForeground(new java.awt.Color(255, 255, 255));
+        sno68.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        sno68.setText("68");
+        sno68.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(51, 255, 255), null, new java.awt.Color(0, 204, 204)));
+        sno68.setOpaque(true);
+        sno68.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sno68MouseClicked(evt);
+            }
+        });
+        add(sno68, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 260, 30, 30));
+
+        sno69.setBackground(new java.awt.Color(0, 51, 153));
+        sno69.setForeground(new java.awt.Color(255, 255, 255));
+        sno69.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        sno69.setText("69");
+        sno69.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(51, 255, 255), null, new java.awt.Color(0, 204, 204)));
+        sno69.setOpaque(true);
+        sno69.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sno69MouseClicked(evt);
+            }
+        });
+        add(sno69, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 260, 30, 30));
+
+        sno71.setBackground(new java.awt.Color(0, 51, 153));
+        sno71.setForeground(new java.awt.Color(255, 255, 255));
+        sno71.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        sno71.setText("71");
+        sno71.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(51, 255, 255), null, new java.awt.Color(0, 204, 204)));
+        sno71.setOpaque(true);
+        sno71.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sno71MouseClicked(evt);
+            }
+        });
+        add(sno71, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 260, 30, 30));
+
+        sno72.setBackground(new java.awt.Color(0, 51, 153));
+        sno72.setForeground(new java.awt.Color(255, 255, 255));
+        sno72.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        sno72.setText("72");
+        sno72.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(51, 255, 255), null, new java.awt.Color(0, 204, 204)));
+        sno72.setOpaque(true);
+        sno72.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sno72MouseClicked(evt);
+            }
+        });
+        add(sno72, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 260, 30, 30));
+
+        sno73.setBackground(new java.awt.Color(0, 51, 153));
+        sno73.setForeground(new java.awt.Color(255, 255, 255));
+        sno73.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        sno73.setText("73");
+        sno73.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(51, 255, 255), null, new java.awt.Color(0, 204, 204)));
+        sno73.setOpaque(true);
+        sno73.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sno73MouseClicked(evt);
+            }
+        });
+        add(sno73, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 260, 30, 30));
+
+        sno70.setBackground(new java.awt.Color(0, 51, 153));
+        sno70.setForeground(new java.awt.Color(255, 255, 255));
+        sno70.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        sno70.setText("70");
+        sno70.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(51, 255, 255), null, new java.awt.Color(0, 204, 204)));
+        sno70.setOpaque(true);
+        sno70.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sno70MouseClicked(evt);
+            }
+        });
+        add(sno70, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 260, 30, 30));
+
+        sno4.setBackground(new java.awt.Color(0, 51, 153));
+        sno4.setForeground(new java.awt.Color(255, 255, 255));
+        sno4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        sno4.setText("04");
+        sno4.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(51, 255, 255), null, new java.awt.Color(0, 204, 204)));
+        sno4.setOpaque(true);
+        sno4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sno4MouseClicked(evt);
+            }
+        });
+        add(sno4, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 140, 30, 30));
+
+        sno2.setBackground(new java.awt.Color(0, 51, 153));
+        sno2.setForeground(new java.awt.Color(255, 255, 255));
+        sno2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        sno2.setText("02");
+        sno2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(51, 255, 255), null, new java.awt.Color(0, 204, 204)));
+        sno2.setOpaque(true);
+        sno2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sno2MouseClicked(evt);
+            }
+        });
+        add(sno2, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 100, 30, 30));
+
+        sno17.setBackground(new java.awt.Color(0, 51, 153));
+        sno17.setForeground(new java.awt.Color(255, 255, 255));
+        sno17.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        sno17.setText("17");
+        sno17.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(51, 255, 255), null, new java.awt.Color(0, 204, 204)));
+        sno17.setOpaque(true);
+        sno17.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sno17MouseClicked(evt);
+            }
+        });
+        add(sno17, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 140, 30, 30));
+
+        sno18.setBackground(new java.awt.Color(0, 51, 153));
+        sno18.setForeground(new java.awt.Color(255, 255, 255));
+        sno18.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        sno18.setText("18");
+        sno18.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(51, 255, 255), null, new java.awt.Color(0, 204, 204)));
+        sno18.setOpaque(true);
+        sno18.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sno18MouseClicked(evt);
+            }
+        });
+        add(sno18, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 140, 30, 30));
+
+        sno19.setBackground(new java.awt.Color(0, 51, 153));
+        sno19.setForeground(new java.awt.Color(255, 255, 255));
+        sno19.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        sno19.setText("19");
+        sno19.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(51, 255, 255), null, new java.awt.Color(0, 204, 204)));
+        sno19.setOpaque(true);
+        sno19.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sno19MouseClicked(evt);
+            }
+        });
+        add(sno19, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 140, 30, 30));
+
+        sno20.setBackground(new java.awt.Color(0, 51, 153));
+        sno20.setForeground(new java.awt.Color(255, 255, 255));
+        sno20.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        sno20.setText("20");
+        sno20.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(51, 255, 255), null, new java.awt.Color(0, 204, 204)));
+        sno20.setOpaque(true);
+        sno20.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sno20MouseClicked(evt);
+            }
+        });
+        add(sno20, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 140, 30, 30));
+
+        jButton1.setBackground(new java.awt.Color(204, 0, 153));
+        jButton1.setText("Book Now");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
+        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 400, 90, 30));
+
+        sno21.setBackground(new java.awt.Color(0, 51, 153));
+        sno21.setForeground(new java.awt.Color(255, 255, 255));
+        sno21.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        sno21.setText("21");
+        sno21.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(51, 255, 255), null, new java.awt.Color(0, 204, 204)));
+        sno21.setOpaque(true);
+        sno21.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sno21MouseClicked(evt);
+            }
+        });
+        add(sno21, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 140, 30, 30));
+
+        sno40.setBackground(new java.awt.Color(0, 51, 153));
+        sno40.setForeground(new java.awt.Color(255, 255, 255));
+        sno40.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        sno40.setText("40");
+        sno40.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(51, 255, 255), null, new java.awt.Color(0, 204, 204)));
+        sno40.setOpaque(true);
+        sno40.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sno40MouseClicked(evt);
+            }
+        });
+        add(sno40, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 180, 30, 30));
+
+        sno59.setBackground(new java.awt.Color(0, 51, 153));
+        sno59.setForeground(new java.awt.Color(255, 255, 255));
+        sno59.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        sno59.setText("59");
+        sno59.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(51, 255, 255), null, new java.awt.Color(0, 204, 204)));
+        sno59.setOpaque(true);
+        sno59.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sno59MouseClicked(evt);
+            }
+        });
+        add(sno59, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 220, 30, 30));
+
+        sno78.setBackground(new java.awt.Color(0, 51, 153));
+        sno78.setForeground(new java.awt.Color(255, 255, 255));
+        sno78.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        sno78.setText("78");
+        sno78.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(51, 255, 255), null, new java.awt.Color(0, 204, 204)));
+        sno78.setOpaque(true);
+        sno78.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sno78MouseClicked(evt);
+            }
+        });
+        add(sno78, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 260, 30, 30));
+
+        sno97.setBackground(new java.awt.Color(0, 51, 153));
+        sno97.setForeground(new java.awt.Color(255, 255, 255));
+        sno97.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        sno97.setText("97");
+        sno97.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(51, 255, 255), null, new java.awt.Color(0, 204, 204)));
+        sno97.setOpaque(true);
+        sno97.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sno97MouseClicked(evt);
+            }
+        });
+        add(sno97, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 300, 30, 30));
+
+        sno116.setBackground(new java.awt.Color(0, 51, 153));
+        sno116.setForeground(new java.awt.Color(255, 255, 255));
+        sno116.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        sno116.setText("116");
+        sno116.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(51, 255, 255), null, new java.awt.Color(0, 204, 204)));
+        sno116.setOpaque(true);
+        sno116.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sno116MouseClicked(evt);
+            }
+        });
+        add(sno116, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 340, 30, 30));
+
+        sno115.setBackground(new java.awt.Color(0, 51, 153));
+        sno115.setForeground(new java.awt.Color(255, 255, 255));
+        sno115.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        sno115.setText("115");
+        sno115.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(51, 255, 255), null, new java.awt.Color(0, 204, 204)));
+        sno115.setOpaque(true);
+        sno115.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sno115MouseClicked(evt);
+            }
+        });
+        add(sno115, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 340, 30, 30));
+
+        sno114.setBackground(new java.awt.Color(0, 51, 153));
+        sno114.setForeground(new java.awt.Color(255, 255, 255));
+        sno114.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        sno114.setText("114");
+        sno114.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(51, 255, 255), null, new java.awt.Color(0, 204, 204)));
+        sno114.setOpaque(true);
+        sno114.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sno114MouseClicked(evt);
+            }
+        });
+        add(sno114, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 340, 30, 30));
+
+        sno113.setBackground(new java.awt.Color(0, 51, 153));
+        sno113.setForeground(new java.awt.Color(255, 255, 255));
+        sno113.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        sno113.setText("113");
+        sno113.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(51, 255, 255), null, new java.awt.Color(0, 204, 204)));
+        sno113.setOpaque(true);
+        sno113.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sno113MouseClicked(evt);
+            }
+        });
+        add(sno113, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 340, 30, 30));
+
+        sno112.setBackground(new java.awt.Color(0, 51, 153));
+        sno112.setForeground(new java.awt.Color(255, 255, 255));
+        sno112.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        sno112.setText("112");
+        sno112.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(51, 255, 255), null, new java.awt.Color(0, 204, 204)));
+        sno112.setOpaque(true);
+        sno112.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sno112MouseClicked(evt);
+            }
+        });
+        add(sno112, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 340, 30, 30));
+
+        sno120.setBackground(new java.awt.Color(0, 51, 153));
+        sno120.setForeground(new java.awt.Color(255, 255, 255));
+        sno120.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        sno120.setText("120");
+        sno120.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(51, 255, 255), null, new java.awt.Color(0, 204, 204)));
+        sno120.setOpaque(true);
+        sno120.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sno120MouseClicked(evt);
+            }
+        });
+        add(sno120, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 380, 30, 30));
+
+        sno121.setBackground(new java.awt.Color(0, 51, 153));
+        sno121.setForeground(new java.awt.Color(255, 255, 255));
+        sno121.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        sno121.setText("121");
+        sno121.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(51, 255, 255), null, new java.awt.Color(0, 204, 204)));
+        sno121.setOpaque(true);
+        sno121.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sno121MouseClicked(evt);
+            }
+        });
+        add(sno121, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 380, 30, 30));
+
+        sno122.setBackground(new java.awt.Color(0, 51, 153));
+        sno122.setForeground(new java.awt.Color(255, 255, 255));
+        sno122.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        sno122.setText("122");
+        sno122.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(51, 255, 255), null, new java.awt.Color(0, 204, 204)));
+        sno122.setOpaque(true);
+        sno122.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sno122MouseClicked(evt);
+            }
+        });
+        add(sno122, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 380, 30, 30));
+
+        sno96.setBackground(new java.awt.Color(0, 51, 153));
+        sno96.setForeground(new java.awt.Color(255, 255, 255));
+        sno96.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        sno96.setText("96");
+        sno96.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(51, 255, 255), null, new java.awt.Color(0, 204, 204)));
+        sno96.setOpaque(true);
+        sno96.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sno96MouseClicked(evt);
+            }
+        });
+        add(sno96, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 300, 30, 30));
+
+        sno95.setBackground(new java.awt.Color(0, 51, 153));
+        sno95.setForeground(new java.awt.Color(255, 255, 255));
+        sno95.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        sno95.setText("95");
+        sno95.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(51, 255, 255), null, new java.awt.Color(0, 204, 204)));
+        sno95.setOpaque(true);
+        sno95.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sno95MouseClicked(evt);
+            }
+        });
+        add(sno95, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 300, 30, 30));
+
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setText("Available");
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 90, -1, -1));
+
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setText("Booked");
+        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 90, -1, -1));
+
+        sno94.setBackground(new java.awt.Color(0, 51, 153));
+        sno94.setForeground(new java.awt.Color(255, 255, 255));
+        sno94.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        sno94.setText("94");
+        sno94.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(51, 255, 255), null, new java.awt.Color(0, 204, 204)));
+        sno94.setOpaque(true);
+        sno94.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sno94MouseClicked(evt);
+            }
+        });
+        add(sno94, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 300, 30, 30));
+
+        jLabel2.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 36)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("Savoy 3D Gold Class ");
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 30, 490, 40));
+
+        sno93.setBackground(new java.awt.Color(0, 51, 153));
+        sno93.setForeground(new java.awt.Color(255, 255, 255));
+        sno93.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        sno93.setText("93");
+        sno93.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(51, 255, 255), null, new java.awt.Color(0, 204, 204)));
+        sno93.setOpaque(true);
+        sno93.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sno93MouseClicked(evt);
+            }
+        });
+        add(sno93, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 300, 30, 30));
+
+        sno74.setBackground(new java.awt.Color(0, 51, 153));
+        sno74.setForeground(new java.awt.Color(255, 255, 255));
+        sno74.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        sno74.setText("74");
+        sno74.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(51, 255, 255), null, new java.awt.Color(0, 204, 204)));
+        sno74.setOpaque(true);
+        sno74.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sno74MouseClicked(evt);
+            }
+        });
+        add(sno74, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 260, 30, 30));
+
+        sno75.setBackground(new java.awt.Color(0, 51, 153));
+        sno75.setForeground(new java.awt.Color(255, 255, 255));
+        sno75.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        sno75.setText("75");
+        sno75.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(51, 255, 255), null, new java.awt.Color(0, 204, 204)));
+        sno75.setOpaque(true);
+        sno75.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sno75MouseClicked(evt);
+            }
+        });
+        add(sno75, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 260, 30, 30));
+
+        sno76.setBackground(new java.awt.Color(0, 51, 153));
+        sno76.setForeground(new java.awt.Color(255, 255, 255));
+        sno76.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        sno76.setText("76");
+        sno76.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(51, 255, 255), null, new java.awt.Color(0, 204, 204)));
+        sno76.setOpaque(true);
+        sno76.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sno76MouseClicked(evt);
+            }
+        });
+        add(sno76, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 260, 30, 30));
+
+        sno77.setBackground(new java.awt.Color(0, 51, 153));
+        sno77.setForeground(new java.awt.Color(255, 255, 255));
+        sno77.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        sno77.setText("77");
+        sno77.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(51, 255, 255), null, new java.awt.Color(0, 204, 204)));
+        sno77.setOpaque(true);
+        sno77.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sno77MouseClicked(evt);
+            }
+        });
+        add(sno77, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 260, 30, 30));
+
+        sno58.setBackground(new java.awt.Color(0, 51, 153));
+        sno58.setForeground(new java.awt.Color(255, 255, 255));
+        sno58.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        sno58.setText("58");
+        sno58.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(51, 255, 255), null, new java.awt.Color(0, 204, 204)));
+        sno58.setOpaque(true);
+        sno58.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sno58MouseClicked(evt);
+            }
+        });
+        add(sno58, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 220, 30, 30));
+
+        sno57.setBackground(new java.awt.Color(0, 51, 153));
+        sno57.setForeground(new java.awt.Color(255, 255, 255));
+        sno57.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        sno57.setText("57");
+        sno57.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(51, 255, 255), null, new java.awt.Color(0, 204, 204)));
+        sno57.setOpaque(true);
+        sno57.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sno57MouseClicked(evt);
+            }
+        });
+        add(sno57, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 220, 30, 30));
+
+        sno56.setBackground(new java.awt.Color(0, 51, 153));
+        sno56.setForeground(new java.awt.Color(255, 255, 255));
+        sno56.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        sno56.setText("56");
+        sno56.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(51, 255, 255), null, new java.awt.Color(0, 204, 204)));
+        sno56.setOpaque(true);
+        sno56.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sno56MouseClicked(evt);
+            }
+        });
+        add(sno56, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 220, 30, 30));
+
+        sno55.setBackground(new java.awt.Color(0, 51, 153));
+        sno55.setForeground(new java.awt.Color(255, 255, 255));
+        sno55.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        sno55.setText("55");
+        sno55.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(51, 255, 255), null, new java.awt.Color(0, 204, 204)));
+        sno55.setOpaque(true);
+        sno55.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sno55MouseClicked(evt);
+            }
+        });
+        add(sno55, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 220, 30, 30));
+
+        sno36.setBackground(new java.awt.Color(0, 51, 153));
+        sno36.setForeground(new java.awt.Color(255, 255, 255));
+        sno36.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        sno36.setText("36");
+        sno36.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(51, 255, 255), null, new java.awt.Color(0, 204, 204)));
+        sno36.setOpaque(true);
+        sno36.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sno36MouseClicked(evt);
+            }
+        });
+        add(sno36, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 180, 30, 30));
+
+        sno37.setBackground(new java.awt.Color(0, 51, 153));
+        sno37.setForeground(new java.awt.Color(255, 255, 255));
+        sno37.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        sno37.setText("37");
+        sno37.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(51, 255, 255), null, new java.awt.Color(0, 204, 204)));
+        sno37.setOpaque(true);
+        sno37.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sno37MouseClicked(evt);
+            }
+        });
+        add(sno37, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 180, 30, 30));
+
+        sno38.setBackground(new java.awt.Color(0, 51, 153));
+        sno38.setForeground(new java.awt.Color(255, 255, 255));
+        sno38.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        sno38.setText("38");
+        sno38.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(51, 255, 255), null, new java.awt.Color(0, 204, 204)));
+        sno38.setOpaque(true);
+        sno38.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sno38MouseClicked(evt);
+            }
+        });
+        add(sno38, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 180, 30, 30));
+
+        sno39.setBackground(new java.awt.Color(0, 51, 153));
+        sno39.setForeground(new java.awt.Color(255, 255, 255));
+        sno39.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        sno39.setText("39");
+        sno39.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(51, 255, 255), null, new java.awt.Color(0, 204, 204)));
+        sno39.setOpaque(true);
+        sno39.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sno39MouseClicked(evt);
+            }
+        });
+        add(sno39, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 180, 30, 30));
+
+        sno46.setBackground(new java.awt.Color(0, 51, 153));
+        sno46.setForeground(new java.awt.Color(255, 255, 255));
+        sno46.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        sno46.setText("46");
+        sno46.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(51, 255, 255), null, new java.awt.Color(0, 204, 204)));
+        sno46.setOpaque(true);
+        sno46.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sno46MouseClicked(evt);
+            }
+        });
+        add(sno46, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 220, 30, 30));
+
+        sno84.setBackground(new java.awt.Color(0, 51, 153));
+        sno84.setForeground(new java.awt.Color(255, 255, 255));
+        sno84.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        sno84.setText("84");
+        sno84.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(51, 255, 255), null, new java.awt.Color(0, 204, 204)));
+        sno84.setOpaque(true);
+        sno84.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sno84MouseClicked(evt);
+            }
+        });
+        add(sno84, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 300, 30, 30));
+
+        sno103.setBackground(new java.awt.Color(0, 51, 153));
+        sno103.setForeground(new java.awt.Color(255, 255, 255));
+        sno103.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        sno103.setText("103");
+        sno103.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(51, 255, 255), null, new java.awt.Color(0, 204, 204)));
+        sno103.setOpaque(true);
+        sno103.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sno103MouseClicked(evt);
+            }
+        });
+        add(sno103, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 340, 30, 30));
+
+        sno104.setBackground(new java.awt.Color(0, 51, 153));
+        sno104.setForeground(new java.awt.Color(255, 255, 255));
+        sno104.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        sno104.setText("104");
+        sno104.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(51, 255, 255), null, new java.awt.Color(0, 204, 204)));
+        sno104.setOpaque(true);
+        sno104.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sno104MouseClicked(evt);
+            }
+        });
+        add(sno104, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 340, 30, 30));
+
+        sno85.setBackground(new java.awt.Color(0, 51, 153));
+        sno85.setForeground(new java.awt.Color(255, 255, 255));
+        sno85.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        sno85.setText("85");
+        sno85.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(51, 255, 255), null, new java.awt.Color(0, 204, 204)));
+        sno85.setOpaque(true);
+        sno85.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sno85MouseClicked(evt);
+            }
+        });
+        add(sno85, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 300, 30, 30));
+
+        sno86.setBackground(new java.awt.Color(0, 51, 153));
+        sno86.setForeground(new java.awt.Color(255, 255, 255));
+        sno86.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        sno86.setText("86");
+        sno86.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(51, 255, 255), null, new java.awt.Color(0, 204, 204)));
+        sno86.setOpaque(true);
+        sno86.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sno86MouseClicked(evt);
+            }
+        });
+        add(sno86, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 300, 30, 30));
+
+        sno105.setBackground(new java.awt.Color(0, 51, 153));
+        sno105.setForeground(new java.awt.Color(255, 255, 255));
+        sno105.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        sno105.setText("105");
+        sno105.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(51, 255, 255), null, new java.awt.Color(0, 204, 204)));
+        sno105.setOpaque(true);
+        sno105.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sno105MouseClicked(evt);
+            }
+        });
+        add(sno105, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 340, 30, 30));
+
+        sno106.setBackground(new java.awt.Color(0, 51, 153));
+        sno106.setForeground(new java.awt.Color(255, 255, 255));
+        sno106.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        sno106.setText("106");
+        sno106.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(51, 255, 255), null, new java.awt.Color(0, 204, 204)));
+        sno106.setOpaque(true);
+        sno106.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sno106MouseClicked(evt);
+            }
+        });
+        add(sno106, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 340, 30, 30));
+
+        sno87.setBackground(new java.awt.Color(0, 51, 153));
+        sno87.setForeground(new java.awt.Color(255, 255, 255));
+        sno87.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        sno87.setText("87");
+        sno87.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(51, 255, 255), null, new java.awt.Color(0, 204, 204)));
+        sno87.setOpaque(true);
+        sno87.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sno87MouseClicked(evt);
+            }
+        });
+        add(sno87, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 300, 30, 30));
+
+        sno88.setBackground(new java.awt.Color(0, 51, 153));
+        sno88.setForeground(new java.awt.Color(255, 255, 255));
+        sno88.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        sno88.setText("88");
+        sno88.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(51, 255, 255), null, new java.awt.Color(0, 204, 204)));
+        sno88.setOpaque(true);
+        sno88.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sno88MouseClicked(evt);
+            }
+        });
+        add(sno88, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 300, 30, 30));
+
+        sno107.setBackground(new java.awt.Color(0, 51, 153));
+        sno107.setForeground(new java.awt.Color(255, 255, 255));
+        sno107.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        sno107.setText("107");
+        sno107.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(51, 255, 255), null, new java.awt.Color(0, 204, 204)));
+        sno107.setOpaque(true);
+        sno107.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sno107MouseClicked(evt);
+            }
+        });
+        add(sno107, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 340, 30, 30));
+
+        sno108.setBackground(new java.awt.Color(0, 51, 153));
+        sno108.setForeground(new java.awt.Color(255, 255, 255));
+        sno108.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        sno108.setText("108");
+        sno108.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(51, 255, 255), null, new java.awt.Color(0, 204, 204)));
+        sno108.setOpaque(true);
+        sno108.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sno108MouseClicked(evt);
+            }
+        });
+        add(sno108, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 340, 30, 30));
+
+        sno89.setBackground(new java.awt.Color(0, 51, 153));
+        sno89.setForeground(new java.awt.Color(255, 255, 255));
+        sno89.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        sno89.setText("89");
+        sno89.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(51, 255, 255), null, new java.awt.Color(0, 204, 204)));
+        sno89.setOpaque(true);
+        sno89.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sno89MouseClicked(evt);
+            }
+        });
+        add(sno89, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 300, 30, 30));
+
+        jLabel4.setBackground(new java.awt.Color(255, 0, 51));
+        jLabel4.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(255, 51, 102), new java.awt.Color(255, 255, 255), new java.awt.Color(51, 51, 51), new java.awt.Color(255, 51, 204)));
+        jLabel4.setOpaque(true);
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 90, 30, 20));
+
+        jLabel3.setBackground(new java.awt.Color(0, 51, 153));
+        jLabel3.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 102, 204), new java.awt.Color(51, 255, 255), new java.awt.Color(153, 153, 153), new java.awt.Color(102, 153, 255)));
+        jLabel3.setOpaque(true);
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 90, 30, 20));
+
+        sno90.setBackground(new java.awt.Color(0, 51, 153));
+        sno90.setForeground(new java.awt.Color(255, 255, 255));
+        sno90.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        sno90.setText("90");
+        sno90.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(51, 255, 255), null, new java.awt.Color(0, 204, 204)));
+        sno90.setOpaque(true);
+        sno90.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sno90MouseClicked(evt);
+            }
+        });
+        add(sno90, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 300, 30, 30));
+
+        sno109.setBackground(new java.awt.Color(0, 51, 153));
+        sno109.setForeground(new java.awt.Color(255, 255, 255));
+        sno109.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        sno109.setText("109");
+        sno109.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(51, 255, 255), null, new java.awt.Color(0, 204, 204)));
+        sno109.setOpaque(true);
+        sno109.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sno109MouseClicked(evt);
+            }
+        });
+        add(sno109, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 340, 30, 30));
+
+        sno91.setBackground(new java.awt.Color(0, 51, 153));
+        sno91.setForeground(new java.awt.Color(255, 255, 255));
+        sno91.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        sno91.setText("91");
+        sno91.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(51, 255, 255), null, new java.awt.Color(0, 204, 204)));
+        sno91.setOpaque(true);
+        sno91.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sno91MouseClicked(evt);
+            }
+        });
+        add(sno91, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 300, 30, 30));
+
+        sno110.setBackground(new java.awt.Color(0, 51, 153));
+        sno110.setForeground(new java.awt.Color(255, 255, 255));
+        sno110.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        sno110.setText("110");
+        sno110.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(51, 255, 255), null, new java.awt.Color(0, 204, 204)));
+        sno110.setOpaque(true);
+        sno110.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sno110MouseClicked(evt);
+            }
+        });
+        add(sno110, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 340, 30, 30));
+
+        sno92.setBackground(new java.awt.Color(0, 51, 153));
+        sno92.setForeground(new java.awt.Color(255, 255, 255));
+        sno92.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        sno92.setText("92");
+        sno92.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(51, 255, 255), null, new java.awt.Color(0, 204, 204)));
+        sno92.setOpaque(true);
+        sno92.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sno92MouseClicked(evt);
+            }
+        });
+        add(sno92, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 300, 30, 30));
+
+        sno111.setBackground(new java.awt.Color(0, 51, 153));
+        sno111.setForeground(new java.awt.Color(255, 255, 255));
+        sno111.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        sno111.setText("111");
+        sno111.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(51, 255, 255), null, new java.awt.Color(0, 204, 204)));
+        sno111.setOpaque(true);
+        sno111.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sno111MouseClicked(evt);
+            }
+        });
+        add(sno111, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 340, 30, 30));
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/ijse/theaterbooking/view/images/tt2.png"))); // NOI18N
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 970, 470));
+    }// </editor-fold>//GEN-END:initComponents
+
+    public void bookSeat(String source) {
+        count++;
+        if (count <= totalSeat) {
+            String seatNo = source;
+            for (int i = 0; i < 1; i++) {
+                resDetails.add(seatNo);
+            }
+            System.out.println(resDetails.toString());
+            sheetId = resDetails.get(0);
+        } else {
+            JOptionPane.showMessageDialog(this, "You Have Alredy Choosed Max");
+        }
+    }
+
+
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        count = 0;
+        com.ijse.theaterbooking.view.LastStep goldclss = new com.ijse.theaterbooking.view.LastStep(userName, bookId, bookDate, userID, movieName, movieTime, resDetails, filmID, totalPrice);
+        com.ijse.theaterbooking.view.HomePage.mainPa.removeAll();
+        com.ijse.theaterbooking.view.HomePage.mainPa.add(goldclss);
+        goldclss.setVisible(true);
+        com.ijse.theaterbooking.view.HomePage.mainPa.updateUI();
+        resDetails.removeAll(resDetails);
+    }//GEN-LAST:event_jButton1MouseClicked
+
+    private void sno1AncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_sno1AncestorAdded
+        // TODO add your handling code here:
+    }//GEN-LAST:event_sno1AncestorAdded
+
+    private void sno1AncestorRemoved(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_sno1AncestorRemoved
+
+
+    }//GEN-LAST:event_sno1AncestorRemoved
+    private int cli1;
+    private void sno1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sno1MouseClicked
+        if (sno1.getBackground() == Color.red) {
+            sno1.setBackground(Color.red);
+            JOptionPane.showMessageDialog(this, "Sorry Alredy Reserved");
+        } else {
+            cli1++;
+            switch (cli1) {
+                case 1:
+                    String name = sno1.getText();
+                    sno1.setBackground(Color.green);
+                    bookSeat(name);
+                    seatHolder.add(name);
+
+                    break;
+                case 2:
+
+                    sno1.setBackground(Color.blue);
+                    resDetails.remove(resDetails.size() - 1);
+                    cli1 = 0;
+                    seatHolder.remove(seatHolder.size() - 1);
+
+                    break;
+            }
+
+        }
+
+    }//GEN-LAST:event_sno1MouseClicked
+    private int cli2;
+    private void sno2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sno2MouseClicked
+        if (sno2.getBackground() == Color.red) {
+            sno2.setBackground(Color.red);
+            JOptionPane.showMessageDialog(this, "Sorry Alredy Reserved");
+        } else {
+            cli2++;
+            switch (cli2) {
+                case 1:
+                    String name = sno2.getText();
+                    sno2.setBackground(Color.green);
+                    bookSeat(name);
+                    break;
+                case 2:
+
+                    sno2.setBackground(Color.blue);
+                    resDetails.remove(resDetails.size() - 1);
+                    cli2 = 0;
+                    break;
+            }
+        }
+    }//GEN-LAST:event_sno2MouseClicked
+    private int cli3;
+    private void sno3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sno3MouseClicked
+        if (sno3.getBackground() == Color.red) {
+            sno3.setBackground(Color.red);
+            JOptionPane.showMessageDialog(this, "Sorry Alredy Reserved");
+        } else {
+            cli3++;
+            switch (cli3) {
+                case 1:
+                    String name = sno3.getText();
+                    sno3.setBackground(Color.green);
+                    bookSeat(name);
+                    break;
+                case 2:
+
+                    sno3.setBackground(Color.blue);
+                    resDetails.remove(resDetails.size() - 1);
+                    cli3 = 0;
+                    break;
+            }
+        }
+
+    }//GEN-LAST:event_sno3MouseClicked
+    private int cli4;
+    private void sno4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sno4MouseClicked
+        if (sno4.getBackground() == Color.red) {
+            sno4.setBackground(Color.red);
+            JOptionPane.showMessageDialog(this, "Sorry Alredy Reserved");
+        } else {
+            cli4++;
+            switch (cli4) {
+                case 1:
+                    String name = sno4.getText();
+                    sno4.setBackground(Color.green);
+                    bookSeat(name);
+                    break;
+                case 2:
+
+                    sno4.setBackground(Color.blue);
+                    resDetails.remove(resDetails.size() - 1);
+                    cli4 = 0;
+                    break;
+            }
+        }
+    }//GEN-LAST:event_sno4MouseClicked
+    private int cli5;
+    private void sno5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sno5MouseClicked
+
+        if (sno5.getBackground() == Color.red) {
+            sno5.setBackground(Color.red);
+            JOptionPane.showMessageDialog(this, "Sorry Alredy Reserved");
+        } else {
+            cli5++;
+            switch (cli5) {
+                case 1:
+                    String name = sno5.getText();
+                    sno5.setBackground(Color.green);
+                    bookSeat(name);
+                    break;
+                case 2:
+
+                    sno5.setBackground(Color.blue);
+                    resDetails.remove(resDetails.size() - 1);
+                    cli5 = 0;
+                    break;
+            }
+        }
+    }//GEN-LAST:event_sno5MouseClicked
+    private int cli6;
+    private void sno6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sno6MouseClicked
+        if (sno6.getBackground() == Color.red) {
+            sno6.setBackground(Color.red);
+            JOptionPane.showMessageDialog(this, "Sorry Alredy Reserved");
+        } else {
+            cli6++;
+            switch (cli6) {
+                case 1:
+                    String name = sno6.getText();
+                    sno6.setBackground(Color.green);
+                    bookSeat(name);
+                    break;
+                case 2:
+
+                    sno6.setBackground(Color.blue);
+                    resDetails.remove(resDetails.size() - 1);
+                    cli6 = 0;
+                    break;
+            }
+        }
+    }//GEN-LAST:event_sno6MouseClicked
+    private int cli7;
+    private void sno7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sno7MouseClicked
+        if (sno7.getBackground() == Color.red) {
+            sno7.setBackground(Color.red);
+            JOptionPane.showMessageDialog(this, "Sorry Alredy Reserved");
+        } else {
+            cli7++;
+            switch (cli7) {
+                case 1:
+                    String name = sno7.getText();
+                    sno7.setBackground(Color.green);
+                    bookSeat(name);
+                    break;
+                case 2:
+
+                    sno7.setBackground(Color.blue);
+                    resDetails.remove(resDetails.size() - 1);
+                    cli7 = 0;
+                    break;
+            }
+        }
+    }//GEN-LAST:event_sno7MouseClicked
+    private int cli8;
+    private void sno8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sno8MouseClicked
+        if (sno8.getBackground() == Color.red) {
+            sno8.setBackground(Color.red);
+            JOptionPane.showMessageDialog(this, "Sorry Alredy Reserved");
+        } else {
+            cli8++;
+            switch (cli8) {
+                case 1:
+                    String name = sno8.getText();
+                    sno8.setBackground(Color.green);
+                    bookSeat(name);
+                    break;
+                case 2:
+
+                    sno8.setBackground(Color.blue);
+                    resDetails.remove(resDetails.size() - 1);
+                    cli8 = 0;
+                    break;
+            }
+        }
+    }//GEN-LAST:event_sno8MouseClicked
+    private int cli9;
+    private void sno22MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sno22MouseClicked
+        if (sno22.getBackground() == Color.red) {
+            sno22.setBackground(Color.red);
+            JOptionPane.showMessageDialog(this, "Sorry Alredy Reserved");
+        } else {
+            cli9++;
+            switch (cli9) {
+                case 1:
+                    String name = sno22.getText();
+                    sno22.setBackground(Color.green);
+                    bookSeat(name);
+                    break;
+                case 2:
+
+                    sno22.setBackground(Color.blue);
+                    resDetails.remove(resDetails.size() - 1);
+                    cli9 = 0;
+                    break;
+            }
+        }
+    }//GEN-LAST:event_sno22MouseClicked
+    private int cli10;
+    private void sno23MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sno23MouseClicked
+        if (sno23.getBackground() == Color.red) {
+            sno23.setBackground(Color.red);
+            JOptionPane.showMessageDialog(this, "Sorry Alredy Reserved");
+        } else {
+            cli10++;
+            switch (cli10) {
+                case 1:
+                    String name = sno23.getText();
+                    sno23.setBackground(Color.green);
+                    bookSeat(name);
+                    break;
+                case 2:
+
+                    sno23.setBackground(Color.blue);
+                    resDetails.remove(resDetails.size() - 1);
+                    cli10 = 0;
+                    break;
+            }
+        }
+    }//GEN-LAST:event_sno23MouseClicked
+    private int cli11;
+    private void sno24MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sno24MouseClicked
+        if (sno24.getBackground() == Color.red) {
+            sno24.setBackground(Color.red);
+            JOptionPane.showMessageDialog(this, "Sorry Alredy Reserved");
+        } else {
+            cli11++;
+            switch (cli11) {
+                case 1:
+                    String name = sno24.getText();
+                    sno24.setBackground(Color.green);
+                    bookSeat(name);
+                    break;
+                case 2:
+
+                    sno24.setBackground(Color.blue);
+                    resDetails.remove(resDetails.size() - 1);
+                    cli11 = 0;
+                    break;
+            }
+        }
+    }//GEN-LAST:event_sno24MouseClicked
+    private int cli12;
+    private void sno25MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sno25MouseClicked
+        if (sno25.getBackground() == Color.red) {
+            sno25.setBackground(Color.red);
+            JOptionPane.showMessageDialog(this, "Sorry Alredy Reserved");
+        } else {
+            cli12++;
+            switch (cli12) {
+                case 1:
+                    String name = sno25.getText();
+                    sno25.setBackground(Color.green);
+                    bookSeat(name);
+                    break;
+                case 2:
+
+                    sno25.setBackground(Color.blue);
+                    resDetails.remove(resDetails.size() - 1);
+                    cli12 = 0;
+                    break;
+            }
+        }
+    }//GEN-LAST:event_sno25MouseClicked
+    private int cli13;
+    private void sno26MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sno26MouseClicked
+        if (sno26.getBackground() == Color.red) {
+            sno26.setBackground(Color.red);
+            JOptionPane.showMessageDialog(this, "Sorry Alredy Reserved");
+        } else {
+            cli13++;
+            switch (cli13) {
+                case 1:
+                    String name = sno26.getText();
+                    sno26.setBackground(Color.green);
+                    bookSeat(name);
+                    break;
+                case 2:
+
+                    sno26.setBackground(Color.blue);
+                    resDetails.remove(resDetails.size() - 1);
+                    cli13 = 0;
+                    break;
+            }
+        }
+    }//GEN-LAST:event_sno26MouseClicked
+    private int cli14;
+    private void sno9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sno9MouseClicked
+        if (sno9.getBackground() == Color.red) {
+            sno9.setBackground(Color.red);
+            JOptionPane.showMessageDialog(this, "Sorry Alredy Reserved");
+        } else {
+            cli14++;
+            switch (cli14) {
+                case 1:
+                    String name = sno9.getText();
+                    sno9.setBackground(Color.green);
+                    bookSeat(name);
+                    break;
+                case 2:
+
+                    sno9.setBackground(Color.blue);
+                    resDetails.remove(resDetails.size() - 1);
+                    cli14 = 0;
+                    break;
+            }
+        }
+    }//GEN-LAST:event_sno9MouseClicked
+    private int cli15;
+    private void sno10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sno10MouseClicked
+        if (sno10.getBackground() == Color.red) {
+            sno10.setBackground(Color.red);
+            JOptionPane.showMessageDialog(this, "Sorry Alredy Reserved");
+        } else {
+            cli15++;
+            switch (cli15) {
+                case 1:
+                    String name = sno10.getText();
+                    sno10.setBackground(Color.green);
+                    bookSeat(name);
+                    break;
+                case 2:
+
+                    sno10.setBackground(Color.blue);
+                    resDetails.remove(resDetails.size() - 1);
+                    cli15 = 0;
+                    break;
+            }
+        }
+    }//GEN-LAST:event_sno10MouseClicked
+    private int cli16;
+    private void sno11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sno11MouseClicked
+        if (sno11.getBackground() == Color.red) {
+            sno11.setBackground(Color.red);
+            JOptionPane.showMessageDialog(this, "Sorry Alredy Reserved");
+        } else {
+            cli16++;
+            switch (cli16) {
+                case 1:
+                    String name = sno11.getText();
+                    sno11.setBackground(Color.green);
+                    bookSeat(name);
+                    break;
+                case 2:
+
+                    sno11.setBackground(Color.blue);
+                    resDetails.remove(resDetails.size() - 1);
+                    cli16 = 0;
+                    break;
+            }
+        }
+    }//GEN-LAST:event_sno11MouseClicked
+    private int cli17;
+    private void sno12MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sno12MouseClicked
+        if (sno12.getBackground() == Color.red) {
+            sno12.setBackground(Color.red);
+            JOptionPane.showMessageDialog(this, "Sorry Alredy Reserved");
+        } else {
+            cli17++;
+            switch (cli17) {
+                case 1:
+                    String name = sno12.getText();
+                    sno12.setBackground(Color.green);
+                    bookSeat(name);
+                    break;
+                case 2:
+
+                    sno12.setBackground(Color.blue);
+                    resDetails.remove(resDetails.size() - 1);
+                    cli17 = 0;
+                    break;
+            }
+        }
+    }//GEN-LAST:event_sno12MouseClicked
+    private int cli18;
+    private void sno13MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sno13MouseClicked
+        if (sno13.getBackground() == Color.red) {
+            sno13.setBackground(Color.red);
+            JOptionPane.showMessageDialog(this, "Sorry Alredy Reserved");
+        } else {
+            cli18++;
+            switch (cli18) {
+                case 1:
+                    String name = sno13.getText();
+                    sno13.setBackground(Color.green);
+                    bookSeat(name);
+                    break;
+                case 2:
+
+                    sno13.setBackground(Color.blue);
+                    resDetails.remove(resDetails.size() - 1);
+                    cli18 = 0;
+                    break;
+            }
+        }
+    }//GEN-LAST:event_sno13MouseClicked
+    private int cli19;
+    private void sno14MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sno14MouseClicked
+        if (sno14.getBackground() == Color.red) {
+            sno14.setBackground(Color.red);
+            JOptionPane.showMessageDialog(this, "Sorry Alredy Reserved");
+        } else {
+            cli19++;
+            switch (cli19) {
+                case 1:
+                    String name = sno14.getText();
+                    sno14.setBackground(Color.green);
+                    bookSeat(name);
+                    break;
+                case 2:
+
+                    sno14.setBackground(Color.blue);
+                    resDetails.remove(resDetails.size() - 1);
+                    cli19 = 0;
+                    break;
+            }
+        }
+    }//GEN-LAST:event_sno14MouseClicked
+    private int cli20;
+    private void sno15MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sno15MouseClicked
+        if (sno15.getBackground() == Color.red) {
+            sno15.setBackground(Color.red);
+            JOptionPane.showMessageDialog(this, "Sorry Alredy Reserved");
+        } else {
+            cli20++;
+            switch (cli20) {
+                case 1:
+                    String name = sno15.getText();
+                    sno15.setBackground(Color.green);
+                    bookSeat(name);
+                    break;
+                case 2:
+
+                    sno15.setBackground(Color.blue);
+                    resDetails.remove(resDetails.size() - 1);
+                    cli20 = 0;
+                    break;
+            }
+        }
+    }//GEN-LAST:event_sno15MouseClicked
+    private int cli21;
+    private void sno16MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sno16MouseClicked
+        if (sno16.getBackground() == Color.red) {
+            sno16.setBackground(Color.red);
+            JOptionPane.showMessageDialog(this, "Sorry Alredy Reserved");
+        } else {
+            cli21++;
+            switch (cli21) {
+                case 1:
+                    String name = sno16.getText();
+                    sno16.setBackground(Color.green);
+                    bookSeat(name);
+                    break;
+                case 2:
+
+                    sno16.setBackground(Color.blue);
+                    resDetails.remove(resDetails.size() - 1);
+                    cli21 = 0;
+                    break;
+            }
+        }
+    }//GEN-LAST:event_sno16MouseClicked
+    private int cli22;
+    private void sno17MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sno17MouseClicked
+        if (sno17.getBackground() == Color.red) {
+            sno17.setBackground(Color.red);
+            JOptionPane.showMessageDialog(this, "Sorry Alredy Reserved");
+        } else {
+            cli22++;
+            switch (cli22) {
+                case 1:
+                    String name = sno17.getText();
+                    sno17.setBackground(Color.green);
+                    bookSeat(name);
+                    break;
+                case 2:
+
+                    sno17.setBackground(Color.blue);
+                    resDetails.remove(resDetails.size() - 1);
+                    cli22 = 0;
+                    break;
+            }
+        }
+    }//GEN-LAST:event_sno17MouseClicked
+    private int cli23;
+    private void sno18MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sno18MouseClicked
+        if (sno18.getBackground() == Color.red) {
+            sno18.setBackground(Color.red);
+            JOptionPane.showMessageDialog(this, "Sorry Alredy Reserved");
+        } else {
+            cli23++;
+            switch (cli23) {
+                case 1:
+                    String name = sno18.getText();
+                    sno18.setBackground(Color.green);
+                    bookSeat(name);
+                    break;
+                case 2:
+
+                    sno18.setBackground(Color.blue);
+                    resDetails.remove(resDetails.size() - 1);
+                    cli23 = 0;
+                    break;
+            }
+        }
+    }//GEN-LAST:event_sno18MouseClicked
+    private int cli24;
+    private void sno19MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sno19MouseClicked
+        if (sno19.getBackground() == Color.red) {
+            sno19.setBackground(Color.red);
+            JOptionPane.showMessageDialog(this, "Sorry Alredy Reserved");
+        } else {
+            cli24++;
+            switch (cli24) {
+                case 1:
+                    String name = sno19.getText();
+                    sno19.setBackground(Color.green);
+                    bookSeat(name);
+                    break;
+                case 2:
+
+                    sno19.setBackground(Color.blue);
+                    resDetails.remove(resDetails.size() - 1);
+                    cli24 = 0;
+                    break;
+            }
+        }
+    }//GEN-LAST:event_sno19MouseClicked
+    private int cli25;
+    private void sno20MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sno20MouseClicked
+        if (sno20.getBackground() == Color.red) {
+            sno20.setBackground(Color.red);
+            JOptionPane.showMessageDialog(this, "Sorry Alredy Reserved");
+        } else {
+            cli25++;
+            switch (cli25) {
+                case 1:
+                    String name = sno20.getText();
+                    sno20.setBackground(Color.green);
+                    bookSeat(name);
+                    break;
+                case 2:
+
+                    sno20.setBackground(Color.blue);
+                    resDetails.remove(resDetails.size() - 1);
+                    cli25 = 0;
+                    break;
+            }
+        }
+    }//GEN-LAST:event_sno20MouseClicked
+    private int cli26;
+    private void sno21MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sno21MouseClicked
+        if (sno21.getBackground() == Color.red) {
+            sno21.setBackground(Color.red);
+            JOptionPane.showMessageDialog(this, "Sorry Alredy Reserved");
+        } else {
+            cli26++;
+            switch (cli26) {
+                case 1:
+                    String name = sno21.getText();
+                    sno21.setBackground(Color.green);
+                    bookSeat(name);
+                    break;
+                case 2:
+
+                    sno21.setBackground(Color.blue);
+                    resDetails.remove(resDetails.size() - 1);
+                    cli26 = 0;
+                    break;
+            }
+        }
+    }//GEN-LAST:event_sno21MouseClicked
+    private int cli27;
+    private void sno27MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sno27MouseClicked
+        if (sno27.getBackground() == Color.red) {
+            sno27.setBackground(Color.red);
+            JOptionPane.showMessageDialog(this, "Sorry Alredy Reserved");
+        } else {
+            cli27++;
+            switch (cli27) {
+                case 1:
+                    String name = sno27.getText();
+                    sno27.setBackground(Color.green);
+                    bookSeat(name);
+                    break;
+                case 2:
+
+                    sno27.setBackground(Color.blue);
+                    resDetails.remove(resDetails.size() - 1);
+                    cli27 = 0;
+                    break;
+            }
+        }
+    }//GEN-LAST:event_sno27MouseClicked
+    private int cli28;
+    private void sno28MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sno28MouseClicked
+        if (sno28.getBackground() == Color.red) {
+            sno28.setBackground(Color.red);
+            JOptionPane.showMessageDialog(this, "Sorry Alredy Reserved");
+        } else {
+            cli28++;
+            switch (cli28) {
+                case 1:
+                    String name = sno28.getText();
+                    sno28.setBackground(Color.green);
+                    bookSeat(name);
+                    break;
+                case 2:
+
+                    sno28.setBackground(Color.blue);
+                    resDetails.remove(resDetails.size() - 1);
+                    cli28 = 0;
+                    break;
+            }
+        }
+    }//GEN-LAST:event_sno28MouseClicked
+    private int cli29;
+    private void sno29MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sno29MouseClicked
+        if (sno29.getBackground() == Color.red) {
+            sno29.setBackground(Color.red);
+            JOptionPane.showMessageDialog(this, "Sorry Alredy Reserved");
+        } else {
+            cli29++;
+            switch (cli29) {
+                case 1:
+                    String name = sno29.getText();
+                    sno29.setBackground(Color.green);
+                    bookSeat(name);
+                    break;
+                case 2:
+
+                    sno29.setBackground(Color.blue);
+                    resDetails.remove(resDetails.size() - 1);
+                    cli29 = 0;
+                    break;
+            }
+        }
+    }//GEN-LAST:event_sno29MouseClicked
+    private int cli30;
+    private void sno30MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sno30MouseClicked
+        if (sno30.getBackground() == Color.red) {
+            sno30.setBackground(Color.red);
+            JOptionPane.showMessageDialog(this, "Sorry Alredy Reserved");
+        } else {
+            cli30++;
+            switch (cli30) {
+                case 1:
+                    String name = sno30.getText();
+                    sno30.setBackground(Color.green);
+                    bookSeat(name);
+                    break;
+                case 2:
+
+                    sno30.setBackground(Color.blue);
+                    resDetails.remove(resDetails.size() - 1);
+                    cli30 = 0;
+                    break;
+            }
+        }
+    }//GEN-LAST:event_sno30MouseClicked
+    private int cli31;
+    private void sno31MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sno31MouseClicked
+        if (sno31.getBackground() == Color.red) {
+            sno31.setBackground(Color.red);
+            JOptionPane.showMessageDialog(this, "Sorry Alredy Reserved");
+        } else {
+            cli31++;
+            switch (cli31) {
+                case 1:
+                    String name = sno31.getText();
+                    sno31.setBackground(Color.green);
+                    bookSeat(name);
+                    break;
+                case 2:
+
+                    sno31.setBackground(Color.blue);
+                    resDetails.remove(resDetails.size() - 1);
+                    cli31 = 0;
+                    break;
+            }
+        }
+    }//GEN-LAST:event_sno31MouseClicked
+    private int cli32;
+    private void sno32MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sno32MouseClicked
+        if (sno32.getBackground() == Color.red) {
+            sno32.setBackground(Color.red);
+            JOptionPane.showMessageDialog(this, "Sorry Alredy Reserved");
+        } else {
+            cli32++;
+            switch (cli32) {
+                case 1:
+                    String name = sno32.getText();
+                    sno32.setBackground(Color.green);
+                    bookSeat(name);
+                    break;
+                case 2:
+
+                    sno32.setBackground(Color.blue);
+                    resDetails.remove(resDetails.size() - 1);
+                    cli32 = 0;
+                    break;
+            }
+        }
+    }//GEN-LAST:event_sno32MouseClicked
+    private int cli33;
+    private void sno33MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sno33MouseClicked
+        if (sno33.getBackground() == Color.red) {
+            sno33.setBackground(Color.red);
+            JOptionPane.showMessageDialog(this, "Sorry Alredy Reserved");
+        } else {
+            cli33++;
+            switch (cli33) {
+                case 1:
+                    String name = sno33.getText();
+                    sno33.setBackground(Color.green);
+                    bookSeat(name);
+                    break;
+                case 2:
+
+                    sno33.setBackground(Color.blue);
+                    resDetails.remove(resDetails.size() - 1);
+                    cli33 = 0;
+                    break;
+            }
+        }
+    }//GEN-LAST:event_sno33MouseClicked
+    private int cli34;
+    private void sno34MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sno34MouseClicked
+        if (sno34.getBackground() == Color.red) {
+            sno34.setBackground(Color.red);
+            JOptionPane.showMessageDialog(this, "Sorry Alredy Reserved");
+        } else {
+            cli34++;
+            switch (cli34) {
+                case 1:
+                    String name = sno34.getText();
+                    sno34.setBackground(Color.green);
+                    bookSeat(name);
+                    break;
+                case 2:
+
+                    sno34.setBackground(Color.blue);
+                    resDetails.remove(resDetails.size() - 1);
+                    cli34 = 0;
+                    break;
+            }
+        }
+    }//GEN-LAST:event_sno34MouseClicked
+    private int cli35;
+    private void sno35MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sno35MouseClicked
+        if (sno35.getBackground() == Color.red) {
+            sno35.setBackground(Color.red);
+            JOptionPane.showMessageDialog(this, "Sorry Alredy Reserved");
+        } else {
+            cli35++;
+            switch (cli35) {
+                case 1:
+                    String name = sno35.getText();
+                    sno35.setBackground(Color.green);
+                    bookSeat(name);
+                    break;
+                case 2:
+
+                    sno35.setBackground(Color.blue);
+                    resDetails.remove(resDetails.size() - 1);
+                    cli35 = 0;
+                    break;
+            }
+        }
+    }//GEN-LAST:event_sno35MouseClicked
+    private int cli36;
+    private void sno36MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sno36MouseClicked
+        if (sno36.getBackground() == Color.red) {
+            sno36.setBackground(Color.red);
+            JOptionPane.showMessageDialog(this, "Sorry Alredy Reserved");
+        } else {
+            cli36++;
+            switch (cli36) {
+                case 1:
+                    String name = sno36.getText();
+                    sno36.setBackground(Color.green);
+                    bookSeat(name);
+                    break;
+                case 2:
+
+                    sno36.setBackground(Color.blue);
+                    resDetails.remove(resDetails.size() - 1);
+                    cli36 = 0;
+                    break;
+            }
+        }
+    }//GEN-LAST:event_sno36MouseClicked
+    private int cli37;
+    private void sno37MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sno37MouseClicked
+        if (sno37.getBackground() == Color.red) {
+            sno37.setBackground(Color.red);
+            JOptionPane.showMessageDialog(this, "Sorry Alredy Reserved");
+        } else {
+            cli37++;
+            switch (cli37) {
+                case 1:
+                    String name = sno37.getText();
+                    sno37.setBackground(Color.green);
+                    bookSeat(name);
+                    break;
+                case 2:
+
+                    sno37.setBackground(Color.blue);
+                    resDetails.remove(resDetails.size() - 1);
+                    cli37 = 0;
+                    break;
+            }
+        }
+    }//GEN-LAST:event_sno37MouseClicked
+    private int cli38;
+    private void sno38MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sno38MouseClicked
+        if (sno38.getBackground() == Color.red) {
+            sno38.setBackground(Color.red);
+            JOptionPane.showMessageDialog(this, "Sorry Alredy Reserved");
+        } else {
+            cli38++;
+            switch (cli38) {
+                case 1:
+                    String name = sno38.getText();
+                    sno38.setBackground(Color.green);
+                    bookSeat(name);
+                    break;
+                case 2:
+
+                    sno38.setBackground(Color.blue);
+                    resDetails.remove(resDetails.size() - 1);
+                    cli38 = 0;
+                    break;
+            }
+        }
+    }//GEN-LAST:event_sno38MouseClicked
+    private int cli39;
+    private void sno39MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sno39MouseClicked
+        if (sno39.getBackground() == Color.red) {
+            sno39.setBackground(Color.red);
+            JOptionPane.showMessageDialog(this, "Sorry Alredy Reserved");
+        } else {
+            cli39++;
+            switch (cli39) {
+                case 1:
+                    String name = sno39.getText();
+                    sno39.setBackground(Color.green);
+                    bookSeat(name);
+                    break;
+                case 2:
+
+                    sno39.setBackground(Color.blue);
+                    resDetails.remove(resDetails.size() - 1);
+                    cli39 = 0;
+                    break;
+            }
+
+        }
+    }//GEN-LAST:event_sno39MouseClicked
+    private int cli40;
+    private void sno40MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sno40MouseClicked
+        if (sno40.getBackground() == Color.red) {
+            sno40.setBackground(Color.red);
+            JOptionPane.showMessageDialog(this, "Sorry Alredy Reserved");
+        } else {
+            cli40++;
+            switch (cli40) {
+                case 1:
+                    String name = sno40.getText();
+                    sno40.setBackground(Color.green);
+                    bookSeat(name);
+                    break;
+                case 2:
+
+                    sno40.setBackground(Color.blue);
+                    resDetails.remove(resDetails.size() - 1);
+                    cli40 = 0;
+                    break;
+            }
+        }
+    }//GEN-LAST:event_sno40MouseClicked
+    private int cli41;
+    private void sno41MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sno41MouseClicked
+        if (sno41.getBackground() == Color.red) {
+            sno41.setBackground(Color.red);
+            JOptionPane.showMessageDialog(this, "Sorry Alredy Reserved");
+        } else {
+            cli41++;
+            switch (cli41) {
+                case 1:
+                    String name = sno41.getText();
+                    sno41.setBackground(Color.green);
+                    bookSeat(name);
+                    break;
+                case 2:
+
+                    sno41.setBackground(Color.blue);
+                    resDetails.remove(resDetails.size() - 1);
+                    cli41 = 0;
+                    break;
+            }
+        }
+    }//GEN-LAST:event_sno41MouseClicked
+    private int cli42;
+    private void sno42MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sno42MouseClicked
+        if (sno42.getBackground() == Color.red) {
+            sno42.setBackground(Color.red);
+            JOptionPane.showMessageDialog(this, "Sorry Alredy Reserved");
+        } else {
+            cli42++;
+            switch (cli42) {
+                case 1:
+                    String name = sno42.getText();
+                    sno42.setBackground(Color.green);
+                    bookSeat(name);
+                    break;
+                case 2:
+
+                    sno42.setBackground(Color.blue);
+                    resDetails.remove(resDetails.size() - 1);
+                    cli42 = 0;
+                    break;
+            }
+        }
+    }//GEN-LAST:event_sno42MouseClicked
+    private int cli43;
+    private void sno43MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sno43MouseClicked
+        if (sno43.getBackground() == Color.red) {
+            sno43.setBackground(Color.red);
+            JOptionPane.showMessageDialog(this, "Sorry Alredy Reserved");
+        } else {
+            cli43++;
+            switch (cli43) {
+                case 1:
+                    String name = sno43.getText();
+                    sno43.setBackground(Color.green);
+                    bookSeat(name);
+                    break;
+                case 2:
+
+                    sno43.setBackground(Color.blue);
+                    resDetails.remove(resDetails.size() - 1);
+                    cli43 = 0;
+                    break;
+            }
+        }
+    }//GEN-LAST:event_sno43MouseClicked
+    private int cli44;
+    private void sno44MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sno44MouseClicked
+        if (sno44.getBackground() == Color.red) {
+            sno44.setBackground(Color.red);
+            JOptionPane.showMessageDialog(this, "Sorry Alredy Reserved");
+        } else {
+            cli44++;
+            switch (cli44) {
+                case 1:
+                    String name = sno44.getText();
+                    sno44.setBackground(Color.green);
+                    bookSeat(name);
+                    break;
+                case 2:
+
+                    sno44.setBackground(Color.blue);
+                    resDetails.remove(resDetails.size() - 1);
+                    cli44 = 0;
+                    break;
+            }
+        }
+    }//GEN-LAST:event_sno44MouseClicked
+    private int cli45;
+    private void sno45MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sno45MouseClicked
+        if (sno45.getBackground() == Color.red) {
+            sno45.setBackground(Color.red);
+            JOptionPane.showMessageDialog(this, "Sorry Alredy Reserved");
+        } else {
+            cli45++;
+            switch (cli45) {
+                case 1:
+                    String name = sno45.getText();
+                    sno45.setBackground(Color.green);
+                    bookSeat(name);
+                    break;
+                case 2:
+
+                    sno45.setBackground(Color.blue);
+                    resDetails.remove(resDetails.size() - 1);
+                    cli45 = 0;
+                    break;
+            }
+        }
+    }//GEN-LAST:event_sno45MouseClicked
+    private int cli46;
+    private void sno46MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sno46MouseClicked
+        if (sno46.getBackground() == Color.red) {
+            sno46.setBackground(Color.red);
+            JOptionPane.showMessageDialog(this, "Sorry Alredy Reserved");
+        } else {
+            cli46++;
+            switch (cli46) {
+                case 1:
+                    String name = sno46.getText();
+                    sno46.setBackground(Color.green);
+                    bookSeat(name);
+                    break;
+                case 2:
+
+                    sno46.setBackground(Color.blue);
+                    resDetails.remove(resDetails.size() - 1);
+                    cli46 = 0;
+                    break;
+            }
+        }
+    }//GEN-LAST:event_sno46MouseClicked
+    private int cli47;
+    private void sno47MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sno47MouseClicked
+        if (sno47.getBackground() == Color.red) {
+            sno47.setBackground(Color.red);
+            JOptionPane.showMessageDialog(this, "Sorry Alredy Reserved");
+        } else {
+            cli47++;
+            switch (cli47) {
+                case 1:
+                    String name = sno47.getText();
+                    sno47.setBackground(Color.green);
+                    bookSeat(name);
+                    break;
+                case 2:
+
+                    sno47.setBackground(Color.blue);
+                    resDetails.remove(resDetails.size() - 1);
+                    cli47 = 0;
+                    break;
+            }
+        }
+    }//GEN-LAST:event_sno47MouseClicked
+    private int cli48;
+    private void sno48MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sno48MouseClicked
+        if (sno48.getBackground() == Color.red) {
+            sno48.setBackground(Color.red);
+            JOptionPane.showMessageDialog(this, "Sorry Alredy Reserved");
+        } else {
+            cli48++;
+            switch (cli48) {
+                case 1:
+                    String name = sno48.getText();
+                    sno48.setBackground(Color.green);
+                    bookSeat(name);
+                    break;
+                case 2:
+
+                    sno48.setBackground(Color.blue);
+                    resDetails.remove(resDetails.size() - 1);
+                    cli48 = 0;
+                    break;
+            }
+        }
+    }//GEN-LAST:event_sno48MouseClicked
+    private int cli49;
+    private void sno49MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sno49MouseClicked
+        if (sno49.getBackground() == Color.red) {
+            sno49.setBackground(Color.red);
+            JOptionPane.showMessageDialog(this, "Sorry Alredy Reserved");
+        } else {
+            cli49++;
+            switch (cli49) {
+                case 1:
+                    String name = sno49.getText();
+                    sno49.setBackground(Color.green);
+                    bookSeat(name);
+                    break;
+                case 2:
+
+                    sno49.setBackground(Color.blue);
+                    resDetails.remove(resDetails.size() - 1);
+                    cli49 = 0;
+                    break;
+            }
+        }
+    }//GEN-LAST:event_sno49MouseClicked
+    private int cli50;
+    private void sno50MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sno50MouseClicked
+        if (sno50.getBackground() == Color.red) {
+            sno50.setBackground(Color.red);
+            JOptionPane.showMessageDialog(this, "Sorry Alredy Reserved");
+        } else {
+            cli50++;
+            switch (cli50) {
+                case 1:
+                    String name = sno50.getText();
+                    sno50.setBackground(Color.green);
+                    bookSeat(name);
+                    break;
+                case 2:
+
+                    sno50.setBackground(Color.blue);
+                    resDetails.remove(resDetails.size() - 1);
+                    cli50 = 0;
+                    break;
+            }
+        }
+    }//GEN-LAST:event_sno50MouseClicked
+    private int cli51;
+    private void sno51MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sno51MouseClicked
+        if (sno51.getBackground() == Color.red) {
+            sno51.setBackground(Color.red);
+            JOptionPane.showMessageDialog(this, "Sorry Alredy Reserved");
+        } else {
+            cli51++;
+            switch (cli51) {
+                case 1:
+                    String name = sno51.getText();
+                    sno51.setBackground(Color.green);
+                    bookSeat(name);
+                    break;
+                case 2:
+
+                    sno51.setBackground(Color.blue);
+                    resDetails.remove(resDetails.size() - 1);
+                    cli51 = 0;
+                    break;
+            }
+        }
+    }//GEN-LAST:event_sno51MouseClicked
+    private int cli52;
+    private void sno52MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sno52MouseClicked
+        if (sno52.getBackground() == Color.red) {
+            sno52.setBackground(Color.red);
+            JOptionPane.showMessageDialog(this, "Sorry Alredy Reserved");
+        } else {
+            cli52++;
+            switch (cli52) {
+                case 1:
+                    String name = sno52.getText();
+                    sno52.setBackground(Color.green);
+                    bookSeat(name);
+                    break;
+                case 2:
+
+                    sno52.setBackground(Color.blue);
+                    resDetails.remove(resDetails.size() - 1);
+                    cli52 = 0;
+                    break;
+            }
+        }
+    }//GEN-LAST:event_sno52MouseClicked
+    private int cli53;
+    private void sno53MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sno53MouseClicked
+        if (sno53.getBackground() == Color.red) {
+            sno53.setBackground(Color.red);
+            JOptionPane.showMessageDialog(this, "Sorry Alredy Reserved");
+        } else {
+            cli53++;
+            switch (cli53) {
+                case 1:
+                    String name = sno53.getText();
+                    sno53.setBackground(Color.green);
+                    bookSeat(name);
+                    break;
+                case 2:
+
+                    sno53.setBackground(Color.blue);
+                    resDetails.remove(resDetails.size() - 1);
+                    cli53 = 0;
+                    break;
+            }
+        }
+    }//GEN-LAST:event_sno53MouseClicked
+    private int cli54;
+    private void sno54MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sno54MouseClicked
+        if (sno54.getBackground() == Color.red) {
+            sno54.setBackground(Color.red);
+            JOptionPane.showMessageDialog(this, "Sorry Alredy Reserved");
+        } else {
+            cli54++;
+            switch (cli54) {
+                case 1:
+                    String name = sno54.getText();
+                    sno54.setBackground(Color.green);
+                    bookSeat(name);
+                    break;
+                case 2:
+
+                    sno54.setBackground(Color.blue);
+                    resDetails.remove(resDetails.size() - 1);
+                    cli54 = 0;
+                    break;
+            }
+        }
+    }//GEN-LAST:event_sno54MouseClicked
+    private int cli55;
+    private void sno55MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sno55MouseClicked
+        if (sno55.getBackground() == Color.red) {
+            sno55.setBackground(Color.red);
+            JOptionPane.showMessageDialog(this, "Sorry Alredy Reserved");
+        } else {
+            cli55++;
+            switch (cli55) {
+                case 1:
+                    String name = sno55.getText();
+                    sno55.setBackground(Color.green);
+                    bookSeat(name);
+                    break;
+                case 2:
+
+                    sno55.setBackground(Color.blue);
+                    resDetails.remove(resDetails.size() - 1);
+                    cli55 = 0;
+                    break;
+            }
+        }
+    }//GEN-LAST:event_sno55MouseClicked
+    private int cli56;
+    private void sno56MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sno56MouseClicked
+        if (sno56.getBackground() == Color.red) {
+            sno56.setBackground(Color.red);
+            JOptionPane.showMessageDialog(this, "Sorry Alredy Reserved");
+        } else {
+            cli56++;
+            switch (cli56) {
+                case 1:
+                    String name = sno56.getText();
+                    sno56.setBackground(Color.green);
+                    bookSeat(name);
+                    break;
+                case 2:
+
+                    sno56.setBackground(Color.blue);
+                    resDetails.remove(resDetails.size() - 1);
+                    cli56 = 0;
+                    break;
+            }
+        }
+    }//GEN-LAST:event_sno56MouseClicked
+    private int cli57;
+    private void sno57MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sno57MouseClicked
+        if (sno57.getBackground() == Color.red) {
+            sno57.setBackground(Color.red);
+            JOptionPane.showMessageDialog(this, "Sorry Alredy Reserved");
+        } else {
+            cli57++;
+            switch (cli57) {
+                case 1:
+                    String name = sno57.getText();
+                    sno57.setBackground(Color.green);
+                    bookSeat(name);
+                    break;
+                case 2:
+
+                    sno57.setBackground(Color.blue);
+                    resDetails.remove(resDetails.size() - 1);
+                    cli57 = 0;
+                    break;
+            }
+        }
+    }//GEN-LAST:event_sno57MouseClicked
+    private int cli58;
+    private void sno58MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sno58MouseClicked
+        if (sno58.getBackground() == Color.red) {
+            sno58.setBackground(Color.red);
+            JOptionPane.showMessageDialog(this, "Sorry Alredy Reserved");
+        } else {
+            cli58++;
+            switch (cli58) {
+                case 1:
+                    String name = sno58.getText();
+                    sno58.setBackground(Color.green);
+                    bookSeat(name);
+                    break;
+                case 2:
+
+                    sno58.setBackground(Color.blue);
+                    resDetails.remove(resDetails.size() - 1);
+                    cli58 = 0;
+                    break;
+            }
+        }
+    }//GEN-LAST:event_sno58MouseClicked
+    private int cli59;
+    private void sno59MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sno59MouseClicked
+        if (sno59.getBackground() == Color.red) {
+            sno59.setBackground(Color.red);
+            JOptionPane.showMessageDialog(this, "Sorry Alredy Reserved");
+        } else {
+            cli59++;
+            switch (cli59) {
+                case 1:
+                    String name = sno59.getText();
+                    sno59.setBackground(Color.green);
+                    bookSeat(name);
+                    break;
+                case 2:
+
+                    sno59.setBackground(Color.blue);
+                    resDetails.remove(resDetails.size() - 1);
+                    cli59 = 0;
+                    break;
+            }
+        }
+    }//GEN-LAST:event_sno59MouseClicked
+    private int cli60;
+    private void sno60MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sno60MouseClicked
+        if (sno60.getBackground() == Color.red) {
+            sno60.setBackground(Color.red);
+            JOptionPane.showMessageDialog(this, "Sorry Alredy Reserved");
+        } else {
+            cli60++;
+            switch (cli60) {
+                case 1:
+                    String name = sno60.getText();
+                    sno60.setBackground(Color.green);
+                    bookSeat(name);
+                    break;
+                case 2:
+
+                    sno60.setBackground(Color.blue);
+                    resDetails.remove(resDetails.size() - 1);
+                    cli60 = 0;
+                    break;
+            }
+        }
+    }//GEN-LAST:event_sno60MouseClicked
+    private int cli61;
+    private void sno61MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sno61MouseClicked
+        if (sno61.getBackground() == Color.red) {
+            sno61.setBackground(Color.red);
+            JOptionPane.showMessageDialog(this, "Sorry Alredy Reserved");
+        } else {
+            cli61++;
+            switch (cli61) {
+                case 1:
+                    String name = sno61.getText();
+                    sno61.setBackground(Color.green);
+                    bookSeat(name);
+                    break;
+                case 2:
+
+                    sno61.setBackground(Color.blue);
+                    resDetails.remove(resDetails.size() - 1);
+                    cli61 = 0;
+                    break;
+            }
+        }
+    }//GEN-LAST:event_sno61MouseClicked
+    private int cli62;
+    private void sno62MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sno62MouseClicked
+        if (sno62.getBackground() == Color.red) {
+            sno62.setBackground(Color.red);
+            JOptionPane.showMessageDialog(this, "Sorry Alredy Reserved");
+        } else {
+            cli62++;
+            switch (cli62) {
+                case 1:
+                    String name = sno62.getText();
+                    sno62.setBackground(Color.green);
+                    bookSeat(name);
+                    break;
+                case 2:
+
+                    sno62.setBackground(Color.blue);
+                    resDetails.remove(resDetails.size() - 1);
+                    cli62 = 0;
+                    break;
+            }
+        }
+    }//GEN-LAST:event_sno62MouseClicked
+    private int cli63;
+    private void sno63MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sno63MouseClicked
+        if (sno63.getBackground() == Color.red) {
+            sno63.setBackground(Color.red);
+            JOptionPane.showMessageDialog(this, "Sorry Alredy Reserved");
+        } else {
+            cli63++;
+            switch (cli63) {
+                case 1:
+                    String name = sno63.getText();
+                    sno63.setBackground(Color.green);
+                    bookSeat(name);
+                    break;
+                case 2:
+
+                    sno63.setBackground(Color.blue);
+                    resDetails.remove(resDetails.size() - 1);
+                    cli63 = 0;
+                    break;
+            }
+        }
+    }//GEN-LAST:event_sno63MouseClicked
+    private int cli64;
+    private void sno64MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sno64MouseClicked
+        if (sno64.getBackground() == Color.red) {
+            sno64.setBackground(Color.red);
+            JOptionPane.showMessageDialog(this, "Sorry Alredy Reserved");
+        } else {
+            cli64++;
+            switch (cli64) {
+                case 1:
+                    String name = sno64.getText();
+                    sno64.setBackground(Color.green);
+                    bookSeat(name);
+                    break;
+                case 2:
+
+                    sno64.setBackground(Color.blue);
+                    resDetails.remove(resDetails.size() - 1);
+                    cli64 = 0;
+                    break;
+            }
+        }
+    }//GEN-LAST:event_sno64MouseClicked
+    private int cli65;
+    private void sno65MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sno65MouseClicked
+        if (sno65.getBackground() == Color.red) {
+            sno65.setBackground(Color.red);
+            JOptionPane.showMessageDialog(this, "Sorry Alredy Reserved");
+        } else {
+            cli65++;
+            switch (cli65) {
+                case 1:
+                    String name = sno65.getText();
+                    sno65.setBackground(Color.green);
+                    bookSeat(name);
+                    break;
+                case 2:
+
+                    sno65.setBackground(Color.blue);
+                    resDetails.remove(resDetails.size() - 1);
+                    cli65 = 0;
+                    break;
+            }
+        }
+    }//GEN-LAST:event_sno65MouseClicked
+    private int cli66;
+    private void sno66MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sno66MouseClicked
+        if (sno66.getBackground() == Color.red) {
+            sno66.setBackground(Color.red);
+            JOptionPane.showMessageDialog(this, "Sorry Alredy Reserved");
+        } else {
+            cli66++;
+            switch (cli66) {
+                case 1:
+                    String name = sno66.getText();
+                    sno66.setBackground(Color.green);
+                    bookSeat(name);
+                    break;
+                case 2:
+
+                    sno66.setBackground(Color.blue);
+                    resDetails.remove(resDetails.size() - 1);
+                    cli66 = 0;
+                    break;
+            }
+        }
+    }//GEN-LAST:event_sno66MouseClicked
+    private int cli67;
+    private void sno67MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sno67MouseClicked
+        if (sno67.getBackground() == Color.red) {
+            sno67.setBackground(Color.red);
+            JOptionPane.showMessageDialog(this, "Sorry Alredy Reserved");
+        } else {
+            cli67++;
+            switch (cli67) {
+                case 1:
+                    String name = sno67.getText();
+                    sno67.setBackground(Color.green);
+                    bookSeat(name);
+                    break;
+                case 2:
+
+                    sno67.setBackground(Color.blue);
+                    resDetails.remove(resDetails.size() - 1);
+                    cli67 = 0;
+                    break;
+            }
+        }
+    }//GEN-LAST:event_sno67MouseClicked
+    private int cli68;
+    private void sno68MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sno68MouseClicked
+        if (sno68.getBackground() == Color.red) {
+            sno68.setBackground(Color.red);
+            JOptionPane.showMessageDialog(this, "Sorry Alredy Reserved");
+        } else {
+            cli68++;
+            switch (cli68) {
+                case 1:
+                    String name = sno68.getText();
+                    sno68.setBackground(Color.green);
+                    bookSeat(name);
+                    break;
+                case 2:
+
+                    sno68.setBackground(Color.blue);
+                    resDetails.remove(resDetails.size() - 1);
+                    cli68 = 0;
+                    break;
+            }
+        }
+    }//GEN-LAST:event_sno68MouseClicked
+    private int cli69;
+    private void sno69MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sno69MouseClicked
+        if (sno69.getBackground() == Color.red) {
+            sno69.setBackground(Color.red);
+            JOptionPane.showMessageDialog(this, "Sorry Alredy Reserved");
+        } else {
+            cli69++;
+            switch (cli69) {
+                case 1:
+                    String name = sno69.getText();
+                    sno69.setBackground(Color.green);
+                    bookSeat(name);
+                    break;
+                case 2:
+
+                    sno69.setBackground(Color.blue);
+                    resDetails.remove(resDetails.size() - 1);
+                    cli69 = 0;
+                    break;
+            }
+        }
+    }//GEN-LAST:event_sno69MouseClicked
+    private int cli70;
+    private void sno70MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sno70MouseClicked
+        if (sno70.getBackground() == Color.red) {
+            sno70.setBackground(Color.red);
+            JOptionPane.showMessageDialog(this, "Sorry Alredy Reserved");
+        } else {
+            cli70++;
+            switch (cli70) {
+                case 1:
+                    String name = sno70.getText();
+                    sno70.setBackground(Color.green);
+                    bookSeat(name);
+                    break;
+                case 2:
+
+                    sno70.setBackground(Color.blue);
+                    resDetails.remove(resDetails.size() - 1);
+                    cli70 = 0;
+                    break;
+            }
+        }
+    }//GEN-LAST:event_sno70MouseClicked
+    private int cli71;
+    private void sno71MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sno71MouseClicked
+        if (sno71.getBackground() == Color.red) {
+            sno71.setBackground(Color.red);
+            JOptionPane.showMessageDialog(this, "Sorry Alredy Reserved");
+        } else {
+            cli71++;
+            switch (cli71) {
+                case 1:
+                    String name = sno71.getText();
+                    sno71.setBackground(Color.green);
+                    bookSeat(name);
+                    break;
+                case 2:
+
+                    sno71.setBackground(Color.blue);
+                    resDetails.remove(resDetails.size() - 1);
+                    cli71 = 0;
+                    break;
+            }
+        }
+    }//GEN-LAST:event_sno71MouseClicked
+    private int cli72;
+    private void sno72MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sno72MouseClicked
+        if (sno72.getBackground() == Color.red) {
+            sno72.setBackground(Color.red);
+            JOptionPane.showMessageDialog(this, "Sorry Alredy Reserved");
+        } else {
+            cli72++;
+            switch (cli72) {
+                case 1:
+                    String name = sno72.getText();
+                    sno72.setBackground(Color.green);
+                    bookSeat(name);
+                    break;
+                case 2:
+
+                    sno72.setBackground(Color.blue);
+                    resDetails.remove(resDetails.size() - 1);
+                    cli72 = 0;
+                    break;
+            }
+        }
+    }//GEN-LAST:event_sno72MouseClicked
+    private int cli73;
+    private void sno73MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sno73MouseClicked
+        if (sno73.getBackground() == Color.red) {
+            sno73.setBackground(Color.red);
+            JOptionPane.showMessageDialog(this, "Sorry Alredy Reserved");
+        } else {
+            cli73++;
+            switch (cli73) {
+                case 1:
+                    String name = sno73.getText();
+                    sno73.setBackground(Color.green);
+                    bookSeat(name);
+                    break;
+                case 2:
+
+                    sno73.setBackground(Color.blue);
+                    resDetails.remove(resDetails.size() - 1);
+                    cli73 = 0;
+                    break;
+            }
+        }
+    }//GEN-LAST:event_sno73MouseClicked
+    private int cli74;
+    private void sno74MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sno74MouseClicked
+        if (sno74.getBackground() == Color.red) {
+            sno74.setBackground(Color.red);
+            JOptionPane.showMessageDialog(this, "Sorry Alredy Reserved");
+        } else {
+            cli74++;
+            switch (cli74) {
+                case 1:
+                    String name = sno74.getText();
+                    sno74.setBackground(Color.green);
+                    bookSeat(name);
+                    break;
+                case 2:
+
+                    sno74.setBackground(Color.blue);
+                    resDetails.remove(resDetails.size() - 1);
+                    cli74 = 0;
+                    break;
+            }
+        }
+    }//GEN-LAST:event_sno74MouseClicked
+    private int cli75;
+    private void sno75MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sno75MouseClicked
+        if (sno75.getBackground() == Color.red) {
+            sno75.setBackground(Color.red);
+            JOptionPane.showMessageDialog(this, "Sorry Alredy Reserved");
+        } else {
+            cli75++;
+            switch (cli75) {
+                case 1:
+                    String name = sno75.getText();
+                    sno75.setBackground(Color.green);
+                    bookSeat(name);
+                    break;
+                case 2:
+
+                    sno75.setBackground(Color.blue);
+                    resDetails.remove(resDetails.size() - 1);
+                    cli75 = 0;
+                    break;
+            }
+        }
+    }//GEN-LAST:event_sno75MouseClicked
+    private int cli76;
+    private void sno76MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sno76MouseClicked
+        if (sno76.getBackground() == Color.red) {
+            sno76.setBackground(Color.red);
+            JOptionPane.showMessageDialog(this, "Sorry Alredy Reserved");
+        } else {
+            cli76++;
+            switch (cli76) {
+                case 1:
+                    String name = sno76.getText();
+                    sno76.setBackground(Color.green);
+                    bookSeat(name);
+                    break;
+                case 2:
+
+                    sno76.setBackground(Color.blue);
+                    resDetails.remove(resDetails.size() - 1);
+                    cli76 = 0;
+                    break;
+            }
+        }
+    }//GEN-LAST:event_sno76MouseClicked
+    private int cli77;
+    private void sno77MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sno77MouseClicked
+        if (sno77.getBackground() == Color.red) {
+            sno77.setBackground(Color.red);
+            JOptionPane.showMessageDialog(this, "Sorry Alredy Reserved");
+        } else {
+            cli77++;
+            switch (cli77) {
+                case 1:
+                    String name = sno77.getText();
+                    sno77.setBackground(Color.green);
+                    bookSeat(name);
+                    break;
+                case 2:
+
+                    sno77.setBackground(Color.blue);
+                    resDetails.remove(resDetails.size() - 1);
+                    cli77 = 0;
+                    break;
+            }
+        }
+    }//GEN-LAST:event_sno77MouseClicked
+    private int cli78;
+    private void sno78MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sno78MouseClicked
+        if (sno78.getBackground() == Color.red) {
+            sno78.setBackground(Color.red);
+            JOptionPane.showMessageDialog(this, "Sorry Alredy Reserved");
+        } else {
+            cli78++;
+            switch (cli78) {
+                case 1:
+                    String name = sno78.getText();
+                    sno78.setBackground(Color.green);
+                    bookSeat(name);
+                    break;
+                case 2:
+
+                    sno78.setBackground(Color.blue);
+                    resDetails.remove(resDetails.size() - 1);
+                    cli78 = 0;
+                    break;
+            }
+        }
+    }//GEN-LAST:event_sno78MouseClicked
+    private int cli79;
+    private void sno79MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sno79MouseClicked
+        if (sno79.getBackground() == Color.red) {
+            sno79.setBackground(Color.red);
+            JOptionPane.showMessageDialog(this, "Sorry Alredy Reserved");
+        } else {
+            cli79++;
+            switch (cli79) {
+                case 1:
+                    String name = sno79.getText();
+                    sno79.setBackground(Color.green);
+                    bookSeat(name);
+                    break;
+                case 2:
+
+                    sno79.setBackground(Color.blue);
+                    resDetails.remove(resDetails.size() - 1);
+                    cli79 = 0;
+                    break;
+            }
+        }
+    }//GEN-LAST:event_sno79MouseClicked
+    private int cli80;
+    private void sno80MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sno80MouseClicked
+        if (sno80.getBackground() == Color.red) {
+            sno80.setBackground(Color.red);
+            JOptionPane.showMessageDialog(this, "Sorry Alredy Reserved");
+        } else {
+            cli80++;
+            switch (cli80) {
+                case 1:
+                    String name = sno80.getText();
+                    sno80.setBackground(Color.green);
+                    bookSeat(name);
+                    break;
+                case 2:
+
+                    sno80.setBackground(Color.blue);
+                    resDetails.remove(resDetails.size() - 1);
+                    cli80 = 0;
+                    break;
+            }
+        }
+    }//GEN-LAST:event_sno80MouseClicked
+    private int cli81;
+    private void sno81MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sno81MouseClicked
+        if (sno81.getBackground() == Color.red) {
+            sno81.setBackground(Color.red);
+            JOptionPane.showMessageDialog(this, "Sorry Alredy Reserved");
+        } else {
+            cli81++;
+            switch (cli81) {
+                case 1:
+                    String name = sno81.getText();
+                    sno81.setBackground(Color.green);
+                    bookSeat(name);
+                    break;
+                case 2:
+
+                    sno81.setBackground(Color.blue);
+                    resDetails.remove(resDetails.size() - 1);
+                    cli81 = 0;
+                    break;
+            }
+        }
+    }//GEN-LAST:event_sno81MouseClicked
+    private int cli82;
+    private void sno82MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sno82MouseClicked
+        if (sno82.getBackground() == Color.red) {
+            sno82.setBackground(Color.red);
+            JOptionPane.showMessageDialog(this, "Sorry Alredy Reserved");
+        } else {
+            cli82++;
+            switch (cli82) {
+                case 1:
+                    String name = sno82.getText();
+                    sno82.setBackground(Color.green);
+                    bookSeat(name);
+                    break;
+                case 2:
+
+                    sno82.setBackground(Color.blue);
+                    resDetails.remove(resDetails.size() - 1);
+                    cli82 = 0;
+                    break;
+            }
+        }
+    }//GEN-LAST:event_sno82MouseClicked
+    private int cli83;
+    private void sno83MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sno83MouseClicked
+        if (sno83.getBackground() == Color.red) {
+            sno83.setBackground(Color.red);
+            JOptionPane.showMessageDialog(this, "Sorry Alredy Reserved");
+        } else {
+            cli83++;
+            switch (cli83) {
+                case 1:
+                    String name = sno83.getText();
+                    sno83.setBackground(Color.green);
+                    bookSeat(name);
+                    break;
+                case 2:
+
+                    sno83.setBackground(Color.blue);
+                    resDetails.remove(resDetails.size() - 1);
+                    cli83 = 0;
+                    break;
+            }
+        }
+    }//GEN-LAST:event_sno83MouseClicked
+    private int cli84;
+    private void sno84MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sno84MouseClicked
+        if (sno84.getBackground() == Color.red) {
+            sno84.setBackground(Color.red);
+            JOptionPane.showMessageDialog(this, "Sorry Alredy Reserved");
+        } else {
+            cli84++;
+            switch (cli84) {
+                case 1:
+                    String name = sno84.getText();
+                    sno84.setBackground(Color.green);
+                    bookSeat(name);
+                    break;
+                case 2:
+
+                    sno84.setBackground(Color.blue);
+                    resDetails.remove(resDetails.size() - 1);
+                    cli84 = 0;
+                    break;
+            }
+        }
+    }//GEN-LAST:event_sno84MouseClicked
+    private int cli85;
+    private void sno85MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sno85MouseClicked
+        if (sno85.getBackground() == Color.red) {
+            sno85.setBackground(Color.red);
+            JOptionPane.showMessageDialog(this, "Sorry Alredy Reserved");
+        } else {
+            cli85++;
+            switch (cli85) {
+                case 1:
+                    String name = sno85.getText();
+                    sno85.setBackground(Color.green);
+                    bookSeat(name);
+                    break;
+                case 2:
+
+                    sno85.setBackground(Color.blue);
+                    resDetails.remove(resDetails.size() - 1);
+                    cli85 = 0;
+                    break;
+            }
+        }
+    }//GEN-LAST:event_sno85MouseClicked
+    private int cli86;
+    private void sno86MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sno86MouseClicked
+        if (sno86.getBackground() == Color.red) {
+            sno86.setBackground(Color.red);
+            JOptionPane.showMessageDialog(this, "Sorry Alredy Reserved");
+        } else {
+            cli86++;
+            switch (cli86) {
+                case 1:
+                    String name = sno86.getText();
+                    sno86.setBackground(Color.green);
+                    bookSeat(name);
+                    break;
+                case 2:
+
+                    sno86.setBackground(Color.blue);
+                    resDetails.remove(resDetails.size() - 1);
+                    cli86 = 0;
+                    break;
+            }
+        }
+    }//GEN-LAST:event_sno86MouseClicked
+    private int cli87;
+    private void sno87MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sno87MouseClicked
+        if (sno87.getBackground() == Color.red) {
+            sno87.setBackground(Color.red);
+            JOptionPane.showMessageDialog(this, "Sorry Alredy Reserved");
+        } else {
+            cli87++;
+            switch (cli87) {
+                case 1:
+                    String name = sno87.getText();
+                    sno87.setBackground(Color.green);
+                    bookSeat(name);
+                    break;
+                case 2:
+
+                    sno87.setBackground(Color.blue);
+                    resDetails.remove(resDetails.size() - 1);
+                    cli87 = 0;
+                    break;
+            }
+        }
+    }//GEN-LAST:event_sno87MouseClicked
+    private int cli88;
+    private void sno88MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sno88MouseClicked
+        if (sno88.getBackground() == Color.red) {
+            sno88.setBackground(Color.red);
+            JOptionPane.showMessageDialog(this, "Sorry Alredy Reserved");
+        } else {
+            cli88++;
+            switch (cli88) {
+                case 1:
+                    String name = sno88.getText();
+                    sno88.setBackground(Color.green);
+                    bookSeat(name);
+                    break;
+                case 2:
+
+                    sno88.setBackground(Color.blue);
+                    resDetails.remove(resDetails.size() - 1);
+                    cli88 = 0;
+                    break;
+            }
+        }
+    }//GEN-LAST:event_sno88MouseClicked
+    private int cli89;
+    private void sno89MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sno89MouseClicked
+        if (sno89.getBackground() == Color.red) {
+            sno89.setBackground(Color.red);
+            JOptionPane.showMessageDialog(this, "Sorry Alredy Reserved");
+        } else {
+            cli89++;
+            switch (cli89) {
+                case 1:
+                    String name = sno89.getText();
+                    sno89.setBackground(Color.green);
+                    bookSeat(name);
+                    break;
+                case 2:
+
+                    sno89.setBackground(Color.blue);
+                    resDetails.remove(resDetails.size() - 1);
+                    cli89 = 0;
+                    break;
+            }
+        }
+    }//GEN-LAST:event_sno89MouseClicked
+    private int cli90;
+    private void sno90MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sno90MouseClicked
+        if (sno90.getBackground() == Color.red) {
+            sno90.setBackground(Color.red);
+            JOptionPane.showMessageDialog(this, "Sorry Alredy Reserved");
+        } else {
+            cli90++;
+            switch (cli90) {
+                case 1:
+                    String name = sno90.getText();
+                    sno90.setBackground(Color.green);
+                    bookSeat(name);
+                    break;
+                case 2:
+                    sno90.setBackground(Color.blue);
+                    resDetails.remove(resDetails.size() - 1);
+                    cli90 = 0;
+                    break;
+            }
+        }
+    }//GEN-LAST:event_sno90MouseClicked
+    private int cli91;
+    private void sno91MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sno91MouseClicked
+        if (sno91.getBackground() == Color.red) {
+            sno91.setBackground(Color.red);
+            JOptionPane.showMessageDialog(this, "Sorry Alredy Reserved");
+        } else {
+            cli91++;
+            switch (cli91) {
+                case 1:
+                    String name = sno91.getText();
+                    sno91.setBackground(Color.green);
+                    bookSeat(name);
+                    break;
+                case 2:
+
+                    sno91.setBackground(Color.blue);
+                    resDetails.remove(resDetails.size() - 1);
+                    cli91 = 0;
+                    break;
+            }
+        }
+    }//GEN-LAST:event_sno91MouseClicked
+    private int cli92;
+    private void sno92MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sno92MouseClicked
+        if (sno92.getBackground() == Color.red) {
+            sno92.setBackground(Color.red);
+            JOptionPane.showMessageDialog(this, "Sorry Alredy Reserved");
+        } else {
+            cli92++;
+            switch (cli92) {
+                case 1:
+                    String name = sno92.getText();
+                    sno92.setBackground(Color.green);
+                    bookSeat(name);
+                    break;
+                case 2:
+
+                    sno92.setBackground(Color.blue);
+                    resDetails.remove(resDetails.size() - 1);
+                    cli92 = 0;
+                    break;
+            }
+        }
+    }//GEN-LAST:event_sno92MouseClicked
+    private int cli93;
+    private void sno93MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sno93MouseClicked
+        if (sno93.getBackground() == Color.red) {
+            sno93.setBackground(Color.red);
+            JOptionPane.showMessageDialog(this, "Sorry Alredy Reserved");
+        } else {
+            cli93++;
+            switch (cli93) {
+                case 1:
+                    String name = sno93.getText();
+                    sno93.setBackground(Color.green);
+                    bookSeat(name);
+                    break;
+                case 2:
+
+                    sno93.setBackground(Color.blue);
+                    resDetails.remove(resDetails.size() - 1);
+                    cli93 = 0;
+                    break;
+            }
+        }
+    }//GEN-LAST:event_sno93MouseClicked
+    private int cli94;
+    private void sno94MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sno94MouseClicked
+        if (sno94.getBackground() == Color.red) {
+            sno94.setBackground(Color.red);
+            JOptionPane.showMessageDialog(this, "Sorry Alredy Reserved");
+        } else {
+            cli94++;
+            switch (cli94) {
+                case 1:
+                    String name = sno94.getText();
+                    sno94.setBackground(Color.green);
+                    bookSeat(name);
+                    break;
+                case 2:
+
+                    sno94.setBackground(Color.blue);
+                    resDetails.remove(resDetails.size() - 1);
+                    cli94 = 0;
+                    break;
+            }
+        }
+    }//GEN-LAST:event_sno94MouseClicked
+    private int cli95;
+    private void sno95MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sno95MouseClicked
+        if (sno95.getBackground() == Color.red) {
+            sno95.setBackground(Color.red);
+            JOptionPane.showMessageDialog(this, "Sorry Alredy Reserved");
+        } else {
+            cli95++;
+            switch (cli95) {
+                case 1:
+                    String name = sno95.getText();
+                    sno95.setBackground(Color.green);
+                    bookSeat(name);
+                    break;
+                case 2:
+
+                    sno95.setBackground(Color.blue);
+                    resDetails.remove(resDetails.size() - 1);
+                    cli95 = 0;
+                    break;
+            }
+        }
+    }//GEN-LAST:event_sno95MouseClicked
+    private int cli96;
+    private void sno96MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sno96MouseClicked
+        if (sno96.getBackground() == Color.red) {
+            sno96.setBackground(Color.red);
+            JOptionPane.showMessageDialog(this, "Sorry Alredy Reserved");
+        } else {
+            cli96++;
+            switch (cli96) {
+                case 1:
+                    String name = sno96.getText();
+                    sno96.setBackground(Color.green);
+                    bookSeat(name);
+                    break;
+                case 2:
+
+                    sno96.setBackground(Color.blue);
+                    resDetails.remove(resDetails.size() - 1);
+                    cli96 = 0;
+                    break;
+            }
+        }
+    }//GEN-LAST:event_sno96MouseClicked
+    private int cli97;
+    private void sno97MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sno97MouseClicked
+        if (sno97.getBackground() == Color.red) {
+            sno97.setBackground(Color.red);
+            JOptionPane.showMessageDialog(this, "Sorry Alredy Reserved");
+        } else {
+            cli97++;
+            switch (cli97) {
+                case 1:
+                    String name = sno97.getText();
+                    sno97.setBackground(Color.green);
+                    bookSeat(name);
+                    break;
+                case 2:
+
+                    sno97.setBackground(Color.blue);
+                    resDetails.remove(resDetails.size() - 1);
+                    cli97 = 0;
+                    break;
+            }
+        }
+    }//GEN-LAST:event_sno97MouseClicked
+    private int cli98;
+    private void sno98MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sno98MouseClicked
+        if (sno98.getBackground() == Color.red) {
+            sno98.setBackground(Color.red);
+            JOptionPane.showMessageDialog(this, "Sorry Alredy Reserved");
+        } else {
+            cli98++;
+            switch (cli98) {
+                case 1:
+                    String name = sno98.getText();
+                    sno98.setBackground(Color.green);
+                    bookSeat(name);
+                    break;
+                case 2:
+
+                    sno98.setBackground(Color.blue);
+                    resDetails.remove(resDetails.size() - 1);
+                    cli98 = 0;
+                    break;
+            }
+        }
+    }//GEN-LAST:event_sno98MouseClicked
+    private int cli99;
+    private void sno99MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sno99MouseClicked
+        if (sno99.getBackground() == Color.red) {
+            sno99.setBackground(Color.red);
+            JOptionPane.showMessageDialog(this, "Sorry Alredy Reserved");
+        } else {
+            cli99++;
+            switch (cli99) {
+                case 1:
+                    String name = sno99.getText();
+                    sno99.setBackground(Color.green);
+                    bookSeat(name);
+                    break;
+                case 2:
+
+                    sno99.setBackground(Color.blue);
+                    resDetails.remove(resDetails.size() - 1);
+                    cli99 = 0;
+                    break;
+            }
+        }
+    }//GEN-LAST:event_sno99MouseClicked
+    private int cli100;
+    private void sno100MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sno100MouseClicked
+        if (sno100.getBackground() == Color.red) {
+            sno100.setBackground(Color.red);
+            JOptionPane.showMessageDialog(this, "Sorry Alredy Reserved");
+        } else {
+            cli100++;
+            switch (cli100) {
+                case 1:
+                    String name = sno100.getText();
+                    sno100.setBackground(Color.green);
+                    bookSeat(name);
+                    break;
+                case 2:
+
+                    sno100.setBackground(Color.blue);
+                    resDetails.remove(resDetails.size() - 1);
+                    cli100 = 0;
+                    break;
+            }
+        }
+    }//GEN-LAST:event_sno100MouseClicked
+    private int cli101;
+    private void sno101MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sno101MouseClicked
+        if (sno101.getBackground() == Color.red) {
+            sno101.setBackground(Color.red);
+            JOptionPane.showMessageDialog(this, "Sorry Alredy Reserved");
+        } else {
+            cli101++;
+            switch (cli101) {
+                case 1:
+                    String name = sno101.getText();
+                    sno101.setBackground(Color.green);
+                    bookSeat(name);
+                    break;
+                case 2:
+
+                    sno101.setBackground(Color.blue);
+                    resDetails.remove(resDetails.size() - 1);
+                    cli101 = 0;
+                    break;
+            }
+        }
+    }//GEN-LAST:event_sno101MouseClicked
+    private int cli102;
+    private void sno102MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sno102MouseClicked
+        if (sno102.getBackground() == Color.red) {
+            sno102.setBackground(Color.red);
+            JOptionPane.showMessageDialog(this, "Sorry Alredy Reserved");
+        } else {
+            cli102++;
+            switch (cli102) {
+                case 1:
+                    String name = sno102.getText();
+                    sno102.setBackground(Color.green);
+                    bookSeat(name);
+                    break;
+                case 2:
+
+                    sno102.setBackground(Color.blue);
+                    resDetails.remove(resDetails.size() - 1);
+                    cli102 = 0;
+                    break;
+            }
+        }
+    }//GEN-LAST:event_sno102MouseClicked
+    private int cli103;
+    private void sno103MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sno103MouseClicked
+        if (sno103.getBackground() == Color.red) {
+            sno103.setBackground(Color.red);
+            JOptionPane.showMessageDialog(this, "Sorry Alredy Reserved");
+        } else {
+            cli103++;
+            switch (cli103) {
+                case 1:
+                    String name = sno103.getText();
+                    sno103.setBackground(Color.green);
+                    bookSeat(name);
+                    break;
+                case 2:
+
+                    sno103.setBackground(Color.blue);
+                    resDetails.remove(resDetails.size() - 1);
+                    cli103 = 0;
+                    break;
+            }
+        }
+    }//GEN-LAST:event_sno103MouseClicked
+    private int cli104;
+    private void sno104MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sno104MouseClicked
+        if (sno104.getBackground() == Color.red) {
+            sno104.setBackground(Color.red);
+            JOptionPane.showMessageDialog(this, "Sorry Alredy Reserved");
+        } else {
+            cli104++;
+            switch (cli104) {
+                case 1:
+                    String name = sno104.getText();
+                    sno104.setBackground(Color.green);
+                    bookSeat(name);
+                    break;
+                case 2:
+
+                    sno104.setBackground(Color.blue);
+                    resDetails.remove(resDetails.size() - 1);
+                    cli104 = 0;
+                    break;
+            }
+        }
+    }//GEN-LAST:event_sno104MouseClicked
+    private int cli105;
+    private void sno105MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sno105MouseClicked
+        if (sno105.getBackground() == Color.red) {
+            sno105.setBackground(Color.red);
+            JOptionPane.showMessageDialog(this, "Sorry Alredy Reserved");
+        } else {
+            cli105++;
+            switch (cli105) {
+                case 1:
+                    String name = sno105.getText();
+                    sno105.setBackground(Color.green);
+                    bookSeat(name);
+                    break;
+                case 2:
+
+                    sno105.setBackground(Color.blue);
+                    resDetails.remove(resDetails.size() - 1);
+                    cli105 = 0;
+                    break;
+            }
+        }
+    }//GEN-LAST:event_sno105MouseClicked
+    private int cli106;
+    private void sno106MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sno106MouseClicked
+        if (sno106.getBackground() == Color.red) {
+            sno106.setBackground(Color.red);
+            JOptionPane.showMessageDialog(this, "Sorry Alredy Reserved");
+        } else {
+            cli106++;
+            switch (cli106) {
+                case 1:
+                    String name = sno106.getText();
+                    sno106.setBackground(Color.green);
+                    bookSeat(name);
+                    break;
+                case 2:
+
+                    sno106.setBackground(Color.blue);
+                    resDetails.remove(resDetails.size() - 1);
+                    cli106 = 0;
+                    break;
+            }
+        }
+    }//GEN-LAST:event_sno106MouseClicked
+    private int cli107;
+    private void sno107MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sno107MouseClicked
+        if (sno107.getBackground() == Color.red) {
+            sno107.setBackground(Color.red);
+            JOptionPane.showMessageDialog(this, "Sorry Alredy Reserved");
+        } else {
+            cli107++;
+            switch (cli107) {
+                case 1:
+                    String name = sno107.getText();
+                    sno107.setBackground(Color.green);
+                    bookSeat(name);
+                    break;
+                case 2:
+
+                    sno107.setBackground(Color.blue);
+                    resDetails.remove(resDetails.size() - 1);
+                    cli107 = 0;
+                    break;
+            }
+        }
+    }//GEN-LAST:event_sno107MouseClicked
+    private int cli108;
+    private void sno108MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sno108MouseClicked
+        if (sno108.getBackground() == Color.red) {
+            sno108.setBackground(Color.red);
+            JOptionPane.showMessageDialog(this, "Sorry Alredy Reserved");
+        } else {
+            cli108++;
+            switch (cli108) {
+                case 1:
+                    String name = sno108.getText();
+                    sno108.setBackground(Color.green);
+                    bookSeat(name);
+                    break;
+                case 2:
+
+                    sno108.setBackground(Color.blue);
+                    resDetails.remove(resDetails.size() - 1);
+                    cli108 = 0;
+                    break;
+            }
+        }
+    }//GEN-LAST:event_sno108MouseClicked
+    private int cli109;
+    private void sno109MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sno109MouseClicked
+        if (sno109.getBackground() == Color.red) {
+            sno109.setBackground(Color.red);
+            JOptionPane.showMessageDialog(this, "Sorry Alredy Reserved");
+        } else {
+            cli109++;
+            switch (cli109) {
+                case 1:
+                    String name = sno109.getText();
+                    sno109.setBackground(Color.green);
+                    bookSeat(name);
+                    break;
+                case 2:
+
+                    sno109.setBackground(Color.blue);
+                    resDetails.remove(resDetails.size() - 1);
+                    cli109 = 0;
+                    break;
+            }
+        }
+    }//GEN-LAST:event_sno109MouseClicked
+    private int cli110;
+    private void sno110MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sno110MouseClicked
+        if (sno110.getBackground() == Color.red) {
+            sno110.setBackground(Color.red);
+            JOptionPane.showMessageDialog(this, "Sorry Alredy Reserved");
+        } else {
+            cli110++;
+            switch (cli110) {
+                case 1:
+                    String name = sno110.getText();
+                    sno110.setBackground(Color.green);
+                    bookSeat(name);
+                    break;
+                case 2:
+
+                    sno110.setBackground(Color.blue);
+                    resDetails.remove(resDetails.size() - 1);
+                    cli110 = 0;
+                    break;
+            }
+        }
+    }//GEN-LAST:event_sno110MouseClicked
+    private int cli111;
+    private void sno111MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sno111MouseClicked
+        if (sno111.getBackground() == Color.red) {
+            sno111.setBackground(Color.red);
+            JOptionPane.showMessageDialog(this, "Sorry Alredy Reserved");
+        } else {
+            cli111++;
+            switch (cli111) {
+                case 1:
+                    String name = sno111.getText();
+                    sno111.setBackground(Color.green);
+                    bookSeat(name);
+                    break;
+                case 2:
+
+                    sno111.setBackground(Color.blue);
+                    resDetails.remove(resDetails.size() - 1);
+                    cli111 = 0;
+                    break;
+            }
+        }
+    }//GEN-LAST:event_sno111MouseClicked
+    private int cli112;
+    private void sno112MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sno112MouseClicked
+        if (sno112.getBackground() == Color.red) {
+            sno112.setBackground(Color.red);
+            JOptionPane.showMessageDialog(this, "Sorry Alredy Reserved");
+        } else {
+            cli112++;
+            switch (cli112) {
+                case 1:
+                    String name = sno112.getText();
+                    sno112.setBackground(Color.green);
+                    bookSeat(name);
+                    break;
+                case 2:
+
+                    sno112.setBackground(Color.blue);
+                    resDetails.remove(resDetails.size() - 1);
+                    cli112 = 0;
+                    break;
+            }
+        }
+    }//GEN-LAST:event_sno112MouseClicked
+    private int cli113;
+    private void sno113MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sno113MouseClicked
+        if (sno113.getBackground() == Color.red) {
+            sno113.setBackground(Color.red);
+            JOptionPane.showMessageDialog(this, "Sorry Alredy Reserved");
+        } else {
+            cli113++;
+            switch (cli113) {
+                case 1:
+                    String name = sno113.getText();
+                    sno113.setBackground(Color.green);
+                    bookSeat(name);
+                    break;
+                case 2:
+
+                    sno113.setBackground(Color.blue);
+                    resDetails.remove(resDetails.size() - 1);
+                    cli113 = 0;
+                    break;
+            }
+        }
+    }//GEN-LAST:event_sno113MouseClicked
+    private int cli114;
+    private void sno114MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sno114MouseClicked
+        if (sno114.getBackground() == Color.red) {
+            sno114.setBackground(Color.red);
+            JOptionPane.showMessageDialog(this, "Sorry Alredy Reserved");
+        } else {
+            cli114++;
+            switch (cli114) {
+                case 1:
+                    String name = sno114.getText();
+                    sno114.setBackground(Color.green);
+                    bookSeat(name);
+                    break;
+                case 2:
+
+                    sno114.setBackground(Color.blue);
+                    resDetails.remove(resDetails.size() - 1);
+                    cli114 = 0;
+                    break;
+            }
+        }
+    }//GEN-LAST:event_sno114MouseClicked
+    private int cli115;
+    private void sno115MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sno115MouseClicked
+        if (sno115.getBackground() == Color.red) {
+            sno115.setBackground(Color.red);
+            JOptionPane.showMessageDialog(this, "Sorry Alredy Reserved");
+        } else {
+            cli115++;
+            switch (cli115) {
+                case 1:
+                    String name = sno115.getText();
+                    sno115.setBackground(Color.green);
+                    bookSeat(name);
+                    break;
+                case 2:
+
+                    sno115.setBackground(Color.blue);
+                    resDetails.remove(resDetails.size() - 1);
+                    cli115 = 0;
+                    break;
+            }
+        }
+    }//GEN-LAST:event_sno115MouseClicked
+    private int cli116;
+    private void sno116MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sno116MouseClicked
+        if (sno116.getBackground() == Color.red) {
+            sno116.setBackground(Color.red);
+            JOptionPane.showMessageDialog(this, "Sorry Alredy Reserved");
+        } else {
+            cli116++;
+            switch (cli116) {
+                case 1:
+                    String name = sno116.getText();
+                    sno116.setBackground(Color.green);
+                    bookSeat(name);
+                    break;
+                case 2:
+
+                    sno116.setBackground(Color.blue);
+                    resDetails.remove(resDetails.size() - 1);
+                    cli116 = 0;
+                    break;
+            }
+        }
+    }//GEN-LAST:event_sno116MouseClicked
+    private int cli117;
+    private void sno117MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sno117MouseClicked
+        if (sno117.getBackground() == Color.red) {
+            sno117.setBackground(Color.red);
+            JOptionPane.showMessageDialog(this, "Sorry Alredy Reserved");
+        } else {
+            cli117++;
+            switch (cli117) {
+                case 1:
+                    String name = sno117.getText();
+                    sno117.setBackground(Color.green);
+                    bookSeat(name);
+                    break;
+                case 2:
+
+                    sno117.setBackground(Color.blue);
+                    resDetails.remove(resDetails.size() - 1);
+                    cli117 = 0;
+                    break;
+            }
+        }
+    }//GEN-LAST:event_sno117MouseClicked
+    private int cli118;
+    private void sno118MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sno118MouseClicked
+        if (sno118.getBackground() == Color.red) {
+            sno118.setBackground(Color.red);
+            JOptionPane.showMessageDialog(this, "Sorry Alredy Reserved");
+        } else {
+            cli118++;
+            switch (cli118) {
+                case 1:
+                    String name = sno118.getText();
+                    sno118.setBackground(Color.green);
+                    bookSeat(name);
+                    break;
+                case 2:
+
+                    sno118.setBackground(Color.blue);
+                    resDetails.remove(resDetails.size() - 1);
+                    cli118 = 0;
+                    break;
+            }
+        }
+    }//GEN-LAST:event_sno118MouseClicked
+    private int cli119;
+    private void sno119MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sno119MouseClicked
+        if (sno119.getBackground() == Color.red) {
+            sno119.setBackground(Color.red);
+            JOptionPane.showMessageDialog(this, "Sorry Alredy Reserved");
+        } else {
+            cli119++;
+            switch (cli119) {
+                case 1:
+                    String name = sno119.getText();
+                    sno119.setBackground(Color.green);
+                    bookSeat(name);
+                    break;
+                case 2:
+
+                    sno119.setBackground(Color.blue);
+                    resDetails.remove(resDetails.size() - 1);
+                    cli119 = 0;
+                    break;
+            }
+        }
+    }//GEN-LAST:event_sno119MouseClicked
+    private int cli120;
+    private void sno120MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sno120MouseClicked
+        if (sno120.getBackground() == Color.red) {
+            sno120.setBackground(Color.red);
+            JOptionPane.showMessageDialog(this, "Sorry Alredy Reserved");
+        } else {
+            cli120++;
+            switch (cli120) {
+                case 1:
+                    String name = sno120.getText();
+                    sno120.setBackground(Color.green);
+                    bookSeat(name);
+                    break;
+                case 2:
+
+                    sno120.setBackground(Color.blue);
+                    resDetails.remove(resDetails.size() - 1);
+                    cli120 = 0;
+                    break;
+            }
+        }
+    }//GEN-LAST:event_sno120MouseClicked
+    private int cli121;
+    private void sno121MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sno121MouseClicked
+        if (sno121.getBackground() == Color.red) {
+            sno121.setBackground(Color.red);
+            JOptionPane.showMessageDialog(this, "Sorry Alredy Reserved");
+        } else {
+            cli121++;
+            switch (cli121) {
+                case 1:
+                    String name = sno121.getText();
+                    sno121.setBackground(Color.green);
+                    bookSeat(name);
+                    break;
+                case 2:
+
+                    sno121.setBackground(Color.blue);
+                    resDetails.remove(resDetails.size() - 1);
+                    cli121 = 0;
+                    break;
+            }
+        }
+    }//GEN-LAST:event_sno121MouseClicked
+    private int cli122;
+    private void sno122MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sno122MouseClicked
+        if (sno122.getBackground() == Color.red) {
+            sno122.setBackground(Color.red);
+            JOptionPane.showMessageDialog(this, "Sorry Alredy Reserved");
+        } else {
+            cli122++;
+            switch (cli122) {
+                case 1:
+                    String name = sno122.getText();
+                    sno122.setBackground(Color.green);
+                    bookSeat(name);
+                    break;
+                case 2:
+
+                    sno122.setBackground(Color.blue);
+                    resDetails.remove(resDetails.size() - 1);
+                    cli122 = 0;
+                    break;
+            }
+        }
+    }//GEN-LAST:event_sno122MouseClicked
+
+
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    public static javax.swing.JLabel sno1;
+    private javax.swing.JLabel sno10;
+    private javax.swing.JLabel sno100;
+    private javax.swing.JLabel sno101;
+    private javax.swing.JLabel sno102;
+    private javax.swing.JLabel sno103;
+    private javax.swing.JLabel sno104;
+    private javax.swing.JLabel sno105;
+    private javax.swing.JLabel sno106;
+    private javax.swing.JLabel sno107;
+    private javax.swing.JLabel sno108;
+    private javax.swing.JLabel sno109;
+    private javax.swing.JLabel sno11;
+    private javax.swing.JLabel sno110;
+    private javax.swing.JLabel sno111;
+    private javax.swing.JLabel sno112;
+    private javax.swing.JLabel sno113;
+    private javax.swing.JLabel sno114;
+    private javax.swing.JLabel sno115;
+    private javax.swing.JLabel sno116;
+    private javax.swing.JLabel sno117;
+    private javax.swing.JLabel sno118;
+    private javax.swing.JLabel sno119;
+    private javax.swing.JLabel sno12;
+    private javax.swing.JLabel sno120;
+    private javax.swing.JLabel sno121;
+    private javax.swing.JLabel sno122;
+    private javax.swing.JLabel sno13;
+    private javax.swing.JLabel sno14;
+    private javax.swing.JLabel sno15;
+    private javax.swing.JLabel sno16;
+    private javax.swing.JLabel sno17;
+    private javax.swing.JLabel sno18;
+    private javax.swing.JLabel sno19;
+    private javax.swing.JLabel sno2;
+    private javax.swing.JLabel sno20;
+    private javax.swing.JLabel sno21;
+    private javax.swing.JLabel sno22;
+    private javax.swing.JLabel sno23;
+    private javax.swing.JLabel sno24;
+    private javax.swing.JLabel sno25;
+    private javax.swing.JLabel sno26;
+    private javax.swing.JLabel sno27;
+    private javax.swing.JLabel sno28;
+    private javax.swing.JLabel sno29;
+    private javax.swing.JLabel sno3;
+    private javax.swing.JLabel sno30;
+    private javax.swing.JLabel sno31;
+    private javax.swing.JLabel sno32;
+    private javax.swing.JLabel sno33;
+    private javax.swing.JLabel sno34;
+    private javax.swing.JLabel sno35;
+    private javax.swing.JLabel sno36;
+    private javax.swing.JLabel sno37;
+    private javax.swing.JLabel sno38;
+    private javax.swing.JLabel sno39;
+    private javax.swing.JLabel sno4;
+    private javax.swing.JLabel sno40;
+    private javax.swing.JLabel sno41;
+    private javax.swing.JLabel sno42;
+    private javax.swing.JLabel sno43;
+    private javax.swing.JLabel sno44;
+    private javax.swing.JLabel sno45;
+    private javax.swing.JLabel sno46;
+    private javax.swing.JLabel sno47;
+    private javax.swing.JLabel sno48;
+    private javax.swing.JLabel sno49;
+    private javax.swing.JLabel sno5;
+    private javax.swing.JLabel sno50;
+    private javax.swing.JLabel sno51;
+    private javax.swing.JLabel sno52;
+    private javax.swing.JLabel sno53;
+    private javax.swing.JLabel sno54;
+    private javax.swing.JLabel sno55;
+    private javax.swing.JLabel sno56;
+    private javax.swing.JLabel sno57;
+    private javax.swing.JLabel sno58;
+    private javax.swing.JLabel sno59;
+    private javax.swing.JLabel sno6;
+    private javax.swing.JLabel sno60;
+    private javax.swing.JLabel sno61;
+    private javax.swing.JLabel sno62;
+    private javax.swing.JLabel sno63;
+    private javax.swing.JLabel sno64;
+    private javax.swing.JLabel sno65;
+    private javax.swing.JLabel sno66;
+    private javax.swing.JLabel sno67;
+    private javax.swing.JLabel sno68;
+    private javax.swing.JLabel sno69;
+    private javax.swing.JLabel sno7;
+    private javax.swing.JLabel sno70;
+    private javax.swing.JLabel sno71;
+    private javax.swing.JLabel sno72;
+    private javax.swing.JLabel sno73;
+    private javax.swing.JLabel sno74;
+    private javax.swing.JLabel sno75;
+    private javax.swing.JLabel sno76;
+    private javax.swing.JLabel sno77;
+    private javax.swing.JLabel sno78;
+    private javax.swing.JLabel sno79;
+    private javax.swing.JLabel sno8;
+    private javax.swing.JLabel sno80;
+    private javax.swing.JLabel sno81;
+    private javax.swing.JLabel sno82;
+    private javax.swing.JLabel sno83;
+    private javax.swing.JLabel sno84;
+    private javax.swing.JLabel sno85;
+    private javax.swing.JLabel sno86;
+    private javax.swing.JLabel sno87;
+    private javax.swing.JLabel sno88;
+    private javax.swing.JLabel sno89;
+    private javax.swing.JLabel sno9;
+    private javax.swing.JLabel sno90;
+    private javax.swing.JLabel sno91;
+    private javax.swing.JLabel sno92;
+    private javax.swing.JLabel sno93;
+    private javax.swing.JLabel sno94;
+    private javax.swing.JLabel sno95;
+    private javax.swing.JLabel sno96;
+    private javax.swing.JLabel sno97;
+    private javax.swing.JLabel sno98;
+    private javax.swing.JLabel sno99;
+    // End of variables declaration//GEN-END:variables
+
+    public void setMessgae(String message) throws ClassNotFoundException, SQLException, IOException, FileNotFoundException, RemoteException, ParseException, NotBoundException {
+           
+            if (filmID.equals("mov1")) {
+                seatDisplay(filmID);
+            }
+            if (filmID.equals("mov2")) {
+                seatDisplay(filmID);
+            }
+            if (filmID.equals("mov3")) {
+                seatDisplay(filmID);
+            }
+            if (filmID.equals("mov4")) {
+                seatDisplay(filmID);
+            }
+    }
+
+    private void seatDisplay(String id) throws ClassNotFoundException, FileNotFoundException, SQLException, IOException, RemoteException, ParseException, NotBoundException {
+        if (id.equals("mov1")) {
+            BookDetailsController bookDetailsController = ServerConnector.getServerConnector().getBookDetailsController();
+            ArrayList<BookDetails> dd = bookDetailsController.getAllBookDetail();
+
+            for (BookDetails dd1 : dd) {
+                String movieId = dd1.getMovieId();
+                String sheetId1 = dd1.getSheetId();
+                String bbDate = dd1.getbDate();
+
+                if (movieId.equals("mov1") && sheetId1.equals("01") && bbDate.equals(bookDate)) {
+                    sno1.setBackground(Color.red);
+                }
+                if (movieId.equals("mov1") && sheetId1.equals("02") && bbDate.equals(bookDate)) {
+                    sno2.setBackground(Color.red);
+                }
+                if (movieId.equals("mov1") && sheetId1.equals("03") && bbDate.equals(bookDate)) {
+                    sno3.setBackground(Color.red);
+                }
+                if (movieId.equals("mov1") && sheetId1.equals("04") && bbDate.equals(bookDate)) {
+                    sno4.setBackground(Color.red);
+                }
+                if (movieId.equals("mov1") && sheetId1.equals("05") && bbDate.equals(bookDate)) {
+                    sno5.setBackground(Color.red);
+                }
+                if (movieId.equals("mov1") && sheetId1.equals("06") && bbDate.equals(bookDate)) {
+                    sno6.setBackground(Color.red);
+                }
+                if (movieId.equals("mov1") && sheetId1.equals("07") && bbDate.equals(bookDate)) {
+                    sno7.setBackground(Color.red);
+                }
+                if (movieId.equals("mov1") && sheetId1.equals("08") && bbDate.equals(bookDate)) {
+                    sno8.setBackground(Color.red);
+                }
+                if (movieId.equals("mov1") && sheetId1.equals("09") && bbDate.equals(bookDate)) {
+                    sno9.setBackground(Color.red);
+                }
+                if (movieId.equals("mov1") && sheetId1.equals("10") && bbDate.equals(bookDate)) {
+                    sno10.setBackground(Color.red);
+                }
+                if (movieId.equals("mov1") && sheetId1.equals("11") && bbDate.equals(bookDate)) {
+                    sno11.setBackground(Color.red);
+                }
+                if (movieId.equals("mov1") && sheetId1.equals("12") && bbDate.equals(bookDate)) {
+                    sno12.setBackground(Color.red);
+                }
+                if (movieId.equals("mov1") && sheetId1.equals("13") && bbDate.equals(bookDate)) {
+                    sno13.setBackground(Color.red);
+                }
+                if (movieId.equals("mov1") && sheetId1.equals("14") && bbDate.equals(bookDate)) {
+                    sno14.setBackground(Color.red);
+                }
+                if (movieId.equals("mov1") && sheetId1.equals("15") && bbDate.equals(bookDate)) {
+                    sno15.setBackground(Color.red);
+                }
+                if (movieId.equals("mov1") && sheetId1.equals("16") && bbDate.equals(bookDate)) {
+                    sno16.setBackground(Color.red);
+                }
+                if (movieId.equals("mov1") && sheetId1.equals("17") && bbDate.equals(bookDate)) {
+                    sno17.setBackground(Color.red);
+                }
+                if (movieId.equals("mov1") && sheetId1.equals("18") && bbDate.equals(bookDate)) {
+                    sno18.setBackground(Color.red);
+                }
+                if (movieId.equals("mov1") && sheetId1.equals("19") && bbDate.equals(bookDate)) {
+                    sno19.setBackground(Color.red);
+                }
+                if (movieId.equals("mov1") && sheetId1.equals("20") && bbDate.equals(bookDate)) {
+                    sno20.setBackground(Color.red);
+                }
+                if (movieId.equals("mov1") && sheetId1.equals("21") && bbDate.equals(bookDate)) {
+                    sno21.setBackground(Color.red);
+                }
+                if (movieId.equals("mov1") && sheetId1.equals("22") && bbDate.equals(bookDate)) {
+                    sno22.setBackground(Color.red);
+                }
+                if (movieId.equals("mov1") && sheetId1.equals("23") && bbDate.equals(bookDate)) {
+                    sno23.setBackground(Color.red);
+                }
+                if (movieId.equals("mov1") && sheetId1.equals("24") && bbDate.equals(bookDate)) {
+                    sno24.setBackground(Color.red);
+                }
+                if (movieId.equals("mov1") && sheetId1.equals("25") && bbDate.equals(bookDate)) {
+                    sno25.setBackground(Color.red);
+                }
+                if (movieId.equals("mov1") && sheetId1.equals("26") && bbDate.equals(bookDate)) {
+                    sno26.setBackground(Color.red);
+                }
+                if (movieId.equals("mov1") && sheetId1.equals("27") && bbDate.equals(bookDate)) {
+                    sno27.setBackground(Color.red);
+                }
+                if (movieId.equals("mov1") && sheetId1.equals("28") && bbDate.equals(bookDate)) {
+                    sno28.setBackground(Color.red);
+                }
+                if (movieId.equals("mov1") && sheetId1.equals("29") && bbDate.equals(bookDate)) {
+                    sno29.setBackground(Color.red);
+                }
+                if (movieId.equals("mov1") && sheetId1.equals("30") && bbDate.equals(bookDate)) {
+                    sno30.setBackground(Color.red);
+                }
+                if (movieId.equals("mov1") && sheetId1.equals("31") && bbDate.equals(bookDate)) {
+                    sno31.setBackground(Color.red);
+                }
+                if (movieId.equals("mov1") && sheetId1.equals("32") && bbDate.equals(bookDate)) {
+                    sno32.setBackground(Color.red);
+                }
+                if (movieId.equals("mov1") && sheetId1.equals("33") && bbDate.equals(bookDate)) {
+                    sno33.setBackground(Color.red);
+                }
+                if (movieId.equals("mov1") && sheetId1.equals("34") && bbDate.equals(bookDate)) {
+                    sno34.setBackground(Color.red);
+                }
+                if (movieId.equals("mov1") && sheetId1.equals("35") && bbDate.equals(bookDate)) {
+                    sno35.setBackground(Color.red);
+                }
+                if (movieId.equals("mov1") && sheetId1.equals("36") && bbDate.equals(bookDate)) {
+                    sno36.setBackground(Color.red);
+                }
+                if (movieId.equals("mov1") && sheetId1.equals("37") && bbDate.equals(bookDate)) {
+                    sno37.setBackground(Color.red);
+                }
+                if (movieId.equals("mov1") && sheetId1.equals("38") && bbDate.equals(bookDate)) {
+                    sno38.setBackground(Color.red);
+                }
+                if (movieId.equals("mov1") && sheetId1.equals("39") && bbDate.equals(bookDate)) {
+                    sno39.setBackground(Color.red);
+                }
+                if (movieId.equals("mov1") && sheetId1.equals("40") && bbDate.equals(bookDate)) {
+                    sno40.setBackground(Color.red);
+                }
+                if (movieId.equals("mov1") && sheetId1.equals("41") && bbDate.equals(bookDate)) {
+                    sno41.setBackground(Color.red);
+                }
+                if (movieId.equals("mov1") && sheetId1.equals("42") && bbDate.equals(bookDate)) {
+                    sno42.setBackground(Color.red);
+                }
+                if (movieId.equals("mov1") && sheetId1.equals("43") && bbDate.equals(bookDate)) {
+                    sno43.setBackground(Color.red);
+                }
+                if (movieId.equals("mov1") && sheetId1.equals("44") && bbDate.equals(bookDate)) {
+                    sno44.setBackground(Color.red);
+                }
+                if (movieId.equals("mov1") && sheetId1.equals("45") && bbDate.equals(bookDate)) {
+                    sno45.setBackground(Color.red);
+                }
+                if (movieId.equals("mov1") && sheetId1.equals("46") && bbDate.equals(bookDate)) {
+                    sno46.setBackground(Color.red);
+                }
+                if (movieId.equals("mov1") && sheetId1.equals("47") && bbDate.equals(bookDate)) {
+                    sno47.setBackground(Color.red);
+                }
+                if (movieId.equals("mov1") && sheetId1.equals("48") && bbDate.equals(bookDate)) {
+                    sno48.setBackground(Color.red);
+                }
+                if (movieId.equals("mov1") && sheetId1.equals("49") && bbDate.equals(bookDate)) {
+                    sno49.setBackground(Color.red);
+                }
+                if (movieId.equals("mov1") && sheetId1.equals("50") && bbDate.equals(bookDate)) {
+                    sno50.setBackground(Color.red);
+                }
+                if (movieId.equals("mov1") && sheetId1.equals("51") && bbDate.equals(bookDate)) {
+                    sno51.setBackground(Color.red);
+                }
+                if (movieId.equals("mov1") && sheetId1.equals("52") && bbDate.equals(bookDate)) {
+                    sno52.setBackground(Color.red);
+                }
+                if (movieId.equals("mov1") && sheetId1.equals("53") && bbDate.equals(bookDate)) {
+                    sno53.setBackground(Color.red);
+                }
+                if (movieId.equals("mov1") && sheetId1.equals("54") && bbDate.equals(bookDate)) {
+                    sno54.setBackground(Color.red);
+                }
+                if (movieId.equals("mov1") && sheetId1.equals("55") && bbDate.equals(bookDate)) {
+                    sno55.setBackground(Color.red);
+                }
+                if (movieId.equals("mov1") && sheetId1.equals("56") && bbDate.equals(bookDate)) {
+                    sno56.setBackground(Color.red);
+                }
+                if (movieId.equals("mov1") && sheetId1.equals("57") && bbDate.equals(bookDate)) {
+                    sno57.setBackground(Color.red);
+                }
+                if (movieId.equals("mov1") && sheetId1.equals("58") && bbDate.equals(bookDate)) {
+                    sno58.setBackground(Color.red);
+                }
+                if (movieId.equals("mov1") && sheetId1.equals("59") && bbDate.equals(bookDate)) {
+                    sno59.setBackground(Color.red);
+                }
+                if (movieId.equals("mov1") && sheetId1.equals("60") && bbDate.equals(bookDate)) {
+                    sno60.setBackground(Color.red);
+                }
+                if (movieId.equals("mov1") && sheetId1.equals("61") && bbDate.equals(bookDate)) {
+                    sno61.setBackground(Color.red);
+                }
+                if (movieId.equals("mov1") && sheetId1.equals("62") && bbDate.equals(bookDate)) {
+                    sno62.setBackground(Color.red);
+                }
+                if (movieId.equals("mov1") && sheetId1.equals("63") && bbDate.equals(bookDate)) {
+                    sno63.setBackground(Color.red);
+                }
+                if (movieId.equals("mov1") && sheetId1.equals("64") && bbDate.equals(bookDate)) {
+                    sno64.setBackground(Color.red);
+                }
+                if (movieId.equals("mov1") && sheetId1.equals("65") && bbDate.equals(bookDate)) {
+                    sno65.setBackground(Color.red);
+                }
+                if (movieId.equals("mov1") && sheetId1.equals("66") && bbDate.equals(bookDate)) {
+                    sno66.setBackground(Color.red);
+                }
+                if (movieId.equals("mov1") && sheetId1.equals("67") && bbDate.equals(bookDate)) {
+                    sno67.setBackground(Color.red);
+                }
+                if (movieId.equals("mov1") && sheetId1.equals("68") && bbDate.equals(bookDate)) {
+                    sno68.setBackground(Color.red);
+                }
+                if (movieId.equals("mov1") && sheetId1.equals("69") && bbDate.equals(bookDate)) {
+                    sno69.setBackground(Color.red);
+                }
+                if (movieId.equals("mov1") && sheetId1.equals("70") && bbDate.equals(bookDate)) {
+                    sno70.setBackground(Color.red);
+                }
+                if (movieId.equals("mov1") && sheetId1.equals("71") && bbDate.equals(bookDate)) {
+                    sno71.setBackground(Color.red);
+                }
+                if (movieId.equals("mov1") && sheetId1.equals("72") && bbDate.equals(bookDate)) {
+                    sno72.setBackground(Color.red);
+                }
+                if (movieId.equals("mov1") && sheetId1.equals("73") && bbDate.equals(bookDate)) {
+                    sno73.setBackground(Color.red);
+                }
+                if (movieId.equals("mov1") && sheetId1.equals("74") && bbDate.equals(bookDate)) {
+                    sno74.setBackground(Color.red);
+                }
+                if (movieId.equals("mov1") && sheetId1.equals("75") && bbDate.equals(bookDate)) {
+                    sno75.setBackground(Color.red);
+                }
+                if (movieId.equals("mov1") && sheetId1.equals("76") && bbDate.equals(bookDate)) {
+                    sno76.setBackground(Color.red);
+                }
+                if (movieId.equals("mov1") && sheetId1.equals("77") && bbDate.equals(bookDate)) {
+                    sno77.setBackground(Color.red);
+                }
+                if (movieId.equals("mov1") && sheetId1.equals("78") && bbDate.equals(bookDate)) {
+                    sno78.setBackground(Color.red);
+                }
+                if (movieId.equals("mov1") && sheetId1.equals("79") && bbDate.equals(bookDate)) {
+                    sno79.setBackground(Color.red);
+                }
+                if (movieId.equals("mov1") && sheetId1.equals("80") && bbDate.equals(bookDate)) {
+                    sno80.setBackground(Color.red);
+                }
+                if (movieId.equals("mov1") && sheetId1.equals("81") && bbDate.equals(bookDate)) {
+                    sno81.setBackground(Color.red);
+                }
+                if (movieId.equals("mov1") && sheetId1.equals("82") && bbDate.equals(bookDate)) {
+                    sno82.setBackground(Color.red);
+                }
+                if (movieId.equals("mov1") && sheetId1.equals("83") && bbDate.equals(bookDate)) {
+                    sno83.setBackground(Color.red);
+                }
+                if (movieId.equals("mov1") && sheetId1.equals("84") && bbDate.equals(bookDate)) {
+                    sno84.setBackground(Color.red);
+                }
+                if (movieId.equals("mov1") && sheetId1.equals("85") && bbDate.equals(bookDate)) {
+                    sno85.setBackground(Color.red);
+                }
+                if (movieId.equals("mov1") && sheetId1.equals("86") && bbDate.equals(bookDate)) {
+                    sno86.setBackground(Color.red);
+                }
+                if (movieId.equals("mov1") && sheetId1.equals("87") && bbDate.equals(bookDate)) {
+                    sno87.setBackground(Color.red);
+                }
+                if (movieId.equals("mov1") && sheetId1.equals("88") && bbDate.equals(bookDate)) {
+                    sno88.setBackground(Color.red);
+                }
+                if (movieId.equals("mov1") && sheetId1.equals("89") && bbDate.equals(bookDate)) {
+                    sno89.setBackground(Color.red);
+                }
+                if (movieId.equals("mov1") && sheetId1.equals("90") && bbDate.equals(bookDate)) {
+                    sno90.setBackground(Color.red);
+                }
+                if (movieId.equals("mov1") && sheetId1.equals("91") && bbDate.equals(bookDate)) {
+                    sno91.setBackground(Color.red);
+                }
+                if (movieId.equals("mov1") && sheetId1.equals("92") && bbDate.equals(bookDate)) {
+                    sno92.setBackground(Color.red);
+                }
+                if (movieId.equals("mov1") && sheetId1.equals("93") && bbDate.equals(bookDate)) {
+                    sno93.setBackground(Color.red);
+                }
+                if (movieId.equals("mov1") && sheetId1.equals("94") && bbDate.equals(bookDate)) {
+                    sno94.setBackground(Color.red);
+                }
+                if (movieId.equals("mov1") && sheetId1.equals("95") && bbDate.equals(bookDate)) {
+                    sno95.setBackground(Color.red);
+                }
+                if (movieId.equals("mov1") && sheetId1.equals("96") && bbDate.equals(bookDate)) {
+                    sno96.setBackground(Color.red);
+                }
+                if (movieId.equals("mov1") && sheetId1.equals("97") && bbDate.equals(bookDate)) {
+                    sno97.setBackground(Color.red);
+                }
+                if (movieId.equals("mov1") && sheetId1.equals("98") && bbDate.equals(bookDate)) {
+                    sno98.setBackground(Color.red);
+                }
+                if (movieId.equals("mov1") && sheetId1.equals("99") && bbDate.equals(bookDate)) {
+                    sno99.setBackground(Color.red);
+                }
+                if (movieId.equals("mov1") && sheetId1.equals("100") && bbDate.equals(bookDate)) {
+                    sno100.setBackground(Color.red);
+                }
+                if (movieId.equals("mov1") && sheetId1.equals("101") && bbDate.equals(bookDate)) {
+                    sno101.setBackground(Color.red);
+                }
+                if (movieId.equals("mov1") && sheetId1.equals("102") && bbDate.equals(bookDate)) {
+                    sno102.setBackground(Color.red);
+                }
+                if (movieId.equals("mov1") && sheetId1.equals("103") && bbDate.equals(bookDate)) {
+                    sno103.setBackground(Color.red);
+                }
+                if (movieId.equals("mov1") && sheetId1.equals("104") && bbDate.equals(bookDate)) {
+                    sno104.setBackground(Color.red);
+                }
+                if (movieId.equals("mov1") && sheetId1.equals("105") && bbDate.equals(bookDate)) {
+                    sno105.setBackground(Color.red);
+                }
+                if (movieId.equals("mov1") && sheetId1.equals("106") && bbDate.equals(bookDate)) {
+                    sno106.setBackground(Color.red);
+                }
+                if (movieId.equals("mov1") && sheetId1.equals("107") && bbDate.equals(bookDate)) {
+                    sno107.setBackground(Color.red);
+                }
+                if (movieId.equals("mov1") && sheetId1.equals("108") && bbDate.equals(bookDate)) {
+                    sno108.setBackground(Color.red);
+                }
+                if (movieId.equals("mov1") && sheetId1.equals("109") && bbDate.equals(bookDate)) {
+                    sno109.setBackground(Color.red);
+                }
+                if (movieId.equals("mov1") && sheetId1.equals("110") && bbDate.equals(bookDate)) {
+                    sno110.setBackground(Color.red);
+                }
+                if (movieId.equals("mov1") && sheetId1.equals("111") && bbDate.equals(bookDate)) {
+                    sno111.setBackground(Color.red);
+                }
+                if (movieId.equals("mov1") && sheetId1.equals("112") && bbDate.equals(bookDate)) {
+                    sno112.setBackground(Color.red);
+                }
+                if (movieId.equals("mov1") && sheetId1.equals("113") && bbDate.equals(bookDate)) {
+                    sno113.setBackground(Color.red);
+                }
+                if (movieId.equals("mov1") && sheetId1.equals("114") && bbDate.equals(bookDate)) {
+                    sno114.setBackground(Color.red);
+                }
+                if (movieId.equals("mov1") && sheetId1.equals("115") && bbDate.equals(bookDate)) {
+                    sno115.setBackground(Color.red);
+                }
+                if (movieId.equals("mov1") && sheetId1.equals("116") && bbDate.equals(bookDate)) {
+                    sno116.setBackground(Color.red);
+                }
+                if (movieId.equals("mov1") && sheetId1.equals("117") && bbDate.equals(bookDate)) {
+                    sno117.setBackground(Color.red);
+                }
+                if (movieId.equals("mov1") && sheetId1.equals("118") && bbDate.equals(bookDate)) {
+                    sno118.setBackground(Color.red);
+                }
+                if (movieId.equals("mov1") && sheetId1.equals("119") && bbDate.equals(bookDate)) {
+                    sno119.setBackground(Color.red);
+                }
+                if (movieId.equals("mov1") && sheetId1.equals("120") && bbDate.equals(bookDate)) {
+                    sno120.setBackground(Color.red);
+                }
+                if (movieId.equals("mov1") && sheetId1.equals("121") && bbDate.equals(bookDate)) {
+                    sno121.setBackground(Color.red);
+                }
+                if (movieId.equals("mov1") && sheetId1.equals("122") && bbDate.equals(bookDate)) {
+                    sno122.setBackground(Color.red);
+                }
+
+            }
+
+        }
+
+        if (id.equals("mov2")) {
+            BookDetailsController bookDetailsController = ServerConnector.getServerConnector().getBookDetailsController();
+            ArrayList<BookDetails> dd = bookDetailsController.getAllBookDetail();
+
+            for (BookDetails dd1 : dd) {
+                String movieId = dd1.getMovieId();
+                String sheetId1 = dd1.getSheetId();
+                String bbDate = dd1.getbDate();
+
+                if (movieId.equals("mov2") && sheetId1.equals("01") && bbDate.equals(bookDate)) {
+                    sno1.setBackground(Color.red);
+                }
+                if (movieId.equals("mov2") && sheetId1.equals("02") && bbDate.equals(bookDate)) {
+                    sno2.setBackground(Color.red);
+                }
+                if (movieId.equals("mov2") && sheetId1.equals("03") && bbDate.equals(bookDate)) {
+                    sno3.setBackground(Color.red);
+                }
+                if (movieId.equals("mov2") && sheetId1.equals("04") && bbDate.equals(bookDate)) {
+                    sno4.setBackground(Color.red);
+                }
+                if (movieId.equals("mov2") && sheetId1.equals("05") && bbDate.equals(bookDate)) {
+                    sno5.setBackground(Color.red);
+                }
+                if (movieId.equals("mov2") && sheetId1.equals("06") && bbDate.equals(bookDate)) {
+                    sno6.setBackground(Color.red);
+                }
+                if (movieId.equals("mov2") && sheetId1.equals("07") && bbDate.equals(bookDate)) {
+                    sno7.setBackground(Color.red);
+                }
+                if (movieId.equals("mov2") && sheetId1.equals("08") && bbDate.equals(bookDate)) {
+                    sno8.setBackground(Color.red);
+                }
+                if (movieId.equals("mov2") && sheetId1.equals("09") && bbDate.equals(bookDate)) {
+                    sno9.setBackground(Color.red);
+                }
+                if (movieId.equals("mov2") && sheetId1.equals("10") && bbDate.equals(bookDate)) {
+                    sno10.setBackground(Color.red);
+                }
+                if (movieId.equals("mov2") && sheetId1.equals("11") && bbDate.equals(bookDate)) {
+                    sno11.setBackground(Color.red);
+                }
+                if (movieId.equals("mov2") && sheetId1.equals("12") && bbDate.equals(bookDate)) {
+                    sno12.setBackground(Color.red);
+                }
+                if (movieId.equals("mov2") && sheetId1.equals("13") && bbDate.equals(bookDate)) {
+                    sno13.setBackground(Color.red);
+                }
+                if (movieId.equals("mov2") && sheetId1.equals("14") && bbDate.equals(bookDate)) {
+                    sno14.setBackground(Color.red);
+                }
+                if (movieId.equals("mov2") && sheetId1.equals("15") && bbDate.equals(bookDate)) {
+                    sno15.setBackground(Color.red);
+                }
+                if (movieId.equals("mov2") && sheetId1.equals("16") && bbDate.equals(bookDate)) {
+                    sno16.setBackground(Color.red);
+                }
+                if (movieId.equals("mov2") && sheetId1.equals("17") && bbDate.equals(bookDate)) {
+                    sno17.setBackground(Color.red);
+                }
+                if (movieId.equals("mov2") && sheetId1.equals("18") && bbDate.equals(bookDate)) {
+                    sno18.setBackground(Color.red);
+                }
+                if (movieId.equals("mov2") && sheetId1.equals("19") && bbDate.equals(bookDate)) {
+                    sno19.setBackground(Color.red);
+                }
+                if (movieId.equals("mov2") && sheetId1.equals("20") && bbDate.equals(bookDate)) {
+                    sno20.setBackground(Color.red);
+                }
+                if (movieId.equals("mov2") && sheetId1.equals("21") && bbDate.equals(bookDate)) {
+                    sno21.setBackground(Color.red);
+                }
+                if (movieId.equals("mov2") && sheetId1.equals("22") && bbDate.equals(bookDate)) {
+                    sno22.setBackground(Color.red);
+                }
+                if (movieId.equals("mov2") && sheetId1.equals("23") && bbDate.equals(bookDate)) {
+                    sno23.setBackground(Color.red);
+                }
+                if (movieId.equals("mov2") && sheetId1.equals("24") && bbDate.equals(bookDate)) {
+                    sno24.setBackground(Color.red);
+                }
+                if (movieId.equals("mov2") && sheetId1.equals("25") && bbDate.equals(bookDate)) {
+                    sno25.setBackground(Color.red);
+                }
+                if (movieId.equals("mov2") && sheetId1.equals("26") && bbDate.equals(bookDate)) {
+                    sno26.setBackground(Color.red);
+                }
+                if (movieId.equals("mov2") && sheetId1.equals("27") && bbDate.equals(bookDate)) {
+                    sno27.setBackground(Color.red);
+                }
+                if (movieId.equals("mov2") && sheetId1.equals("28") && bbDate.equals(bookDate)) {
+                    sno28.setBackground(Color.red);
+                }
+                if (movieId.equals("mov2") && sheetId1.equals("29") && bbDate.equals(bookDate)) {
+                    sno29.setBackground(Color.red);
+                }
+                if (movieId.equals("mov2") && sheetId1.equals("30") && bbDate.equals(bookDate)) {
+                    sno30.setBackground(Color.red);
+                }
+                if (movieId.equals("mov2") && sheetId1.equals("31") && bbDate.equals(bookDate)) {
+                    sno31.setBackground(Color.red);
+                }
+                if (movieId.equals("mov2") && sheetId1.equals("32") && bbDate.equals(bookDate)) {
+                    sno32.setBackground(Color.red);
+                }
+                if (movieId.equals("mov2") && sheetId1.equals("33") && bbDate.equals(bookDate)) {
+                    sno33.setBackground(Color.red);
+                }
+                if (movieId.equals("mov2") && sheetId1.equals("34") && bbDate.equals(bookDate)) {
+                    sno34.setBackground(Color.red);
+                }
+                if (movieId.equals("mov2") && sheetId1.equals("35") && bbDate.equals(bookDate)) {
+                    sno35.setBackground(Color.red);
+                }
+                if (movieId.equals("mov2") && sheetId1.equals("36") && bbDate.equals(bookDate)) {
+                    sno36.setBackground(Color.red);
+                }
+                if (movieId.equals("mov2") && sheetId1.equals("37") && bbDate.equals(bookDate)) {
+                    sno37.setBackground(Color.red);
+                }
+                if (movieId.equals("mov2") && sheetId1.equals("38") && bbDate.equals(bookDate)) {
+                    sno38.setBackground(Color.red);
+                }
+                if (movieId.equals("mov2") && sheetId1.equals("39") && bbDate.equals(bookDate)) {
+                    sno39.setBackground(Color.red);
+                }
+                if (movieId.equals("mov2") && sheetId1.equals("40") && bbDate.equals(bookDate)) {
+                    sno40.setBackground(Color.red);
+                }
+                if (movieId.equals("mov2") && sheetId1.equals("41") && bbDate.equals(bookDate)) {
+                    sno41.setBackground(Color.red);
+                }
+                if (movieId.equals("mov2") && sheetId1.equals("42") && bbDate.equals(bookDate)) {
+                    sno42.setBackground(Color.red);
+                }
+                if (movieId.equals("mov2") && sheetId1.equals("43") && bbDate.equals(bookDate)) {
+                    sno43.setBackground(Color.red);
+                }
+                if (movieId.equals("mov2") && sheetId1.equals("44") && bbDate.equals(bookDate)) {
+                    sno44.setBackground(Color.red);
+                }
+                if (movieId.equals("mov2") && sheetId1.equals("45") && bbDate.equals(bookDate)) {
+                    sno45.setBackground(Color.red);
+                }
+                if (movieId.equals("mov2") && sheetId1.equals("46") && bbDate.equals(bookDate)) {
+                    sno46.setBackground(Color.red);
+                }
+                if (movieId.equals("mov2") && sheetId1.equals("47") && bbDate.equals(bookDate)) {
+                    sno47.setBackground(Color.red);
+                }
+                if (movieId.equals("mov2") && sheetId1.equals("48") && bbDate.equals(bookDate)) {
+                    sno48.setBackground(Color.red);
+                }
+                if (movieId.equals("mov2") && sheetId1.equals("49") && bbDate.equals(bookDate)) {
+                    sno49.setBackground(Color.red);
+                }
+                if (movieId.equals("mov2") && sheetId1.equals("50") && bbDate.equals(bookDate)) {
+                    sno50.setBackground(Color.red);
+                }
+                if (movieId.equals("mov2") && sheetId1.equals("51") && bbDate.equals(bookDate)) {
+                    sno51.setBackground(Color.red);
+                }
+                if (movieId.equals("mov2") && sheetId1.equals("52") && bbDate.equals(bookDate)) {
+                    sno52.setBackground(Color.red);
+                }
+                if (movieId.equals("mov2") && sheetId1.equals("53") && bbDate.equals(bookDate)) {
+                    sno53.setBackground(Color.red);
+                }
+                if (movieId.equals("mov2") && sheetId1.equals("54") && bbDate.equals(bookDate)) {
+                    sno54.setBackground(Color.red);
+                }
+                if (movieId.equals("mov2") && sheetId1.equals("55") && bbDate.equals(bookDate)) {
+                    sno55.setBackground(Color.red);
+                }
+                if (movieId.equals("mov2") && sheetId1.equals("56") && bbDate.equals(bookDate)) {
+                    sno56.setBackground(Color.red);
+                }
+                if (movieId.equals("mov2") && sheetId1.equals("57") && bbDate.equals(bookDate)) {
+                    sno57.setBackground(Color.red);
+                }
+                if (movieId.equals("mov2") && sheetId1.equals("58") && bbDate.equals(bookDate)) {
+                    sno58.setBackground(Color.red);
+                }
+                if (movieId.equals("mov2") && sheetId1.equals("59") && bbDate.equals(bookDate)) {
+                    sno59.setBackground(Color.red);
+                }
+                if (movieId.equals("mov2") && sheetId1.equals("60") && bbDate.equals(bookDate)) {
+                    sno60.setBackground(Color.red);
+                }
+                if (movieId.equals("mov2") && sheetId1.equals("61") && bbDate.equals(bookDate)) {
+                    sno61.setBackground(Color.red);
+                }
+                if (movieId.equals("mov2") && sheetId1.equals("62") && bbDate.equals(bookDate)) {
+                    sno62.setBackground(Color.red);
+                }
+                if (movieId.equals("mov2") && sheetId1.equals("63") && bbDate.equals(bookDate)) {
+                    sno63.setBackground(Color.red);
+                }
+                if (movieId.equals("mov2") && sheetId1.equals("64") && bbDate.equals(bookDate)) {
+                    sno64.setBackground(Color.red);
+                }
+                if (movieId.equals("mov2") && sheetId1.equals("65") && bbDate.equals(bookDate)) {
+                    sno65.setBackground(Color.red);
+                }
+                if (movieId.equals("mov2") && sheetId1.equals("66") && bbDate.equals(bookDate)) {
+                    sno66.setBackground(Color.red);
+                }
+                if (movieId.equals("mov2") && sheetId1.equals("67") && bbDate.equals(bookDate)) {
+                    sno67.setBackground(Color.red);
+                }
+                if (movieId.equals("mov2") && sheetId1.equals("68") && bbDate.equals(bookDate)) {
+                    sno68.setBackground(Color.red);
+                }
+                if (movieId.equals("mov2") && sheetId1.equals("69") && bbDate.equals(bookDate)) {
+                    sno69.setBackground(Color.red);
+                }
+                if (movieId.equals("mov2") && sheetId1.equals("70") && bbDate.equals(bookDate)) {
+                    sno70.setBackground(Color.red);
+                }
+                if (movieId.equals("mov2") && sheetId1.equals("71") && bbDate.equals(bookDate)) {
+                    sno71.setBackground(Color.red);
+                }
+                if (movieId.equals("mov2") && sheetId1.equals("72") && bbDate.equals(bookDate)) {
+                    sno72.setBackground(Color.red);
+                }
+                if (movieId.equals("mov2") && sheetId1.equals("73") && bbDate.equals(bookDate)) {
+                    sno73.setBackground(Color.red);
+                }
+                if (movieId.equals("mov2") && sheetId1.equals("74") && bbDate.equals(bookDate)) {
+                    sno74.setBackground(Color.red);
+                }
+                if (movieId.equals("mov2") && sheetId1.equals("75") && bbDate.equals(bookDate)) {
+                    sno75.setBackground(Color.red);
+                }
+                if (movieId.equals("mov2") && sheetId1.equals("76") && bbDate.equals(bookDate)) {
+                    sno76.setBackground(Color.red);
+                }
+                if (movieId.equals("mov2") && sheetId1.equals("77") && bbDate.equals(bookDate)) {
+                    sno77.setBackground(Color.red);
+                }
+                if (movieId.equals("mov2") && sheetId1.equals("78") && bbDate.equals(bookDate)) {
+                    sno78.setBackground(Color.red);
+                }
+                if (movieId.equals("mov2") && sheetId1.equals("79") && bbDate.equals(bookDate)) {
+                    sno79.setBackground(Color.red);
+                }
+                if (movieId.equals("mov2") && sheetId1.equals("80") && bbDate.equals(bookDate)) {
+                    sno80.setBackground(Color.red);
+                }
+                if (movieId.equals("mov2") && sheetId1.equals("81") && bbDate.equals(bookDate)) {
+                    sno81.setBackground(Color.red);
+                }
+                if (movieId.equals("mov2") && sheetId1.equals("82") && bbDate.equals(bookDate)) {
+                    sno82.setBackground(Color.red);
+                }
+                if (movieId.equals("mov2") && sheetId1.equals("83") && bbDate.equals(bookDate)) {
+                    sno83.setBackground(Color.red);
+                }
+                if (movieId.equals("mov2") && sheetId1.equals("84") && bbDate.equals(bookDate)) {
+                    sno84.setBackground(Color.red);
+                }
+                if (movieId.equals("mov2") && sheetId1.equals("85") && bbDate.equals(bookDate)) {
+                    sno85.setBackground(Color.red);
+                }
+                if (movieId.equals("mov2") && sheetId1.equals("86") && bbDate.equals(bookDate)) {
+                    sno86.setBackground(Color.red);
+                }
+                if (movieId.equals("mov2") && sheetId1.equals("87") && bbDate.equals(bookDate)) {
+                    sno87.setBackground(Color.red);
+                }
+                if (movieId.equals("mov2") && sheetId1.equals("88") && bbDate.equals(bookDate)) {
+                    sno88.setBackground(Color.red);
+                }
+                if (movieId.equals("mov2") && sheetId1.equals("89") && bbDate.equals(bookDate)) {
+                    sno89.setBackground(Color.red);
+                }
+                if (movieId.equals("mov2") && sheetId1.equals("90") && bbDate.equals(bookDate)) {
+                    sno90.setBackground(Color.red);
+                }
+                if (movieId.equals("mov2") && sheetId1.equals("91") && bbDate.equals(bookDate)) {
+                    sno91.setBackground(Color.red);
+                }
+                if (movieId.equals("mov2") && sheetId1.equals("92") && bbDate.equals(bookDate)) {
+                    sno92.setBackground(Color.red);
+                }
+                if (movieId.equals("mov2") && sheetId1.equals("93") && bbDate.equals(bookDate)) {
+                    sno93.setBackground(Color.red);
+                }
+                if (movieId.equals("mov2") && sheetId1.equals("94") && bbDate.equals(bookDate)) {
+                    sno94.setBackground(Color.red);
+                }
+                if (movieId.equals("mov2") && sheetId1.equals("95") && bbDate.equals(bookDate)) {
+                    sno95.setBackground(Color.red);
+                }
+                if (movieId.equals("mov2") && sheetId1.equals("96") && bbDate.equals(bookDate)) {
+                    sno96.setBackground(Color.red);
+                }
+                if (movieId.equals("mov2") && sheetId1.equals("97") && bbDate.equals(bookDate)) {
+                    sno97.setBackground(Color.red);
+                }
+                if (movieId.equals("mov2") && sheetId1.equals("98") && bbDate.equals(bookDate)) {
+                    sno98.setBackground(Color.red);
+                }
+                if (movieId.equals("mov2") && sheetId1.equals("99") && bbDate.equals(bookDate)) {
+                    sno99.setBackground(Color.red);
+                }
+                if (movieId.equals("mov2") && sheetId1.equals("100") && bbDate.equals(bookDate)) {
+                    sno100.setBackground(Color.red);
+                }
+                if (movieId.equals("mov2") && sheetId1.equals("101") && bbDate.equals(bookDate)) {
+                    sno101.setBackground(Color.red);
+                }
+                if (movieId.equals("mov2") && sheetId1.equals("102") && bbDate.equals(bookDate)) {
+                    sno102.setBackground(Color.red);
+                }
+                if (movieId.equals("mov2") && sheetId1.equals("103") && bbDate.equals(bookDate)) {
+                    sno103.setBackground(Color.red);
+                }
+                if (movieId.equals("mov2") && sheetId1.equals("104") && bbDate.equals(bookDate)) {
+                    sno104.setBackground(Color.red);
+                }
+                if (movieId.equals("mov2") && sheetId1.equals("105") && bbDate.equals(bookDate)) {
+                    sno105.setBackground(Color.red);
+                }
+                if (movieId.equals("mov2") && sheetId1.equals("106") && bbDate.equals(bookDate)) {
+                    sno106.setBackground(Color.red);
+                }
+                if (movieId.equals("mov2") && sheetId1.equals("107") && bbDate.equals(bookDate)) {
+                    sno107.setBackground(Color.red);
+                }
+                if (movieId.equals("mov2") && sheetId1.equals("108") && bbDate.equals(bookDate)) {
+                    sno108.setBackground(Color.red);
+                }
+                if (movieId.equals("mov2") && sheetId1.equals("109") && bbDate.equals(bookDate)) {
+                    sno109.setBackground(Color.red);
+                }
+                if (movieId.equals("mov2") && sheetId1.equals("110") && bbDate.equals(bookDate)) {
+                    sno110.setBackground(Color.red);
+                }
+                if (movieId.equals("mov2") && sheetId1.equals("111") && bbDate.equals(bookDate)) {
+                    sno111.setBackground(Color.red);
+                }
+                if (movieId.equals("mov2") && sheetId1.equals("112") && bbDate.equals(bookDate)) {
+                    sno112.setBackground(Color.red);
+                }
+                if (movieId.equals("mov2") && sheetId1.equals("113") && bbDate.equals(bookDate)) {
+                    sno113.setBackground(Color.red);
+                }
+                if (movieId.equals("mov2") && sheetId1.equals("114") && bbDate.equals(bookDate)) {
+                    sno114.setBackground(Color.red);
+                }
+                if (movieId.equals("mov2") && sheetId1.equals("115") && bbDate.equals(bookDate)) {
+                    sno115.setBackground(Color.red);
+                }
+                if (movieId.equals("mov2") && sheetId1.equals("116") && bbDate.equals(bookDate)) {
+                    sno116.setBackground(Color.red);
+                }
+                if (movieId.equals("mov2") && sheetId1.equals("117") && bbDate.equals(bookDate)) {
+                    sno117.setBackground(Color.red);
+                }
+                if (movieId.equals("mov2") && sheetId1.equals("118") && bbDate.equals(bookDate)) {
+                    sno118.setBackground(Color.red);
+                }
+                if (movieId.equals("mov2") && sheetId1.equals("119") && bbDate.equals(bookDate)) {
+                    sno119.setBackground(Color.red);
+                }
+                if (movieId.equals("mov2") && sheetId1.equals("120") && bbDate.equals(bookDate)) {
+                    sno120.setBackground(Color.red);
+                }
+                if (movieId.equals("mov2") && sheetId1.equals("121") && bbDate.equals(bookDate)) {
+                    sno121.setBackground(Color.red);
+                }
+                if (movieId.equals("mov2") && sheetId1.equals("122") && bbDate.equals(bookDate)) {
+                    sno122.setBackground(Color.red);
+                }
+            }
+
+        }
+
+        if (id.equals("mov3")) {
+            BookDetailsController bookDetailsController = ServerConnector.getServerConnector().getBookDetailsController();
+            ArrayList<BookDetails> dd = bookDetailsController.getAllBookDetail();
+
+            for (BookDetails dd1 : dd) {
+                String movieId = dd1.getMovieId();
+                String sheetId1 = dd1.getSheetId();
+                String bbDate = dd1.getbDate();
+
+                if (movieId.equals("mov3") && sheetId1.equals("01") && bbDate.equals(bookDate)) {
+                    sno1.setBackground(Color.red);
+                }
+                if (movieId.equals("mov3") && sheetId1.equals("02") && bbDate.equals(bookDate)) {
+                    sno2.setBackground(Color.red);
+                }
+                if (movieId.equals("mov3") && sheetId1.equals("03") && bbDate.equals(bookDate)) {
+                    sno3.setBackground(Color.red);
+                }
+                if (movieId.equals("mov3") && sheetId1.equals("04") && bbDate.equals(bookDate)) {
+                    sno4.setBackground(Color.red);
+                }
+                if (movieId.equals("mov3") && sheetId1.equals("05") && bbDate.equals(bookDate)) {
+                    sno5.setBackground(Color.red);
+                }
+                if (movieId.equals("mov3") && sheetId1.equals("06") && bbDate.equals(bookDate)) {
+                    sno6.setBackground(Color.red);
+                }
+                if (movieId.equals("mov3") && sheetId1.equals("07") && bbDate.equals(bookDate)) {
+                    sno7.setBackground(Color.red);
+                }
+                if (movieId.equals("mov3") && sheetId1.equals("08") && bbDate.equals(bookDate)) {
+                    sno8.setBackground(Color.red);
+                }
+                if (movieId.equals("mov3") && sheetId1.equals("09") && bbDate.equals(bookDate)) {
+                    sno9.setBackground(Color.red);
+                }
+                if (movieId.equals("mov3") && sheetId1.equals("10") && bbDate.equals(bookDate)) {
+                    sno10.setBackground(Color.red);
+                }
+                if (movieId.equals("mov3") && sheetId1.equals("11") && bbDate.equals(bookDate)) {
+                    sno11.setBackground(Color.red);
+                }
+                if (movieId.equals("mov3") && sheetId1.equals("12") && bbDate.equals(bookDate)) {
+                    sno12.setBackground(Color.red);
+                }
+                if (movieId.equals("mov3") && sheetId1.equals("13") && bbDate.equals(bookDate)) {
+                    sno13.setBackground(Color.red);
+                }
+                if (movieId.equals("mov3") && sheetId1.equals("14") && bbDate.equals(bookDate)) {
+                    sno14.setBackground(Color.red);
+                }
+                if (movieId.equals("mov3") && sheetId1.equals("15") && bbDate.equals(bookDate)) {
+                    sno15.setBackground(Color.red);
+                }
+                if (movieId.equals("mov3") && sheetId1.equals("16") && bbDate.equals(bookDate)) {
+                    sno16.setBackground(Color.red);
+                }
+                if (movieId.equals("mov3") && sheetId1.equals("17") && bbDate.equals(bookDate)) {
+                    sno17.setBackground(Color.red);
+                }
+                if (movieId.equals("mov3") && sheetId1.equals("18") && bbDate.equals(bookDate)) {
+                    sno18.setBackground(Color.red);
+                }
+                if (movieId.equals("mov3") && sheetId1.equals("19") && bbDate.equals(bookDate)) {
+                    sno19.setBackground(Color.red);
+                }
+                if (movieId.equals("mov3") && sheetId1.equals("20") && bbDate.equals(bookDate)) {
+                    sno20.setBackground(Color.red);
+                }
+                if (movieId.equals("mov3") && sheetId1.equals("21") && bbDate.equals(bookDate)) {
+                    sno21.setBackground(Color.red);
+                }
+                if (movieId.equals("mov3") && sheetId1.equals("22") && bbDate.equals(bookDate)) {
+                    sno22.setBackground(Color.red);
+                }
+                if (movieId.equals("mov3") && sheetId1.equals("23") && bbDate.equals(bookDate)) {
+                    sno23.setBackground(Color.red);
+                }
+                if (movieId.equals("mov3") && sheetId1.equals("24") && bbDate.equals(bookDate)) {
+                    sno24.setBackground(Color.red);
+                }
+                if (movieId.equals("mov3") && sheetId1.equals("25") && bbDate.equals(bookDate)) {
+                    sno25.setBackground(Color.red);
+                }
+                if (movieId.equals("mov3") && sheetId1.equals("26") && bbDate.equals(bookDate)) {
+                    sno26.setBackground(Color.red);
+                }
+                if (movieId.equals("mov3") && sheetId1.equals("27") && bbDate.equals(bookDate)) {
+                    sno27.setBackground(Color.red);
+                }
+                if (movieId.equals("mov3") && sheetId1.equals("28") && bbDate.equals(bookDate)) {
+                    sno28.setBackground(Color.red);
+                }
+                if (movieId.equals("mov3") && sheetId1.equals("29") && bbDate.equals(bookDate)) {
+                    sno29.setBackground(Color.red);
+                }
+                if (movieId.equals("mov3") && sheetId1.equals("30") && bbDate.equals(bookDate)) {
+                    sno30.setBackground(Color.red);
+                }
+                if (movieId.equals("mov3") && sheetId1.equals("31") && bbDate.equals(bookDate)) {
+                    sno31.setBackground(Color.red);
+                }
+                if (movieId.equals("mov3") && sheetId1.equals("32") && bbDate.equals(bookDate)) {
+                    sno32.setBackground(Color.red);
+                }
+                if (movieId.equals("mov3") && sheetId1.equals("33") && bbDate.equals(bookDate)) {
+                    sno33.setBackground(Color.red);
+                }
+                if (movieId.equals("mov3") && sheetId1.equals("34") && bbDate.equals(bookDate)) {
+                    sno34.setBackground(Color.red);
+                }
+                if (movieId.equals("mov3") && sheetId1.equals("35") && bbDate.equals(bookDate)) {
+                    sno35.setBackground(Color.red);
+                }
+                if (movieId.equals("mov3") && sheetId1.equals("36") && bbDate.equals(bookDate)) {
+                    sno36.setBackground(Color.red);
+                }
+                if (movieId.equals("mov3") && sheetId1.equals("37") && bbDate.equals(bookDate)) {
+                    sno37.setBackground(Color.red);
+                }
+                if (movieId.equals("mov3") && sheetId1.equals("38") && bbDate.equals(bookDate)) {
+                    sno38.setBackground(Color.red);
+                }
+                if (movieId.equals("mov3") && sheetId1.equals("39") && bbDate.equals(bookDate)) {
+                    sno39.setBackground(Color.red);
+                }
+                if (movieId.equals("mov3") && sheetId1.equals("40") && bbDate.equals(bookDate)) {
+                    sno40.setBackground(Color.red);
+                }
+                if (movieId.equals("mov3") && sheetId1.equals("41") && bbDate.equals(bookDate)) {
+                    sno41.setBackground(Color.red);
+                }
+                if (movieId.equals("mov3") && sheetId1.equals("42") && bbDate.equals(bookDate)) {
+                    sno42.setBackground(Color.red);
+                }
+                if (movieId.equals("mov3") && sheetId1.equals("43") && bbDate.equals(bookDate)) {
+                    sno43.setBackground(Color.red);
+                }
+                if (movieId.equals("mov3") && sheetId1.equals("44") && bbDate.equals(bookDate)) {
+                    sno44.setBackground(Color.red);
+                }
+                if (movieId.equals("mov3") && sheetId1.equals("45") && bbDate.equals(bookDate)) {
+                    sno45.setBackground(Color.red);
+                }
+                if (movieId.equals("mov3") && sheetId1.equals("46") && bbDate.equals(bookDate)) {
+                    sno46.setBackground(Color.red);
+                }
+                if (movieId.equals("mov3") && sheetId1.equals("47") && bbDate.equals(bookDate)) {
+                    sno47.setBackground(Color.red);
+                }
+                if (movieId.equals("mov3") && sheetId1.equals("48") && bbDate.equals(bookDate)) {
+                    sno48.setBackground(Color.red);
+                }
+                if (movieId.equals("mov3") && sheetId1.equals("49") && bbDate.equals(bookDate)) {
+                    sno49.setBackground(Color.red);
+                }
+                if (movieId.equals("mov3") && sheetId1.equals("50") && bbDate.equals(bookDate)) {
+                    sno50.setBackground(Color.red);
+                }
+                if (movieId.equals("mov3") && sheetId1.equals("51") && bbDate.equals(bookDate)) {
+                    sno51.setBackground(Color.red);
+                }
+                if (movieId.equals("mov3") && sheetId1.equals("52") && bbDate.equals(bookDate)) {
+                    sno52.setBackground(Color.red);
+                }
+                if (movieId.equals("mov3") && sheetId1.equals("53") && bbDate.equals(bookDate)) {
+                    sno53.setBackground(Color.red);
+                }
+                if (movieId.equals("mov3") && sheetId1.equals("54") && bbDate.equals(bookDate)) {
+                    sno54.setBackground(Color.red);
+                }
+                if (movieId.equals("mov3") && sheetId1.equals("55") && bbDate.equals(bookDate)) {
+                    sno55.setBackground(Color.red);
+                }
+                if (movieId.equals("mov3") && sheetId1.equals("56") && bbDate.equals(bookDate)) {
+                    sno56.setBackground(Color.red);
+                }
+                if (movieId.equals("mov3") && sheetId1.equals("57") && bbDate.equals(bookDate)) {
+                    sno57.setBackground(Color.red);
+                }
+                if (movieId.equals("mov3") && sheetId1.equals("58") && bbDate.equals(bookDate)) {
+                    sno58.setBackground(Color.red);
+                }
+                if (movieId.equals("mov3") && sheetId1.equals("59") && bbDate.equals(bookDate)) {
+                    sno59.setBackground(Color.red);
+                }
+                if (movieId.equals("mov3") && sheetId1.equals("60") && bbDate.equals(bookDate)) {
+                    sno60.setBackground(Color.red);
+                }
+                if (movieId.equals("mov3") && sheetId1.equals("61") && bbDate.equals(bookDate)) {
+                    sno61.setBackground(Color.red);
+                }
+                if (movieId.equals("mov3") && sheetId1.equals("62") && bbDate.equals(bookDate)) {
+                    sno62.setBackground(Color.red);
+                }
+                if (movieId.equals("mov3") && sheetId1.equals("63") && bbDate.equals(bookDate)) {
+                    sno63.setBackground(Color.red);
+                }
+                if (movieId.equals("mov3") && sheetId1.equals("64") && bbDate.equals(bookDate)) {
+                    sno64.setBackground(Color.red);
+                }
+                if (movieId.equals("mov3") && sheetId1.equals("65") && bbDate.equals(bookDate)) {
+                    sno65.setBackground(Color.red);
+                }
+                if (movieId.equals("mov3") && sheetId1.equals("66") && bbDate.equals(bookDate)) {
+                    sno66.setBackground(Color.red);
+                }
+                if (movieId.equals("mov3") && sheetId1.equals("67") && bbDate.equals(bookDate)) {
+                    sno67.setBackground(Color.red);
+                }
+                if (movieId.equals("mov3") && sheetId1.equals("68") && bbDate.equals(bookDate)) {
+                    sno68.setBackground(Color.red);
+                }
+                if (movieId.equals("mov3") && sheetId1.equals("69") && bbDate.equals(bookDate)) {
+                    sno69.setBackground(Color.red);
+                }
+                if (movieId.equals("mov3") && sheetId1.equals("70") && bbDate.equals(bookDate)) {
+                    sno70.setBackground(Color.red);
+                }
+                if (movieId.equals("mov3") && sheetId1.equals("71") && bbDate.equals(bookDate)) {
+                    sno71.setBackground(Color.red);
+                }
+                if (movieId.equals("mov3") && sheetId1.equals("72") && bbDate.equals(bookDate)) {
+                    sno72.setBackground(Color.red);
+                }
+                if (movieId.equals("mov3") && sheetId1.equals("73") && bbDate.equals(bookDate)) {
+                    sno73.setBackground(Color.red);
+                }
+                if (movieId.equals("mov3") && sheetId1.equals("74") && bbDate.equals(bookDate)) {
+                    sno74.setBackground(Color.red);
+                }
+                if (movieId.equals("mov3") && sheetId1.equals("75") && bbDate.equals(bookDate)) {
+                    sno75.setBackground(Color.red);
+                }
+                if (movieId.equals("mov3") && sheetId1.equals("76") && bbDate.equals(bookDate)) {
+                    sno76.setBackground(Color.red);
+                }
+                if (movieId.equals("mov3") && sheetId1.equals("77") && bbDate.equals(bookDate)) {
+                    sno77.setBackground(Color.red);
+                }
+                if (movieId.equals("mov3") && sheetId1.equals("78") && bbDate.equals(bookDate)) {
+                    sno78.setBackground(Color.red);
+                }
+                if (movieId.equals("mov3") && sheetId1.equals("79") && bbDate.equals(bookDate)) {
+                    sno79.setBackground(Color.red);
+                }
+                if (movieId.equals("mov3") && sheetId1.equals("80") && bbDate.equals(bookDate)) {
+                    sno80.setBackground(Color.red);
+                }
+                if (movieId.equals("mov3") && sheetId1.equals("81") && bbDate.equals(bookDate)) {
+                    sno81.setBackground(Color.red);
+                }
+                if (movieId.equals("mov3") && sheetId1.equals("82") && bbDate.equals(bookDate)) {
+                    sno82.setBackground(Color.red);
+                }
+                if (movieId.equals("mov3") && sheetId1.equals("83") && bbDate.equals(bookDate)) {
+                    sno83.setBackground(Color.red);
+                }
+                if (movieId.equals("mov3") && sheetId1.equals("84") && bbDate.equals(bookDate)) {
+                    sno84.setBackground(Color.red);
+                }
+                if (movieId.equals("mov3") && sheetId1.equals("85") && bbDate.equals(bookDate)) {
+                    sno85.setBackground(Color.red);
+                }
+                if (movieId.equals("mov3") && sheetId1.equals("86") && bbDate.equals(bookDate)) {
+                    sno86.setBackground(Color.red);
+                }
+                if (movieId.equals("mov3") && sheetId1.equals("87") && bbDate.equals(bookDate)) {
+                    sno87.setBackground(Color.red);
+                }
+                if (movieId.equals("mov3") && sheetId1.equals("88") && bbDate.equals(bookDate)) {
+                    sno88.setBackground(Color.red);
+                }
+                if (movieId.equals("mov3") && sheetId1.equals("89") && bbDate.equals(bookDate)) {
+                    sno89.setBackground(Color.red);
+                }
+                if (movieId.equals("mov3") && sheetId1.equals("90") && bbDate.equals(bookDate)) {
+                    sno90.setBackground(Color.red);
+                }
+                if (movieId.equals("mov3") && sheetId1.equals("91") && bbDate.equals(bookDate)) {
+                    sno91.setBackground(Color.red);
+                }
+                if (movieId.equals("mov3") && sheetId1.equals("92") && bbDate.equals(bookDate)) {
+                    sno92.setBackground(Color.red);
+                }
+                if (movieId.equals("mov3") && sheetId1.equals("93") && bbDate.equals(bookDate)) {
+                    sno93.setBackground(Color.red);
+                }
+                if (movieId.equals("mov3") && sheetId1.equals("94") && bbDate.equals(bookDate)) {
+                    sno94.setBackground(Color.red);
+                }
+                if (movieId.equals("mov3") && sheetId1.equals("95") && bbDate.equals(bookDate)) {
+                    sno95.setBackground(Color.red);
+                }
+                if (movieId.equals("mov3") && sheetId1.equals("96") && bbDate.equals(bookDate)) {
+                    sno96.setBackground(Color.red);
+                }
+                if (movieId.equals("mov3") && sheetId1.equals("97") && bbDate.equals(bookDate)) {
+                    sno97.setBackground(Color.red);
+                }
+                if (movieId.equals("mov3") && sheetId1.equals("98") && bbDate.equals(bookDate)) {
+                    sno98.setBackground(Color.red);
+                }
+                if (movieId.equals("mov3") && sheetId1.equals("99") && bbDate.equals(bookDate)) {
+                    sno99.setBackground(Color.red);
+                }
+                if (movieId.equals("mov3") && sheetId1.equals("100") && bbDate.equals(bookDate)) {
+                    sno100.setBackground(Color.red);
+                }
+                if (movieId.equals("mov3") && sheetId1.equals("101") && bbDate.equals(bookDate)) {
+                    sno101.setBackground(Color.red);
+                }
+                if (movieId.equals("mov3") && sheetId1.equals("102") && bbDate.equals(bookDate)) {
+                    sno102.setBackground(Color.red);
+                }
+                if (movieId.equals("mov3") && sheetId1.equals("103") && bbDate.equals(bookDate)) {
+                    sno103.setBackground(Color.red);
+                }
+                if (movieId.equals("mov3") && sheetId1.equals("104") && bbDate.equals(bookDate)) {
+                    sno104.setBackground(Color.red);
+                }
+                if (movieId.equals("mov3") && sheetId1.equals("105") && bbDate.equals(bookDate)) {
+                    sno105.setBackground(Color.red);
+                }
+                if (movieId.equals("mov3") && sheetId1.equals("106") && bbDate.equals(bookDate)) {
+                    sno106.setBackground(Color.red);
+                }
+                if (movieId.equals("mov3") && sheetId1.equals("107") && bbDate.equals(bookDate)) {
+                    sno107.setBackground(Color.red);
+                }
+                if (movieId.equals("mov3") && sheetId1.equals("108") && bbDate.equals(bookDate)) {
+                    sno108.setBackground(Color.red);
+                }
+                if (movieId.equals("mov3") && sheetId1.equals("109") && bbDate.equals(bookDate)) {
+                    sno109.setBackground(Color.red);
+                }
+                if (movieId.equals("mov3") && sheetId1.equals("110") && bbDate.equals(bookDate)) {
+                    sno110.setBackground(Color.red);
+                }
+                if (movieId.equals("mov3") && sheetId1.equals("111") && bbDate.equals(bookDate)) {
+                    sno111.setBackground(Color.red);
+                }
+                if (movieId.equals("mov3") && sheetId1.equals("112") && bbDate.equals(bookDate)) {
+                    sno112.setBackground(Color.red);
+                }
+                if (movieId.equals("mov3") && sheetId1.equals("113") && bbDate.equals(bookDate)) {
+                    sno113.setBackground(Color.red);
+                }
+                if (movieId.equals("mov3") && sheetId1.equals("114") && bbDate.equals(bookDate)) {
+                    sno114.setBackground(Color.red);
+                }
+                if (movieId.equals("mov3") && sheetId1.equals("115") && bbDate.equals(bookDate)) {
+                    sno115.setBackground(Color.red);
+                }
+                if (movieId.equals("mov3") && sheetId1.equals("116") && bbDate.equals(bookDate)) {
+                    sno116.setBackground(Color.red);
+                }
+                if (movieId.equals("mov3") && sheetId1.equals("117") && bbDate.equals(bookDate)) {
+                    sno117.setBackground(Color.red);
+                }
+                if (movieId.equals("mov3") && sheetId1.equals("118") && bbDate.equals(bookDate)) {
+                    sno118.setBackground(Color.red);
+                }
+                if (movieId.equals("mov3") && sheetId1.equals("119") && bbDate.equals(bookDate)) {
+                    sno119.setBackground(Color.red);
+                }
+                if (movieId.equals("mov3") && sheetId1.equals("120") && bbDate.equals(bookDate)) {
+                    sno120.setBackground(Color.red);
+                }
+                if (movieId.equals("mov3") && sheetId1.equals("121") && bbDate.equals(bookDate)) {
+                    sno121.setBackground(Color.red);
+                }
+                if (movieId.equals("mov3") && sheetId1.equals("122") && bbDate.equals(bookDate)) {
+                    sno122.setBackground(Color.red);
+                }
+
+            }
+
+        }
+
+        if (id.equals("mov4")) {
+            BookDetailsController bookDetailsController = ServerConnector.getServerConnector().getBookDetailsController();
+            ArrayList<BookDetails> dd = bookDetailsController.getAllBookDetail();
+
+            for (BookDetails dd1 : dd) {
+                String movieId = dd1.getMovieId();
+                String sheetId1 = dd1.getSheetId();
+                String bbDate = dd1.getbDate();
+
+                if (movieId.equals("mov4") && sheetId1.equals("01") && bbDate.equals(bookDate)) {
+                    sno1.setBackground(Color.red);
+                }
+                if (movieId.equals("mov4") && sheetId1.equals("02") && bbDate.equals(bookDate)) {
+                    sno2.setBackground(Color.red);
+                }
+                if (movieId.equals("mov4") && sheetId1.equals("03") && bbDate.equals(bookDate)) {
+                    sno3.setBackground(Color.red);
+                }
+                if (movieId.equals("mov4") && sheetId1.equals("04") && bbDate.equals(bookDate)) {
+                    sno4.setBackground(Color.red);
+                }
+                if (movieId.equals("mov4") && sheetId1.equals("05") && bbDate.equals(bookDate)) {
+                    sno5.setBackground(Color.red);
+                }
+                if (movieId.equals("mov4") && sheetId1.equals("06") && bbDate.equals(bookDate)) {
+                    sno6.setBackground(Color.red);
+                }
+                if (movieId.equals("mov4") && sheetId1.equals("07") && bbDate.equals(bookDate)) {
+                    sno7.setBackground(Color.red);
+                }
+                if (movieId.equals("mov4") && sheetId1.equals("08") && bbDate.equals(bookDate)) {
+                    sno8.setBackground(Color.red);
+                }
+                if (movieId.equals("mov4") && sheetId1.equals("09") && bbDate.equals(bookDate)) {
+                    sno9.setBackground(Color.red);
+                }
+                if (movieId.equals("mov4") && sheetId1.equals("10") && bbDate.equals(bookDate)) {
+                    sno10.setBackground(Color.red);
+                }
+                if (movieId.equals("mov4") && sheetId1.equals("11") && bbDate.equals(bookDate)) {
+                    sno11.setBackground(Color.red);
+                }
+                if (movieId.equals("mov4") && sheetId1.equals("12") && bbDate.equals(bookDate)) {
+                    sno12.setBackground(Color.red);
+                }
+                if (movieId.equals("mov4") && sheetId1.equals("13") && bbDate.equals(bookDate)) {
+                    sno13.setBackground(Color.red);
+                }
+                if (movieId.equals("mov4") && sheetId1.equals("14") && bbDate.equals(bookDate)) {
+                    sno14.setBackground(Color.red);
+                }
+                if (movieId.equals("mov4") && sheetId1.equals("15") && bbDate.equals(bookDate)) {
+                    sno15.setBackground(Color.red);
+                }
+                if (movieId.equals("mov4") && sheetId1.equals("16") && bbDate.equals(bookDate)) {
+                    sno16.setBackground(Color.red);
+                }
+                if (movieId.equals("mov4") && sheetId1.equals("17") && bbDate.equals(bookDate)) {
+                    sno17.setBackground(Color.red);
+                }
+                if (movieId.equals("mov4") && sheetId1.equals("18") && bbDate.equals(bookDate)) {
+                    sno18.setBackground(Color.red);
+                }
+                if (movieId.equals("mov4") && sheetId1.equals("19") && bbDate.equals(bookDate)) {
+                    sno19.setBackground(Color.red);
+                }
+                if (movieId.equals("mov4") && sheetId1.equals("20") && bbDate.equals(bookDate)) {
+                    sno20.setBackground(Color.red);
+                }
+                if (movieId.equals("mov4") && sheetId1.equals("21") && bbDate.equals(bookDate)) {
+                    sno21.setBackground(Color.red);
+                }
+                if (movieId.equals("mov4") && sheetId1.equals("22") && bbDate.equals(bookDate)) {
+                    sno22.setBackground(Color.red);
+                }
+                if (movieId.equals("mov4") && sheetId1.equals("23") && bbDate.equals(bookDate)) {
+                    sno23.setBackground(Color.red);
+                }
+                if (movieId.equals("mov4") && sheetId1.equals("24") && bbDate.equals(bookDate)) {
+                    sno24.setBackground(Color.red);
+                }
+                if (movieId.equals("mov4") && sheetId1.equals("25") && bbDate.equals(bookDate)) {
+                    sno25.setBackground(Color.red);
+                }
+                if (movieId.equals("mov4") && sheetId1.equals("26") && bbDate.equals(bookDate)) {
+                    sno26.setBackground(Color.red);
+                }
+                if (movieId.equals("mov4") && sheetId1.equals("27") && bbDate.equals(bookDate)) {
+                    sno27.setBackground(Color.red);
+                }
+                if (movieId.equals("mov4") && sheetId1.equals("28") && bbDate.equals(bookDate)) {
+                    sno28.setBackground(Color.red);
+                }
+                if (movieId.equals("mov4") && sheetId1.equals("29") && bbDate.equals(bookDate)) {
+                    sno29.setBackground(Color.red);
+                }
+                if (movieId.equals("mov4") && sheetId1.equals("30") && bbDate.equals(bookDate)) {
+                    sno30.setBackground(Color.red);
+                }
+                if (movieId.equals("mov4") && sheetId1.equals("31") && bbDate.equals(bookDate)) {
+                    sno31.setBackground(Color.red);
+                }
+                if (movieId.equals("mov4") && sheetId1.equals("32") && bbDate.equals(bookDate)) {
+                    sno32.setBackground(Color.red);
+                }
+                if (movieId.equals("mov4") && sheetId1.equals("33") && bbDate.equals(bookDate)) {
+                    sno33.setBackground(Color.red);
+                }
+                if (movieId.equals("mov4") && sheetId1.equals("34") && bbDate.equals(bookDate)) {
+                    sno34.setBackground(Color.red);
+                }
+                if (movieId.equals("mov4") && sheetId1.equals("35") && bbDate.equals(bookDate)) {
+                    sno35.setBackground(Color.red);
+                }
+                if (movieId.equals("mov4") && sheetId1.equals("36") && bbDate.equals(bookDate)) {
+                    sno36.setBackground(Color.red);
+                }
+                if (movieId.equals("mov4") && sheetId1.equals("37") && bbDate.equals(bookDate)) {
+                    sno37.setBackground(Color.red);
+                }
+                if (movieId.equals("mov4") && sheetId1.equals("38") && bbDate.equals(bookDate)) {
+                    sno38.setBackground(Color.red);
+                }
+                if (movieId.equals("mov4") && sheetId1.equals("39") && bbDate.equals(bookDate)) {
+                    sno39.setBackground(Color.red);
+                }
+                if (movieId.equals("mov4") && sheetId1.equals("40") && bbDate.equals(bookDate)) {
+                    sno40.setBackground(Color.red);
+                }
+                if (movieId.equals("mov4") && sheetId1.equals("41") && bbDate.equals(bookDate)) {
+                    sno41.setBackground(Color.red);
+                }
+                if (movieId.equals("mov4") && sheetId1.equals("42") && bbDate.equals(bookDate)) {
+                    sno42.setBackground(Color.red);
+                }
+                if (movieId.equals("mov4") && sheetId1.equals("43") && bbDate.equals(bookDate)) {
+                    sno43.setBackground(Color.red);
+                }
+                if (movieId.equals("mov4") && sheetId1.equals("44") && bbDate.equals(bookDate)) {
+                    sno44.setBackground(Color.red);
+                }
+                if (movieId.equals("mov4") && sheetId1.equals("45") && bbDate.equals(bookDate)) {
+                    sno45.setBackground(Color.red);
+                }
+                if (movieId.equals("mov4") && sheetId1.equals("46") && bbDate.equals(bookDate)) {
+                    sno46.setBackground(Color.red);
+                }
+                if (movieId.equals("mov4") && sheetId1.equals("47") && bbDate.equals(bookDate)) {
+                    sno47.setBackground(Color.red);
+                }
+                if (movieId.equals("mov4") && sheetId1.equals("48") && bbDate.equals(bookDate)) {
+                    sno48.setBackground(Color.red);
+                }
+                if (movieId.equals("mov4") && sheetId1.equals("49") && bbDate.equals(bookDate)) {
+                    sno49.setBackground(Color.red);
+                }
+                if (movieId.equals("mov4") && sheetId1.equals("50") && bbDate.equals(bookDate)) {
+                    sno50.setBackground(Color.red);
+                }
+                if (movieId.equals("mov4") && sheetId1.equals("51") && bbDate.equals(bookDate)) {
+                    sno51.setBackground(Color.red);
+                }
+                if (movieId.equals("mov4") && sheetId1.equals("52") && bbDate.equals(bookDate)) {
+                    sno52.setBackground(Color.red);
+                }
+                if (movieId.equals("mov4") && sheetId1.equals("53") && bbDate.equals(bookDate)) {
+                    sno53.setBackground(Color.red);
+                }
+                if (movieId.equals("mov4") && sheetId1.equals("54") && bbDate.equals(bookDate)) {
+                    sno54.setBackground(Color.red);
+                }
+                if (movieId.equals("mov4") && sheetId1.equals("55") && bbDate.equals(bookDate)) {
+                    sno55.setBackground(Color.red);
+                }
+                if (movieId.equals("mov4") && sheetId1.equals("56") && bbDate.equals(bookDate)) {
+                    sno56.setBackground(Color.red);
+                }
+                if (movieId.equals("mov4") && sheetId1.equals("57") && bbDate.equals(bookDate)) {
+                    sno57.setBackground(Color.red);
+                }
+                if (movieId.equals("mov4") && sheetId1.equals("58") && bbDate.equals(bookDate)) {
+                    sno58.setBackground(Color.red);
+                }
+                if (movieId.equals("mov4") && sheetId1.equals("59") && bbDate.equals(bookDate)) {
+                    sno59.setBackground(Color.red);
+                }
+                if (movieId.equals("mov4") && sheetId1.equals("60") && bbDate.equals(bookDate)) {
+                    sno60.setBackground(Color.red);
+                }
+                if (movieId.equals("mov4") && sheetId1.equals("61") && bbDate.equals(bookDate)) {
+                    sno61.setBackground(Color.red);
+                }
+                if (movieId.equals("mov4") && sheetId1.equals("62") && bbDate.equals(bookDate)) {
+                    sno62.setBackground(Color.red);
+                }
+                if (movieId.equals("mov4") && sheetId1.equals("63") && bbDate.equals(bookDate)) {
+                    sno63.setBackground(Color.red);
+                }
+                if (movieId.equals("mov4") && sheetId1.equals("64") && bbDate.equals(bookDate)) {
+                    sno64.setBackground(Color.red);
+                }
+                if (movieId.equals("mov4") && sheetId1.equals("65") && bbDate.equals(bookDate)) {
+                    sno65.setBackground(Color.red);
+                }
+                if (movieId.equals("mov4") && sheetId1.equals("66") && bbDate.equals(bookDate)) {
+                    sno66.setBackground(Color.red);
+                }
+                if (movieId.equals("mov4") && sheetId1.equals("67") && bbDate.equals(bookDate)) {
+                    sno67.setBackground(Color.red);
+                }
+                if (movieId.equals("mov4") && sheetId1.equals("68") && bbDate.equals(bookDate)) {
+                    sno68.setBackground(Color.red);
+                }
+                if (movieId.equals("mov4") && sheetId1.equals("69") && bbDate.equals(bookDate)) {
+                    sno69.setBackground(Color.red);
+                }
+                if (movieId.equals("mov4") && sheetId1.equals("70") && bbDate.equals(bookDate)) {
+                    sno70.setBackground(Color.red);
+                }
+                if (movieId.equals("mov4") && sheetId1.equals("71") && bbDate.equals(bookDate)) {
+                    sno71.setBackground(Color.red);
+                }
+                if (movieId.equals("mov4") && sheetId1.equals("72") && bbDate.equals(bookDate)) {
+                    sno72.setBackground(Color.red);
+                }
+                if (movieId.equals("mov4") && sheetId1.equals("73") && bbDate.equals(bookDate)) {
+                    sno73.setBackground(Color.red);
+                }
+                if (movieId.equals("mov4") && sheetId1.equals("74") && bbDate.equals(bookDate)) {
+                    sno74.setBackground(Color.red);
+                }
+                if (movieId.equals("mov4") && sheetId1.equals("75") && bbDate.equals(bookDate)) {
+                    sno75.setBackground(Color.red);
+                }
+                if (movieId.equals("mov4") && sheetId1.equals("76") && bbDate.equals(bookDate)) {
+                    sno76.setBackground(Color.red);
+                }
+                if (movieId.equals("mov4") && sheetId1.equals("77") && bbDate.equals(bookDate)) {
+                    sno77.setBackground(Color.red);
+                }
+                if (movieId.equals("mov4") && sheetId1.equals("78") && bbDate.equals(bookDate)) {
+                    sno78.setBackground(Color.red);
+                }
+                if (movieId.equals("mov4") && sheetId1.equals("79") && bbDate.equals(bookDate)) {
+                    sno79.setBackground(Color.red);
+                }
+                if (movieId.equals("mov4") && sheetId1.equals("80") && bbDate.equals(bookDate)) {
+                    sno80.setBackground(Color.red);
+                }
+                if (movieId.equals("mov4") && sheetId1.equals("81") && bbDate.equals(bookDate)) {
+                    sno81.setBackground(Color.red);
+                }
+                if (movieId.equals("mov4") && sheetId1.equals("82") && bbDate.equals(bookDate)) {
+                    sno82.setBackground(Color.red);
+                }
+                if (movieId.equals("mov4") && sheetId1.equals("83") && bbDate.equals(bookDate)) {
+                    sno83.setBackground(Color.red);
+                }
+                if (movieId.equals("mov4") && sheetId1.equals("84") && bbDate.equals(bookDate)) {
+                    sno84.setBackground(Color.red);
+                }
+                if (movieId.equals("mov4") && sheetId1.equals("85") && bbDate.equals(bookDate)) {
+                    sno85.setBackground(Color.red);
+                }
+                if (movieId.equals("mov4") && sheetId1.equals("86") && bbDate.equals(bookDate)) {
+                    sno86.setBackground(Color.red);
+                }
+                if (movieId.equals("mov4") && sheetId1.equals("87") && bbDate.equals(bookDate)) {
+                    sno87.setBackground(Color.red);
+                }
+                if (movieId.equals("mov4") && sheetId1.equals("88") && bbDate.equals(bookDate)) {
+                    sno88.setBackground(Color.red);
+                }
+                if (movieId.equals("mov4") && sheetId1.equals("89") && bbDate.equals(bookDate)) {
+                    sno89.setBackground(Color.red);
+                }
+                if (movieId.equals("mov4") && sheetId1.equals("90") && bbDate.equals(bookDate)) {
+                    sno90.setBackground(Color.red);
+                }
+                if (movieId.equals("mov4") && sheetId1.equals("91") && bbDate.equals(bookDate)) {
+                    sno91.setBackground(Color.red);
+                }
+                if (movieId.equals("mov4") && sheetId1.equals("92") && bbDate.equals(bookDate)) {
+                    sno92.setBackground(Color.red);
+                }
+                if (movieId.equals("mov4") && sheetId1.equals("93") && bbDate.equals(bookDate)) {
+                    sno93.setBackground(Color.red);
+                }
+                if (movieId.equals("mov4") && sheetId1.equals("94") && bbDate.equals(bookDate)) {
+                    sno94.setBackground(Color.red);
+                }
+                if (movieId.equals("mov4") && sheetId1.equals("95") && bbDate.equals(bookDate)) {
+                    sno95.setBackground(Color.red);
+                }
+                if (movieId.equals("mov4") && sheetId1.equals("96") && bbDate.equals(bookDate)) {
+                    sno96.setBackground(Color.red);
+                }
+                if (movieId.equals("mov4") && sheetId1.equals("97") && bbDate.equals(bookDate)) {
+                    sno97.setBackground(Color.red);
+                }
+                if (movieId.equals("mov4") && sheetId1.equals("98") && bbDate.equals(bookDate)) {
+                    sno98.setBackground(Color.red);
+                }
+                if (movieId.equals("mov4") && sheetId1.equals("99") && bbDate.equals(bookDate)) {
+                    sno99.setBackground(Color.red);
+                }
+                if (movieId.equals("mov4") && sheetId1.equals("100") && bbDate.equals(bookDate)) {
+                    sno100.setBackground(Color.red);
+                }
+                if (movieId.equals("mov4") && sheetId1.equals("101") && bbDate.equals(bookDate)) {
+                    sno101.setBackground(Color.red);
+                }
+                if (movieId.equals("mov4") && sheetId1.equals("102") && bbDate.equals(bookDate)) {
+                    sno102.setBackground(Color.red);
+                }
+                if (movieId.equals("mov4") && sheetId1.equals("103") && bbDate.equals(bookDate)) {
+                    sno103.setBackground(Color.red);
+                }
+                if (movieId.equals("mov4") && sheetId1.equals("104") && bbDate.equals(bookDate)) {
+                    sno104.setBackground(Color.red);
+                }
+                if (movieId.equals("mov4") && sheetId1.equals("105") && bbDate.equals(bookDate)) {
+                    sno105.setBackground(Color.red);
+                }
+                if (movieId.equals("mov4") && sheetId1.equals("106") && bbDate.equals(bookDate)) {
+                    sno106.setBackground(Color.red);
+                }
+                if (movieId.equals("mov4") && sheetId1.equals("107") && bbDate.equals(bookDate)) {
+                    sno107.setBackground(Color.red);
+                }
+                if (movieId.equals("mov4") && sheetId1.equals("108") && bbDate.equals(bookDate)) {
+                    sno108.setBackground(Color.red);
+                }
+                if (movieId.equals("mov4") && sheetId1.equals("109") && bbDate.equals(bookDate)) {
+                    sno109.setBackground(Color.red);
+                }
+                if (movieId.equals("mov4") && sheetId1.equals("110") && bbDate.equals(bookDate)) {
+                    sno110.setBackground(Color.red);
+                }
+                if (movieId.equals("mov4") && sheetId1.equals("111") && bbDate.equals(bookDate)) {
+                    sno111.setBackground(Color.red);
+                }
+                if (movieId.equals("mov4") && sheetId1.equals("112") && bbDate.equals(bookDate)) {
+                    sno112.setBackground(Color.red);
+                }
+                if (movieId.equals("mov4") && sheetId1.equals("113") && bbDate.equals(bookDate)) {
+                    sno113.setBackground(Color.red);
+                }
+                if (movieId.equals("mov4") && sheetId1.equals("114") && bbDate.equals(bookDate)) {
+                    sno114.setBackground(Color.red);
+                }
+                if (movieId.equals("mov4") && sheetId1.equals("115") && bbDate.equals(bookDate)) {
+                    sno115.setBackground(Color.red);
+                }
+                if (movieId.equals("mov4") && sheetId1.equals("116") && bbDate.equals(bookDate)) {
+                    sno116.setBackground(Color.red);
+                }
+                if (movieId.equals("mov4") && sheetId1.equals("117") && bbDate.equals(bookDate)) {
+                    sno117.setBackground(Color.red);
+                }
+                if (movieId.equals("mov4") && sheetId1.equals("118") && bbDate.equals(bookDate)) {
+                    sno118.setBackground(Color.red);
+                }
+                if (movieId.equals("mov4") && sheetId1.equals("119") && bbDate.equals(bookDate)) {
+                    sno119.setBackground(Color.red);
+                }
+                if (movieId.equals("mov4") && sheetId1.equals("120") && bbDate.equals(bookDate)) {
+                    sno120.setBackground(Color.red);
+                }
+                if (movieId.equals("mov4") && sheetId1.equals("121") && bbDate.equals(bookDate)) {
+                    sno121.setBackground(Color.red);
+                }
+                if (movieId.equals("mov4") && sheetId1.equals("122") && bbDate.equals(bookDate)) {
+                    sno122.setBackground(Color.red);
+                }
+            }
+
+        }
+
+    }
+
+}
