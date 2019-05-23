@@ -15,12 +15,12 @@ of the movie theater.
 ![Image of Yaktocat](https://octodex.github.com/images/yaktocat.png)
 
 ## Tech/framework used
-*Java SE
-*Java Swing
-*JDBC
-*File I/O
-*RMI
-*VLCJ
+* Java SE
+* Java Swing
+* JDBC
+* File I/O
+* RMI
+* VLCJ
 
 ## Features
 Users maintaining (self maintating or counter-wise)
