@@ -350,13 +350,13 @@ public class HomePage extends javax.swing.JFrame {
         });
         getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 10, 40, 30));
 
-        clock.setFont(new java.awt.Font("DS-Digital", 0, 24)); // NOI18N
+        clock.setFont(new java.awt.Font("DS-Digital", 0, 18)); // NOI18N
         clock.setForeground(new java.awt.Color(204, 204, 255));
         clock.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         clock.setText("05:10:00 P.M");
         getContentPane().add(clock, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 60, 130, 30));
 
-        date.setFont(new java.awt.Font("DS-Digital", 0, 24)); // NOI18N
+        date.setFont(new java.awt.Font("DS-Digital", 0, 18)); // NOI18N
         date.setForeground(new java.awt.Color(204, 204, 255));
         date.setText("2016-08-05");
         getContentPane().add(date, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 60, 130, -1));
