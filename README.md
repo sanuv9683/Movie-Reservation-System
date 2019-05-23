@@ -12,7 +12,7 @@ of the movie theater.
 [![js-standard-style](https://img.shields.io/azure-devops/coverage/swellaby/opensource/25.svg)](https://google.com)
  
 ## Screenshots
-
+![Image of Yaktocat](https://octodex.github.com/images/yaktocat.png)
 
 ## Tech/framework used
 Java SE, Java Swing, JDBC, File I/O, RMI,VLCJ
