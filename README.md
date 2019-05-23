@@ -12,10 +12,14 @@ of the movie theater*.
 [![js-standard-style](https://img.shields.io/azure-devops/coverage/swellaby/opensource/25.svg)](https://google.com)
  
 ## Screenshots
+
 **Login**
+
 ![Image of Yaktocat](https://github.com/sanuv9683/Movie-Reservation-System/blob/master/img/A1.gif)
 
+
 **Home Page**
+
 ![Image of Yaktocat](https://github.com/sanuv9683/Movie-Reservation-System/blob/master/img/A2.gif)
 
 ## Tech/framework used
