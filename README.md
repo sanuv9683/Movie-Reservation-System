@@ -13,11 +13,6 @@ of the movie theater*.
  
 ## Screenshots
 
-**Login**
-
-![Image of Sanu](https://github.com/sanuv9683/Movie-Reservation-System/blob/master/img/A1.gif)
-
-
 **Home Page**
 
 ![Image of Sanu](https://github.com/sanuv9683/Movie-Reservation-System/blob/master/img/A2.gif)
