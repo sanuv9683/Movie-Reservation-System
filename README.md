@@ -5,7 +5,7 @@ users can reserve their movies themself or from the help of the counters..by usi
 movie trailers.
 
 ## Motivation
-*Letting customers to enjoy the user experiance through a system and reduse the busy environment around the counters
+*Letting customers to enjoy the user experiance through a system and reduce the busy environment around the counters
 of the movie theater*.
 
 ## Code style
