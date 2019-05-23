@@ -20,10 +20,11 @@ Java SE, Java Swing, JDBC, File I/O, RMI
 ## Installation
 
 
+Clone the Source Code from github..
 
+Hope someone finds this helpful someday...! :wink:
 
-Hope you will find some usefull tips from this ;-)
+#### Developed by Sanu Vithanage ©-2014
 
-#### Developed by Sanu Vithanage
 
 
